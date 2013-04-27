@@ -2,6 +2,8 @@ package org.xezz.zeitabrechnung.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User: Xezz
@@ -19,6 +21,8 @@ public class Customer {
     private Date creationDate;
     @Temporal(TemporalType.DATE)
     private Date lastUpdatedDate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private Set<Project> projects = new HashSet<Project>();
 
     /**
      * Default constructor for JPA/Spring/Whatever
@@ -75,4 +79,11 @@ public class Customer {
         return lastUpdatedDate;
     }
 
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
 }

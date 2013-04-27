@@ -2,6 +2,8 @@ package org.xezz.zeitabrechnung.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User: Xezz
@@ -19,6 +21,8 @@ public class Coworker {
     private Date creationDate;
     @Temporal(TemporalType.DATE)
     private Date lastUpdatedDate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coworker")
+    private Set<Timeframe> timeframes = new HashSet<Timeframe>();
     /*
      * TODO: Consider adding credentials here too
      */
@@ -76,5 +80,13 @@ public class Coworker {
 
     public Date getLastUpdatedDate() {
         return lastUpdatedDate;
+    }
+
+    public Set<Timeframe> getTimeframes() {
+        return timeframes;
+    }
+
+    public void setTimeframes(Set<Timeframe> timeframes) {
+        this.timeframes = timeframes;
     }
 }
