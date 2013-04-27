@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+    <!-- last error was here, instead of RESOURCE_LOCAL it was RESOURCE_LOCK ... -->
+    <persistence-unit name="lottos" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>org.xezz.zeitabrechnung.model.Coworker</class>
+        <properties>
+            <!-- Driver to connect to the DB -->
+            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+            <!-- URL to the database. e.g. "jdbc:sqlite:c://<filename>.db" -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:zeitabrechnung.db"/>
+            <!-- Username to connect to the DB -->
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <!-- Password to connect with that username to the DB -->
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <!-- JPA Provider specific -->
+            <!-- EclipseLink shall create the schema automatically -->
+            <!-- Only executed once <property name="eclipselink.ddl-generation" value="create-tables"/> -->
+            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+        </properties>
+    </persistence-unit>
+</persistence>
