@@ -16,13 +16,16 @@ public class Coworker implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long coworkerId;
-    private String givenName;
-    private String surName;
+    private String firstName;
+    private String lastName;
     @Temporal(TemporalType.DATE)
     private Date creationDate;
     @Temporal(TemporalType.DATE)
     private Date lastUpdatedDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coworker")
+    // Delete, Persist etc by cascading
+    // mapped by the field coworker in Timeframe
+    // fetch the set when populating this entity
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coworker", fetch = FetchType.EAGER)
     private Set<Timeframe> timeframes = new HashSet<Timeframe>();
     /*
      * TODO: Consider adding credentials here too
@@ -36,7 +39,7 @@ public class Coworker implements Serializable {
     /**
      * Set the creation date before this entity is going to be persisted
      */
-    @PreUpdate
+    @PrePersist
     private void setDateBeforePersisting() {
         creationDate = new Date();
         // Set the last updated Date to the creation date
@@ -46,7 +49,7 @@ public class Coworker implements Serializable {
     /**
      * Update the time this coworker has last been updated
      */
-    @PrePersist
+    @PreUpdate
     private void updateLastEditedDate() {
         lastUpdatedDate = new Date();
     }
@@ -59,20 +62,20 @@ public class Coworker implements Serializable {
         this.coworkerId = coworkerId;
     }
 
-    public String getGivenName() {
-        return givenName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setGivenName(String givenName) {
-        this.givenName = givenName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Date getCreationDate() {

@@ -33,6 +33,17 @@ public class Project implements Serializable {
      */
     public Project() {}
 
+    @PrePersist
+    private void setDateBeforePersisting() {
+        if (creationDate== null) creationDate = new Date();
+        lastUpdatedDate = (Date) creationDate.clone();
+    }
+
+    @PreUpdate
+    private void updateLastEditedDate() {
+        lastUpdatedDate = new Date();
+    }
+
     public Long getProjectId() {
         return projectId;
     }

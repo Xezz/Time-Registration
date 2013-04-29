@@ -23,17 +23,15 @@ public class Timeframe implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date lastUpdatedDate;
 
-    @PreUpdate
-    public void setCreationDate() {
-        if (this.creationDate == null) {
-            this.creationDate = new Date();
-        }
-        this.lastUpdatedDate = (Date) creationDate.clone();
+    @PrePersist
+    private void setDateBeforePersisting() {
+        if (creationDate== null) creationDate = new Date();
+        lastUpdatedDate = (Date) creationDate.clone();
     }
 
-    @PrePersist
-    public void setLastUpdatedDate() {
-        this.lastUpdatedDate = new Date();
+    @PreUpdate
+    private void updateLastEditedDate() {
+        lastUpdatedDate = new Date();
     }
 
     public Long getTimeframeId() {

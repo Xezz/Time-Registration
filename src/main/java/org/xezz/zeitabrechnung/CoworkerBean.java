@@ -42,8 +42,8 @@ public class CoworkerBean implements Serializable {
      */
     public void addCoworker() {
         Coworker cw = new Coworker();
-        cw.setGivenName(getGivenName());
-        cw.setSurName(getSurName());
+        cw.setFirstName(getGivenName());
+        cw.setLastName(getSurName());
 
         coworkerBo.addCoworker(cw);
 
