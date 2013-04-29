@@ -35,8 +35,9 @@ public interface TimeframeService {
      * @param p Project for this Timeframe
      * @param startTime Date the starting time of the timeframe
      * @param endTime Date the ending time of the timeframe
+     * @return Timeframe the persisted Timeframe
      */
-    void addNewTimeframe(Coworker c, Project p, Date startTime, Date endTime);
+    Timeframe addNewTimeframe(Coworker c, Project p, Date startTime, Date endTime);
 
     /**
      * Get a specific timeframe by its ID

@@ -34,13 +34,13 @@ public class TimeframeServiceImpl implements TimeframeService {
     }
 
     @Override
-    public void addNewTimeframe(Coworker c, Project p, Date startTime, Date endTime) {
+    public Timeframe addNewTimeframe(Coworker c, Project p, Date startTime, Date endTime) {
         Timeframe timeframe = new Timeframe();
         timeframe.setCoworker(c);
         timeframe.setProject(p);
         timeframe.setStartTime(startTime);
         timeframe.setEndTime(endTime);
-        repo.save(timeframe);
+        return repo.save(timeframe);
     }
 
     @Override
