@@ -14,10 +14,18 @@ public class Timeframe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long timeframeId;
+
+    // Relevant data
     @ManyToOne(optional = false)
     private Project project;
     @ManyToOne(optional = false)
     private Coworker coworker;
+    @Temporal(TemporalType.DATE)
+    private Date startTime;
+    @Temporal(TemporalType.DATE)
+    private Date endTime;
+
+    // "Auditing"
     @Temporal(TemporalType.DATE)
     private Date creationDate;
     @Temporal(TemporalType.DATE)
@@ -72,5 +80,21 @@ public class Timeframe implements Serializable {
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 }
