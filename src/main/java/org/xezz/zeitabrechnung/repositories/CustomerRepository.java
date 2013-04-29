@@ -1,6 +1,8 @@
 package org.xezz.zeitabrechnung.repositories;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.xezz.zeitabrechnung.model.Coworker;
 import org.xezz.zeitabrechnung.model.Customer;
 
 import java.util.List;
@@ -24,5 +26,8 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
      * @return List of all Customers that contain this part of its name
      */
     public List<Customer> findByNameLike(String name);
+
+    @Query("SELECT t.project.customer FROM Timeframe t WHERE t.coworker = :coworker")
+    public List<Customer> findCustomersByCoworker(Coworker c);
 
 }
