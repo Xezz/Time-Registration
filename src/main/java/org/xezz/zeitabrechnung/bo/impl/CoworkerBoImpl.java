@@ -1,8 +1,8 @@
 package org.xezz.zeitabrechnung.bo.impl;
 
 import org.xezz.zeitabrechnung.bo.CoworkerBo;
-import org.xezz.zeitabrechnung.repositories.CoworkerRepository;
 import org.xezz.zeitabrechnung.model.Coworker;
+import org.xezz.zeitabrechnung.repositories.CoworkerRepository;
 
 import java.util.Collections;
 import java.util.List;

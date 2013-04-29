@@ -1,9 +1,68 @@
 package org.xezz.zeitabrechnung.services;
 
+import org.xezz.zeitabrechnung.model.Coworker;
+import org.xezz.zeitabrechnung.model.Project;
+import org.xezz.zeitabrechnung.model.Timeframe;
+
+import java.util.List;
+
 /**
+ * Service to receive Coworkers by a criteria
  * User: Xezz
  * Date: 29.04.13
  * Time: 14:36
  */
 public interface CoworkerService {
+
+    /**
+     * Get all coworkers with this first name
+     * @param firstName String the first name of the Coworkers
+     * @return List of all Coworkers with this first name
+     */
+    List<Coworker> coworkersByFirstName(String firstName);
+
+    /**
+     * Get all Coworkers with this last name
+     * @param lastName String the last name of the Coworkers
+     * @return List of all Coworkers with this last name
+     */
+    List<Coworker> coworkersByLastName(String lastName);
+
+    /**
+     * Get all Coworkers that match the given first and last name
+     * @param firstName String the first name of the coworker
+     * @param lastName String the last name of the coworker
+     * @return List of all Coworkers that match the first and last name
+     */
+    List<Coworker> coworkersByFirstAndLastName(String firstName, String lastName);
+
+    /**
+     * Get a specific Coworker by its ID
+     * @param id Long the unique ID of a Coworker
+     * @return Coworker that has this id or if none found {@code null}
+     */
+    Coworker coworkerById(Long id);
+
+    // FIXME: Is this really needed? Coworker is stored already in the timeframe
+    /**
+     * Get a Coworker by a specific timeframe
+     * @param timeframe Timeframe a Coworker worked on
+     * @return Coworker that is stored in the Timeframe
+     */
+    Coworker coworkerByTimeFrame(Timeframe timeframe);
+
+    /**
+     * Get all Coworkers that worked for a specific Project
+     * @param p Project to get all Coworkers
+     * @return List of all Coworkers involved in the Project
+     */
+    List<Coworker> coworkersByProject(Project p);
+
+    /**
+     * Persist a new Coworker
+     * @param firstName The first name of the Coworker
+     * @param lastName The last name of the Coworker
+     * @return Coworker the persisted Coworker
+     */
+    Coworker addNewCoworker(String firstName, String lastName);
 }

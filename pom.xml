@@ -124,7 +124,7 @@
     </dependencies>
 
     <build>
-        <finalName>JavaServerFaces</finalName>
+        <!--<finalName>JavaServerFaces</finalName>-->
 
         <plugins>
             <plugin>

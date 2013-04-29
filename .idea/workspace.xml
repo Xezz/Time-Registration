@@ -2,25 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cf3a956-1308-4b7e-8408-daad5854388b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/CoworkerServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/TimeframeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Timeframe.java" afterPath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Timeframe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/TimeframeService.java" afterPath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/TimeframeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zeitabrechnung.iml" afterPath="$PROJECT_DIR$/zeitabrechnung.iml" />
-    </list>
-    <list id="94eeafc1-0389-4e13-905e-0002eeb0c244" name="Failed commit: Default" comment="UPDATE: Switched to Repositories instead of DataAccessObjects&#10;UPDATE: Added spring-data-jpa dependency">
+      <change type="DELETED" beforePath="E:\coding\java\zeitabrechnung\src\main\java\org\xezz\zeitabrechnung\repositories\AbstractJpaDAO.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/bo/impl/CoworkerBoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/bo/impl/CoworkerBoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/CoworkerRepository.java" afterPath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/CoworkerRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/CoworkerService.java" afterPath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/CoworkerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/CoworkerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/CoworkerServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/ProjectRepository.java" afterPath="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/ProjectRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
+    <list id="94eeafc1-0389-4e13-905e-0002eeb0c244" name="Failed commit: Default" comment="UPDATE: Switched to Repositories instead of DataAccessObjects&#10;UPDATE: Added spring-data-jpa dependency" />
     <ignored path="zeitabrechnung.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/" />
     <ignored path="*.iml" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367225936289" ignored="false" />
-    <file path="/Dummy.txt" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367252588900" ignored="false" />
+    <file path="/Dummy.txt" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367267347238" ignored="false" />
     <file path="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367252391185" ignored="false" />
     <file path="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/bo/CoworkerBo.java" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367252391185" ignored="false" />
+    <file path="/ProjectRepository.java" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367265815895" ignored="false" />
+    <file path="/CoworkerService.java" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367267214076" ignored="false" />
+    <file path="/CoworkerServiceImpl.java" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367267177456" ignored="false" />
+    <file path="/CoworkerRepository.java" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367265781021" ignored="false" />
+    <file path="/fragment.java" changelist="3cf3a956-1308-4b7e-8408-daad5854388b" time="1367267164074" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,43 +92,60 @@
       <file leaf-file-name="TimeframeService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/TimeframeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="32" selection-start="1162" selection-end="1162" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="28" column="7" selection-start="678" selection-end="678" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractJpaDAO.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/AbstractJpaDAO.java">
+      <file leaf-file-name="CoworkerService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/CoworkerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="15" selection-start="703" selection-end="703" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="67" column="0" selection-start="2209" selection-end="2209" vertical-scroll-proportion="1.9705882">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimeframeServiceImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/TimeframeServiceImpl.java">
+      <file leaf-file-name="CoworkerServiceImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/CoworkerServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="5" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.0">
+            <state line="51" column="0" selection-start="1372" selection-end="1612" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TimeframeRepository.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/TimeframeRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="61" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProjectRepository.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/ProjectRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="4" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoworkerRepository.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CoworkerRepository.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/CoworkerRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="4" selection-start="408" selection-end="408" vertical-scroll-proportion="0.33512545">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoworkerBoImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/bo/impl/CoworkerBoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0">
+            <state line="44" column="73" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -134,16 +154,7 @@
       <file leaf-file-name="Timeframe.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Timeframe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="32" selection-start="1901" selection-end="1901" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProjectRepository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/ProjectRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="14" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0">
+            <state line="12" column="13" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -158,20 +169,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoworkerServiceImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/CoworkerServiceImpl.java">
+      <file leaf-file-name="Project.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Project.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoworkerService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/CoworkerService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="34" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="21" column="30" selection-start="487" selection-end="487" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#831#842#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -201,22 +206,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/dao/TimeframeRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/CoworkerBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/impl/CoworkerAccessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/bo/impl/CoworkerBoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/CoworkerRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Coworker.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/CustomerRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/ProjectRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Project.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/TimeframeRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/ProjectService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/CoworkerServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Timeframe.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/TimeframeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/TimeframeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/AbstractJpaDAO.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/CoworkerRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/ProjectRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/CoworkerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/CoworkerService.java" />
       </list>
     </option>
   </component>
@@ -693,6 +698,7 @@
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
+    <property name="dynamic.classpath" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -701,6 +707,28 @@
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -872,7 +900,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32852387" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32814237" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963374" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -882,16 +910,16 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6707589" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924226" sideWeight="0.67074525" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957264" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18943436" sideWeight="0.6714761" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18943436" sideWeight="0.6718576" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39955357" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
@@ -938,7 +966,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="NEW: Services" />
+    <option name="LAST_COMMIT_MESSAGE" value="FIX: pom.xml fixed wrong naming of resulting jar&#10;UPDATE: Repositories new methos to find entities&#10;UPDATE: Services added methods&#10;UPDATE: Serviceimpls implementing methods" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -956,6 +984,7 @@
     <MESSAGE value="UPDATE: Switched to Repositories instead of DataAccessObjects&#10;UPDATE: Added spring-data-jpa dependency" />
     <MESSAGE value="UPDATE: Repositories added methods to query for entities&#10;UPDATE: Models PrePersist and PreUpdate for Dates" />
     <MESSAGE value="NEW: Services" />
+    <MESSAGE value="FIX: pom.xml fixed wrong naming of resulting jar&#10;UPDATE: Repositories new methos to find entities&#10;UPDATE: Services added methods&#10;UPDATE: Serviceimpls implementing methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -965,28 +994,18 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/TimeframeRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/CoworkerBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="61" selection-start="526" selection-end="526" vertical-scroll-proportion="0.3211334">
+        <state line="71" column="0" selection-start="1610" selection-end="1610" vertical-scroll-proportion="0.6175869">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Project.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/bo/impl/CoworkerBoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="65" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#831#842#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/ProjectService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
+        <state line="32" column="0" selection-start="781" selection-end="781" vertical-scroll-proportion="0.5245714">
           <folding />
         </state>
       </provider>
@@ -1000,74 +1019,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Coworker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="37" selection-start="1408" selection-end="1428" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/CoworkerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Timeframe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="32" selection-start="1901" selection-end="1901" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/ProjectRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="14" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/CoworkerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="34" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/CoworkerBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="1610" selection-end="1610" vertical-scroll-proportion="0.6175869">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/AbstractJpaDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="15" selection-start="703" selection-end="703" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/TimeframeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="32" selection-start="1162" selection-end="1162" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/bo/impl/CoworkerBoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="21" selection-start="3912" selection-end="3912" vertical-scroll-proportion="0.52114284">
+        <state line="126" column="53" selection-start="4011" selection-end="4011" vertical-scroll-proportion="2.5259433">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/ProjectService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="17" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1079,10 +1040,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/TimeframeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="7" selection-start="678" selection-end="678" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Project.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="30" selection-start="487" selection-end="487" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#831#842#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Coworker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="37" selection-start="1408" selection-end="1428" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/model/Timeframe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/TimeframeRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="61" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/CoworkerRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="4" selection-start="408" selection-end="408" vertical-scroll-proportion="0.33512545">
+        <state line="44" column="73" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/repositories/ProjectRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="4" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/impl/CoworkerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="1372" selection-end="1612" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/xezz/zeitabrechnung/services/CoworkerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="0" selection-start="2209" selection-end="2209" vertical-scroll-proportion="1.9705882">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
