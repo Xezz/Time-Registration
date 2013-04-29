@@ -1,6 +1,7 @@
 package org.xezz.zeitabrechnung.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * Time: 17:53
  */
 @Entity
-public class Timeframe {
+public class Timeframe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long timeframeId;

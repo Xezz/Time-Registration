@@ -48,9 +48,6 @@ public class CoworkerBean implements Serializable {
         coworkerBo.addCoworker(cw);
 
         clearForm();
-
-        // Return, because if I change this to String as suggested I don't run into issues
-        return;
     }
 
     /**

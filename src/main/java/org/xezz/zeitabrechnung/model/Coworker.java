@@ -1,6 +1,7 @@
 package org.xezz.zeitabrechnung.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
  * Time: 16:53
  */
 @Entity
-public class Coworker {
+public class Coworker implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long coworkerId;
