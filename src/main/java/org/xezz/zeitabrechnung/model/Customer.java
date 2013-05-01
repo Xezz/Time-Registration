@@ -87,4 +87,36 @@ public class Customer implements Serializable {
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+
+        Customer customer = (Customer) o;
+
+        if (creationDate != null ? !creationDate.equals(customer.creationDate) : customer.creationDate != null)
+            return false;
+        if (customerId != null ? !customerId.equals(customer.customerId) : customer.customerId != null) return false;
+        if (customerInfo != null ? !customerInfo.equals(customer.customerInfo) : customer.customerInfo != null)
+            return false;
+        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(customer.lastUpdatedDate) : customer.lastUpdatedDate != null)
+            return false;
+        if (name != null ? !name.equals(customer.name) : customer.name != null) return false;
+        if (projects != null ? !projects.equals(customer.projects) : customer.projects != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = customerId != null ? customerId.hashCode() : 0;
+        final int PRIME = 31;
+        result = PRIME * result + (name != null ? name.hashCode() : 0);
+        result = PRIME * result + (customerInfo != null ? customerInfo.hashCode() : 0);
+        result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        result = PRIME * result + (projects != null ? projects.hashCode() : 0);
+        return result;
+    }
 }

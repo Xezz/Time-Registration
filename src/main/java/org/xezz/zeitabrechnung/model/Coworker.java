@@ -93,4 +93,35 @@ public class Coworker implements Serializable {
     public void setTimeframes(Set<Timeframe> timeframes) {
         this.timeframes = timeframes;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Coworker)) return false;
+
+        Coworker coworker = (Coworker) o;
+
+        if (coworkerId != null ? !coworkerId.equals(coworker.coworkerId) : coworker.coworkerId != null) return false;
+        if (creationDate != null ? !creationDate.equals(coworker.creationDate) : coworker.creationDate != null)
+            return false;
+        if (firstName != null ? !firstName.equals(coworker.firstName) : coworker.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(coworker.lastName) : coworker.lastName != null) return false;
+        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(coworker.lastUpdatedDate) : coworker.lastUpdatedDate != null)
+            return false;
+        if (timeframes != null ? !timeframes.equals(coworker.timeframes) : coworker.timeframes != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = coworkerId != null ? coworkerId.hashCode() : 0;
+        final int PRIME = 31;
+        result = PRIME * result + (firstName != null ? firstName.hashCode() : 0);
+        result = PRIME * result + (lastName != null ? lastName.hashCode() : 0);
+        result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        result = PRIME * result + (timeframes != null ? timeframes.hashCode() : 0);
+        return result;
+    }
 }

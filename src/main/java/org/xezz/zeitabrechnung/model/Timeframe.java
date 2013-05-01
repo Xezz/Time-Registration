@@ -97,4 +97,38 @@ public class Timeframe implements Serializable {
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Timeframe)) return false;
+
+        Timeframe timeframe = (Timeframe) o;
+
+        if (coworker != null ? !coworker.equals(timeframe.coworker) : timeframe.coworker != null) return false;
+        if (creationDate != null ? !creationDate.equals(timeframe.creationDate) : timeframe.creationDate != null)
+            return false;
+        if (endTime != null ? !endTime.equals(timeframe.endTime) : timeframe.endTime != null) return false;
+        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(timeframe.lastUpdatedDate) : timeframe.lastUpdatedDate != null)
+            return false;
+        if (project != null ? !project.equals(timeframe.project) : timeframe.project != null) return false;
+        if (startTime != null ? !startTime.equals(timeframe.startTime) : timeframe.startTime != null) return false;
+        if (timeframeId != null ? !timeframeId.equals(timeframe.timeframeId) : timeframe.timeframeId != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = timeframeId != null ? timeframeId.hashCode() : 0;
+        final int PRIME = 31;
+        result = PRIME * result + (project != null ? project.hashCode() : 0);
+        result = PRIME * result + (coworker != null ? coworker.hashCode() : 0);
+        result = PRIME * result + (startTime != null ? startTime.hashCode() : 0);
+        result = PRIME * result + (endTime != null ? endTime.hashCode() : 0);
+        result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        return result;
+    }
 }

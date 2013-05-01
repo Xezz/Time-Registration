@@ -99,4 +99,37 @@ public class Project implements Serializable {
     public void setTimeframes(Set<Timeframe> timeframes) {
         this.timeframes = timeframes;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Project)) return false;
+
+        Project project = (Project) o;
+
+        if (creationDate != null ? !creationDate.equals(project.creationDate) : project.creationDate != null)
+            return false;
+        if (customer != null ? !customer.equals(project.customer) : project.customer != null) return false;
+        if (description != null ? !description.equals(project.description) : project.description != null) return false;
+        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(project.lastUpdatedDate) : project.lastUpdatedDate != null)
+            return false;
+        if (name != null ? !name.equals(project.name) : project.name != null) return false;
+        if (projectId != null ? !projectId.equals(project.projectId) : project.projectId != null) return false;
+        if (timeframes != null ? !timeframes.equals(project.timeframes) : project.timeframes != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = projectId != null ? projectId.hashCode() : 0;
+        final int PRIME = 31;
+        result = PRIME * result + (name != null ? name.hashCode() : 0);
+        result = PRIME * result + (description != null ? description.hashCode() : 0);
+        result = PRIME * result + (customer != null ? customer.hashCode() : 0);
+        result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        result = PRIME * result + (timeframes != null ? timeframes.hashCode() : 0);
+        return result;
+    }
 }
