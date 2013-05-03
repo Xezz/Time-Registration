@@ -1,12 +1,12 @@
-package org.xezz.zeitabrechnung.controller;
+package org.xezz.timeregistration.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.xezz.zeitabrechnung.model.Coworker;
-import org.xezz.zeitabrechnung.services.CoworkerService;
+import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.services.CoworkerService;
 
 import java.util.List;
 

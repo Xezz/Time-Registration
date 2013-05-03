@@ -1,4 +1,4 @@
-package org.xezz.zeitabrechnung.services;
+package org.xezz.timeregistration.services;
 
 /**
  * User: Xezz

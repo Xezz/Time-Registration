@@ -1,4 +1,4 @@
-package org.xezz.zeitabrechnung;
+package org.xezz.timeregistration;
 
 /**
  * Not going to run :P!

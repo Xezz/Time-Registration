@@ -18,7 +18,8 @@
         <param-name>contextConfigLocation</param-name>
         <!-- FIXME: nothing here yet, create either the class or change this! BUILDBREAKER -->
         <!-- if it is not Java based, here would be an xml file specified? -->
-        <param-value>org.xezz.zeitabrechnung.root</param-value>
+        <param-value>org.xezz.timeregistration.root</param-value>
+        <!--<param-value>/WEB-INF/timeregistration-servlet.xml</param-value>-->
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -31,7 +32,7 @@
         <!--
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>org.xezz.zeitabrechnung.rest</param-value>
+            <param-value>org.xezz.timeregistrationon.rest</param-value>
         </init-param>
         -->
         <servlet-class>

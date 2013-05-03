@@ -1,8 +1,8 @@
-package org.xezz.zeitabrechnung.services;
+package org.xezz.timeregistration.services;
 
-import org.xezz.zeitabrechnung.model.Coworker;
-import org.xezz.zeitabrechnung.model.Project;
-import org.xezz.zeitabrechnung.model.Timeframe;
+import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.model.Project;
+import org.xezz.timeregistration.model.Timeframe;
 
 import java.util.Date;
 import java.util.List;

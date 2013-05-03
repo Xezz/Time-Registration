@@ -1,12 +1,12 @@
-package org.xezz.zeitabrechnung.services.impl;
+package org.xezz.timeregistration.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.xezz.zeitabrechnung.model.Coworker;
-import org.xezz.zeitabrechnung.model.Project;
-import org.xezz.zeitabrechnung.model.Timeframe;
-import org.xezz.zeitabrechnung.repositories.TimeframeRepository;
-import org.xezz.zeitabrechnung.services.TimeframeService;
+import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.model.Project;
+import org.xezz.timeregistration.model.Timeframe;
+import org.xezz.timeregistration.repositories.TimeframeRepository;
+import org.xezz.timeregistration.services.TimeframeService;
 
 import java.util.Date;
 import java.util.List;

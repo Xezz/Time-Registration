@@ -1,10 +1,10 @@
-package org.xezz.zeitabrechnung.repositories;
+package org.xezz.timeregistration.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import org.xezz.zeitabrechnung.model.Coworker;
-import org.xezz.zeitabrechnung.model.Project;
+import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.model.Project;
 
 import java.util.List;
 

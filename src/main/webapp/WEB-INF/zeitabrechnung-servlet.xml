@@ -2,6 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jd="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
@@ -14,6 +16,7 @@
         Configures the location of static resources such as css files.
         Requires Spring Framework 3.0 or higher.
     -->
+    <context:component-scan base-package="org.xezz.timeregistration"></context:component-scan>
     <mvc:resources mapping="/static/**" location="/static/"/>
 
     <!--
@@ -26,13 +29,21 @@
     <!--
         Configures Spring Data JPA and sets the base package of my DAOs.
     -->
-    <jpa:repositories base-package="org.xezz.zeitabrechnung.repositories"/>
+    <jpa:repositories base-package="org.xezz.timeregistration.repositories"/>
+
 
     <!--
         see http://blog.safaribooksonline.com/2012/03/28/spring-mvc-tip-returning-json-from-a-spring-controller/
         This shall enable to return JSON responses mapped by Jackson
     -->
     <mvc:annotation-driven />
+    <!--<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />-->
+    <!--<bean class="org.springframework.orm.hibernate4.HibernateExceptionTranslator" />-->
+    <!-- Trying local persistence shite -->
+    <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="zeitabrechnung"/>
+    </bean>
+    <!-- Data Source -->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="mediaTypes">
             <map>

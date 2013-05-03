@@ -1,4 +1,4 @@
-package org.xezz.zeitabrechnung.model;
+package org.xezz.timeregistration.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
