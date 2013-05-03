@@ -15,6 +15,12 @@ import java.util.List;
 public interface CoworkerService {
 
     /**
+     * Get all coworkers
+     * @return List of all Coworkers
+     */
+    List<Coworker> coworkersAll();
+
+    /**
      * Get all coworkers with this first name
      * @param firstName String the first name of the Coworkers
      * @return List of all Coworkers with this first name
@@ -60,9 +66,15 @@ public interface CoworkerService {
 
     /**
      * Persist a new Coworker
-     * @param firstName The first name of the Coworker
-     * @param lastName The last name of the Coworker
+     * @param coworker the Coworker to persist
      * @return Coworker the persisted Coworker
      */
-    Coworker addNewCoworker(String firstName, String lastName);
+    Coworker addNewCoworker(Coworker coworker);
+
+    /**
+     * Update an existing Coworker
+     * @param coworker the new Coworker
+     * @return Coworker the persisted Coworker
+     */
+    Coworker updateCoworker(Coworker coworker);
 }

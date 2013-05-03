@@ -27,20 +27,24 @@
     <servlet>
         <!-- TODO: Maybe find a more appropriate name for this ... -->
         <servlet-name>zeitabrechnung</servlet-name>
+        <!-- FIXME: nothing there yet, create either the class or fix it in another way ... -->
+        <!--
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>org.xezz.zeitabrechnung.rest</param-value>
+        </init-param>
+        -->
         <servlet-class>
             org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
+        <!--
         <init-param>
             <param-name>contextClass</param-name>
             <param-value>
                 org.springframework.web.context.support.AnnotationConfigWebApplicationContext
             </param-value>
         </init-param>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <!-- FIXME: nothing there yet, create either the class or fix it in another way ... -->
-            <param-value>org.xezz.zeitabrechnung..rest</param-value>
-        </init-param>
+        -->
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

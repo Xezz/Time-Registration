@@ -18,6 +18,12 @@ public class CoworkerServiceImpl implements CoworkerService  {
 
     @Autowired
     CoworkerRepository repo;
+
+    @Override
+    public List<Coworker> coworkersAll() {
+        return repo.findAllCoworkers();
+    }
+
     @Override
     public List<Coworker> coworkersByFirstName(String firstName) {
         return repo.findByFirstName(firstName);
@@ -49,10 +55,16 @@ public class CoworkerServiceImpl implements CoworkerService  {
     }
 
     @Override
-    public Coworker addNewCoworker(String firstName, String lastName) {
-        final Coworker coworker = new Coworker();
-        coworker.setFirstName(firstName);
-        coworker.setLastName(lastName);
+    public Coworker addNewCoworker(Coworker coworker) {
         return repo.save(coworker);
+    }
+
+    @Override
+    public Coworker updateCoworker(Coworker coworker) {
+        if (repo.exists(coworker.getCoworkerId())) {
+            return repo.save(coworker);
+        } else {
+            return null;
+        }
     }
 }

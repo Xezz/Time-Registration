@@ -5,7 +5,7 @@
     <groupId>org.xezz</groupId>
     <artifactId>zeitabrechnung</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>Zeitabrechnung</name>
     <url>http://www.xezz.org</url>
@@ -34,6 +34,10 @@
         <jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
         <jaxb-api.version>2.2.7</jaxb-api.version>
         <xstream.version>1.4.4</xstream.version>
+
+        <!-- sqlite -->
+        <sqlite-jdbc.version>3.7.2</sqlite-jdbc.version>
+        <slf4j-api.version>1.7.1</slf4j-api.version>
     </properties>
     <repositories>
         <repository>
@@ -63,15 +67,21 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- spring logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Persistence API -->
         <dependency>
             <!-- Maybe normal javax persistence? -->
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>javax.persistence</artifactId>
             <version>${javax-persistence.version}</version>
-            <!-- scope?
             <scope>provided</scope>
-            -->
         </dependency>
 
         <!-- Spring framework -->
@@ -104,6 +114,7 @@
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>${javax-inject.version}</version>
+            <scope>provided</scope>
         </dependency>
         <!-- JSF
         <dependency>
@@ -121,6 +132,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -133,6 +145,7 @@
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
             <version>${jsp-api.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Jackson Dependencies -->
@@ -148,6 +161,18 @@
             <artifactId>jaxb-api</artifactId>
             <version>${jaxb-api.version}</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- SQLITE for testing -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>${sqlite-jdbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.4.0</version>
         </dependency>
 
         <!-- EL

@@ -46,4 +46,11 @@ public interface CoworkerRepository extends CrudRepository<Coworker, Long> {
      */
     @Query("SELECT t.coworker FROM Timeframe t WHERE t.project = :project")
     public List<Coworker> findCoworkersByProject(@Param("project")Project project);
+
+    /**
+     * Get all Coworkers
+     * @return List of all Coworkers
+     */
+    @Query("SELECT c FROM Coworker c")
+    public List<Coworker> findAllCoworkers();
 }

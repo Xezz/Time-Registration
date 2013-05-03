@@ -3,9 +3,12 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <!-- last error was here, instead of RESOURCE_LOCAL it was RESOURCE_LOCK ... -->
-    <persistence-unit name="lottos" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="zeitabrechnung" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>org.xezz.zeitabrechnung.model.Coworker</class>
+        <class>org.xezz.zeitabrechnung.model.Customer</class>
+        <class>org.xezz.zeitabrechnung.model.Project</class>
+        <class>org.xezz.zeitabrechnung.model.Timeframe</class>
         <properties>
             <!-- Driver to connect to the DB -->
             <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>

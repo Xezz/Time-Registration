@@ -27,4 +27,34 @@
         Configures Spring Data JPA and sets the base package of my DAOs.
     -->
     <jpa:repositories base-package="org.xezz.zeitabrechnung.repositories"/>
+
+    <!--
+        see http://blog.safaribooksonline.com/2012/03/28/spring-mvc-tip-returning-json-from-a-spring-controller/
+        This shall enable to return JSON responses mapped by Jackson
+    -->
+    <mvc:annotation-driven />
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html"/>
+                <entry key="json" value="application/json"/>
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+                    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+                    <property name="prefix" value="/WEB-INF/jsp/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+                    <property name="prefixJson" value="true"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
 </beans>
