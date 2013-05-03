@@ -11,17 +11,29 @@
     <url>http://www.xezz.org</url>
 
     <properties>
+        <!-- Project specific props -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
-        <jaxb-api.version>2.2.7</jaxb-api.version>
-        <spring.version>3.2.2.RELEASE</spring.version>
-        <spring-data.version>1.3.1.RELEASE</spring-data.version>
+        <!-- Test -->
         <junit.version>4.11</junit.version>
+
+        <!-- Container / JavaEE -->
         <javax-persistence.version>2.0.0</javax-persistence.version>
         <javax-inject.version>1</javax-inject.version>
         <jstl.version>1.2</jstl.version>
+        <!-- TODO: Maybe use a new version, but 2.5 seems to be the current release? -->
+        <!-- might be that tomcat 7 has it already deployed as 3.x? -->
         <servlet-api.version>2.5</servlet-api.version>
         <jsp-api.version>2.1</jsp-api.version>
+
+        <!-- Spring -->
+        <spring.version>3.2.2.RELEASE</spring.version>
+        <spring-data.version>1.3.1.RELEASE</spring-data.version>
+
+        <!-- marshalling -->
+        <jackson.version>2.1.4</jackson.version>
+        <jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
+        <jaxb-api.version>2.2.7</jaxb-api.version>
+        <xstream.version>1.4.4</xstream.version>
     </properties>
     <repositories>
         <repository>

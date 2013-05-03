@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation=
+                 "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="rest" version="3.0">
+
+    <!-- web.xml is a file that configures a web application in a servlet container. Thus not unique to Spring -->
+
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>
+            org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <!-- FIXME: nothing here yet, create either the class or change this! BUILDBREAKER -->
+        <!-- if it is not Java based, here would be an xml file specified? -->
+        <param-value>org.xezz.zeitabrechnung.root</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <!-- TODO: Maybe find a more appropriate name for this ... -->
+        <servlet-name>zeitabrechnung</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <param-name>contextClass</param-name>
+            <param-value>
+                org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <!-- FIXME: nothing there yet, create either the class or fix it in another way ... -->
+            <param-value>org.xezz.zeitabrechnung..rest</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>zeitabrechnung</servlet-name>
+        <!-- TODO: decide in the real pattern for url's -->
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file />
+    </welcome-file-list>
+
+</web-app>
