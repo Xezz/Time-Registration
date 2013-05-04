@@ -3,7 +3,7 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <!-- last error was here, instead of RESOURCE_LOCAL it was RESOURCE_LOCK ... -->
-    <persistence-unit name="zeitabrechnung" transaction-type="JTA">
+    <persistence-unit name="timeregistration" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>org.xezz.timeregistration.model.Coworker</class>
         <class>org.xezz.timeregistration.model.Customer</class>
@@ -18,6 +18,9 @@
             <property name="maxActive" value="5" />
             <property name="poolPreparedStatements" value="true" />
             <property name="maxOpenPreparedStatements" value="10" />
+
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
         </properties>
     </persistence-unit>
 </persistence>

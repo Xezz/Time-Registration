@@ -1,6 +1,7 @@
 package org.xezz.timeregistration.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.model.Timeframe;
@@ -14,6 +15,7 @@ import java.util.List;
  * Date: 29.04.13
  * Time: 16:02
  */
+@Service
 public class CoworkerServiceImpl implements CoworkerService  {
 
     @Autowired
