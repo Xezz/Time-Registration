@@ -2,12 +2,12 @@ This is a NON-WORKING application
 I intend to create an application for a friend to get some experience in deploying spring apps.
 At the same time I learn the basics of spring myself, so it's a win-win situation.
 
-The purpose of this application is to track the time one used on a specific project. Since there is usually more than
-a single person working on said project, it is going to split between:
+The purpose of this application is to track the time one used on a specific project. Since there is usually more than a single person working on said project, it is going to split between:
     - Company
     - Project
     - Coworker
     - Timeframe
 
-As im still experimenting with different technologies and learning how to develop a decent RESTful service this won't
-be useful right now.
+As im still experimenting with different technologies and learning how to develop a decent RESTful service this won't be useful right now.
+
+Currently leaking Memory due to HSQLDB reference.
