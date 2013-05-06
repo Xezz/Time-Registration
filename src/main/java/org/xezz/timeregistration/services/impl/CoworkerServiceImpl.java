@@ -1,5 +1,7 @@
 package org.xezz.timeregistration.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xezz.timeregistration.model.Coworker;
@@ -17,6 +19,7 @@ import java.util.List;
  */
 @Service
 public class CoworkerServiceImpl implements CoworkerService  {
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     CoworkerRepository repo;
@@ -48,7 +51,10 @@ public class CoworkerServiceImpl implements CoworkerService  {
 
     @Override
     public Coworker coworkerById(Long id) {
-        return repo.findOne(id);
+        logger.info("Trying to find coworker with id: " + id);
+        final Coworker one = repo.findOne(id);
+        logger.info("Found one?: " + (one != null));
+        return one;
     }
 
     @Override
@@ -58,7 +64,10 @@ public class CoworkerServiceImpl implements CoworkerService  {
 
     @Override
     public Coworker addNewCoworker(Coworker coworker) {
-        return repo.save(coworker);
+        logger.info("Service saving coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
+        final Coworker save = repo.save(coworker);
+        logger.info("Service saved coworker, is it != null? " + (save != null));
+        return save;
     }
 
     @Override
