@@ -27,7 +27,18 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
      */
     public List<Customer> findByNameLike(String name);
 
+    /**
+     * Fetch all Customers that a Coworker is associated with
+     * @param c Coworker to look for
+     * @return List of Customers
+     */
     @Query("SELECT t.project.customer FROM Timeframe t WHERE t.coworker = :coworker")
     public List<Customer> findCustomersByCoworker(Coworker c);
 
+    /**
+     * Fetch all Customers
+     * @return List of all Customers
+     */
+    @Query("SELECT c FROM Customer c")
+    public List<Customer> findAllCustomers();
 }
