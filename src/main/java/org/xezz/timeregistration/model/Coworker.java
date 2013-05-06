@@ -1,5 +1,9 @@
 package org.xezz.timeregistration.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,10 +15,15 @@ import java.util.Set;
  * Date: 26.04.13
  * Time: 16:53
  */
+@Transactional
 @Entity
 public class Coworker implements Serializable {
+
+    @Transient
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long coworkerId;
     private String firstName;
     private String lastName;
@@ -41,6 +50,7 @@ public class Coworker implements Serializable {
      */
     @PrePersist
     private void setDateBeforePersisting() {
+        logger.info("Inside prepersisting a Coworker");
         creationDate = new Date();
         // Set the last updated Date to the creation date
         lastUpdatedDate = (Date) creationDate.clone();
