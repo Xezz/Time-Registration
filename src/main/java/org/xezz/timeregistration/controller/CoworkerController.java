@@ -1,5 +1,7 @@
 package org.xezz.timeregistration.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,8 @@ public class CoworkerController {
     @Autowired
     CoworkerService service;
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     /**
      * Get all Coworkers via REST request (method GET)
      * @return List of all Coworkers
@@ -32,6 +36,7 @@ public class CoworkerController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<Coworker> getAll() {
+        logger.info("Request to get all Coworker");
         return service.coworkersAll();
     }
 
@@ -43,7 +48,13 @@ public class CoworkerController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Coworker get(@PathVariable("id") Long id) {
-        return service.coworkerById(id);
+        logger.info("Request to get Coworker by id: " + id);
+        final Coworker coworker = service.coworkerById(id);
+        logger.info("Coworker found == null? " + (coworker==null));
+        if (coworker != null) {
+            logger.info("Coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
+        }
+        return coworker;
     }
 
     /**
@@ -54,6 +65,7 @@ public class CoworkerController {
     @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET)
     @ResponseBody
     public List<Coworker> getByFirstName(@PathVariable("firstname") String firstname) {
+        logger.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
         return service.coworkersByFirstName(firstname);
     }
 
@@ -65,6 +77,7 @@ public class CoworkerController {
     @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET)
     @ResponseBody
     public List<Coworker> getByLastName(@PathVariable("lastname") String lastname) {
+        logger.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
         return service.coworkersByLastName(lastname);
     }
 
@@ -74,8 +87,17 @@ public class CoworkerController {
      * @return id of the newly created Coworker
      */
     @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
     public Long create(@RequestBody Coworker coworker) {
-        return service.addNewCoworker(coworker).getCoworkerId();
+        logger.info("Post to create Coworker.");
+        if (coworker == null) {
+            logger.info("Coworker == null");
+        } else {
+            logger.info("Coworker.firstName: " + coworker.getFirstName() + " Coworker.lastName: " + coworker.getLastName());
+        }
+        final Coworker coworker1 = service.addNewCoworker(coworker);
+        logger.info("Persisted coworker, id: " + coworker1.getCoworkerId());
+        return coworker1.getCoworkerId();
     }
 
     /**
