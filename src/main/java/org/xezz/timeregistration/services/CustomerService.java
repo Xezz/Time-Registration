@@ -13,6 +13,35 @@ import java.util.List;
  * Time: 14:36
  */
 public interface CustomerService {
+
+    /**
+     * Receive all Customers
+     * @return List of all Customers
+     */
+
+    List<Customer> customersAll();
+
+    /**
+     * Get a Customer by its id
+     * @param id Long the id of a given Customer
+     * @return Customer that has the id
+     */
+    Customer customerById(Long id);
+
+    /**
+     * Persist a new Customer
+     * @param c Customer to persist
+     * @return Persisted Customer
+     */
+    Customer addNewCustomer(Customer c);
+
+    /**
+     * Update an existing Customer
+     * @param c Customer that has been updated
+     * @return Customer after persisting
+     */
+    Customer updateCustomer(Customer c);
+
     /**
      * Receive Customers by their name
      * @param name String the name of the Customer
