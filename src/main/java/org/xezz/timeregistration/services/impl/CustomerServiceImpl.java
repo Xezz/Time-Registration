@@ -16,7 +16,6 @@ import java.util.List;
  * Date: 29.04.13
  * Time: 22:44
  */
-//TODO: Is it right to use @Service?
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -56,6 +55,32 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> customerByCoworker(Coworker c) {
-        return null;  // FIXME: Implement this method
+        return repo.findCustomersByCoworker(c);
+    }
+
+    @Override
+    public List<Customer> customersAll() {
+        return repo.findAllCustomers();
+    }
+
+    @Override
+    public Customer customerById(Long id) {
+        return repo.findOne(id);
+    }
+
+    @Override
+    public Customer addNewCustomer(Customer c) {
+        return repo.save(c);
+    }
+
+    @Override
+    public Customer updateCustomer(Customer c) {
+        if (repo.exists(c.getCustomerId())) {
+            return repo.save(c);
+        }
+        // TODO: Can also save the Customer anyway, instead of discarding
+        // This would be against pure REST, since a PUT means a resource exists already
+        // On the other hand, might just do it sloppy
+        return null;
     }
 }
