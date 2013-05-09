@@ -4,7 +4,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
+import org.xezz.timeregistration.model.Timeframe;
 
 import java.util.List;
 
@@ -38,4 +40,20 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
      */
     @Query("SELECT t.project FROM Timeframe t WHERE t.coworker = :coworker")
     public List<Project> findProjectsByCoworker(@Param("project")Coworker coworker);
+
+    /**
+     * Find all Projects associated with this Customer
+     * @param customer Customer to look for
+     * @return List of Projects associated with the Customer
+     */
+    public List<Project> findByCustomer(Customer customer);
+
+    /**
+     * Get the Project this Timeframe is associated with
+     * @param t Timeframe associated with a Project
+     * @return Project containing the Timeframe
+     */
+    // FIXME: Correct way to query this?
+    @Query("SELECT t.project FROM Timeframe t WHERE t = :timeframe")
+    public Project findProjectByTimeframe(@Param("timeframe")Timeframe t);
 }
