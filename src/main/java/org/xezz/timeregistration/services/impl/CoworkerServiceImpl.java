@@ -67,6 +67,7 @@ public class CoworkerServiceImpl implements CoworkerService  {
         logger.info("Service saving coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
         final Coworker save = repo.save(coworker);
         logger.info("Service saved coworker, is it != null? " + (save != null));
+        logger.info("First name: " + save.getFirstName() + " Last name: " + save.getLastName() + " Date created: " + save.getCreationDate() + " id: " + save.getCoworkerId());
         return save;
     }
 
