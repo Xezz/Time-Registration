@@ -2,7 +2,6 @@ package org.xezz.timeregistration.model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +14,6 @@ import java.util.Set;
  * Date: 26.04.13
  * Time: 16:53
  */
-@Transactional
 @Entity
 public class Coworker implements Serializable {
 

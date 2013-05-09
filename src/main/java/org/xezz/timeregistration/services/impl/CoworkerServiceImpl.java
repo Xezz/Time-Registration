@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.model.Timeframe;
@@ -18,6 +20,7 @@ import java.util.List;
  * Time: 16:02
  */
 @Service
+@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class CoworkerServiceImpl implements CoworkerService  {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
