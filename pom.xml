@@ -38,7 +38,7 @@
         <!-- sqlite -->
         <sqlite-jdbc.version>3.7.2</sqlite-jdbc.version>
         <slf4j-api.version>1.7.1</slf4j-api.version>
-        <hibernate-core.version>4.1.4.Final</hibernate-core.version>
+        <hibernate-core.version>4.2.1.Final</hibernate-core.version>
         <hibernate-validator.version>4.3.0.Final</hibernate-validator.version>
     </properties>
     <repositories>
