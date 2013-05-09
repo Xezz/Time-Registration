@@ -5,9 +5,8 @@
     <!-- last error was here, instead of RESOURCE_LOCAL it was RESOURCE_LOCK ... -->
     <persistence-unit name="timeregistration" transaction-type="JTA">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>jdbc/timereghsqldb</jta-data-source>
-        <non-jta-data-source>jdbc/timereghsqldbnonjta</non-jta-data-source>
-        <!--<non-jta-data-source>timeregHsqlDBUnmanaged</non-jta-data-source>-->
+        <jta-data-source>java:/comp/env/jdbc/timeregistration</jta-data-source>
+        <!--<non-jta-data-source>jdbc/timereghsqldbnonjta</non-jta-data-source>-->
         <class>org.xezz.timeregistration.model.Coworker</class>
         <class>org.xezz.timeregistration.model.Customer</class>
         <class>org.xezz.timeregistration.model.Project</class>
