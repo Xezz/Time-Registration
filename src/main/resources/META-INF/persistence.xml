@@ -3,9 +3,8 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <!-- last error was here, instead of RESOURCE_LOCAL it was RESOURCE_LOCK ... -->
-    <persistence-unit name="timeregistration" transaction-type="JTA">
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>java:/comp/env/jdbc/timeregistration</jta-data-source>
+    <persistence-unit name="timeregistration" transaction-type="RESOURCE_LOCAL">
+        <non-jta-data-source>java:/comp/env/jdbc/timeregistration</non-jta-data-source>
         <!--<non-jta-data-source>jdbc/timereghsqldbnonjta</non-jta-data-source>-->
         <class>org.xezz.timeregistration.model.Coworker</class>
         <class>org.xezz.timeregistration.model.Customer</class>
@@ -17,8 +16,10 @@
         </properties>-->
         <properties>
             <!--<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>-->
+            <!--
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.max_fetch_depth" value="3"/>
+            -->
         </properties>
     </persistence-unit>
 </persistence>
