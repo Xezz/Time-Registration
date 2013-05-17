@@ -16,35 +16,26 @@
     </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <!-- FIXME: nothing here yet, create either the class or change this! BUILDBREAKER -->
-        <!-- if it is not Java based, here would be an xml file specified? -->
-        <!-- <param-value>org.xezz.timeregistration.root</param-value> -->
-        <param-value>/WEB-INF/timeregistration-servlet.xml</param-value>
+        <!-- Use java based configuration -->
+        <param-value>org.xezz.timeregistration.config.AppConfig</param-value>
+       <!-- <param-value>/WEB-INF/timeregistration-servlet.xml</param-value>-->
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!--<listener>-->
-        <!--<listener-class>org.xezz.timeregistration.cleanup.DriverCleanup</listener-class>-->
-    <!--</listener>-->
 
     <servlet>
-        <!-- TODO: Maybe find a more appropriate name for this ... -->
         <servlet-name>timeregistration</servlet-name>
         <!-- FIXME: nothing there yet, create either the class or fix it in another way ... -->
-        <!--
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>org.xezz.timeregistrationon.rest</param-value>
+            <param-value>org.xezz.timeregistration.config.WebConfig</param-value>
         </init-param>
-        -->
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <!--
         <init-param>
             <param-name>contextClass</param-name>
             <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
         </init-param>
-        -->
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

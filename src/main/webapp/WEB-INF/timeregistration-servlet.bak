@@ -25,7 +25,7 @@
     <mvc:resources mapping="/static/**" location="/static/"/>
 
     <!-- Jackson/JSON View Resolver -->
-    <!-- enables spring to automatically Resolve application/json to a jackson mapper -->
+    <!-- enables spring to automatically resolve application/json to a jackson mapper -->
     <!--
     see http://blog.safaribooksonline.com/2012/03/28/spring-mvc-tip-returning-json-from-a-spring-controller/
     This shall enable to return JSON responses mapped by Jackson
@@ -64,11 +64,15 @@
     <!--
     Configures Spring Data JPA and sets the base package of my DAOs.
     -->
+    <!-- CHECK -->
     <jpa:repositories base-package="org.xezz.timeregistration.repositories"/>
+    <!-- CHECK-->
     <context:component-scan base-package="org.xezz.timeregistration" />
+    <!-- class based CHECK -->
     <mvc:annotation-driven />
 
     <!-- Transaction Manager -->
+    <!-- class based CHECK (I think) -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <!--
     <tx:jta-transaction-manager/>
@@ -80,10 +84,12 @@
     </bean>
     -->
     <!-- uses a spring transactionmanager for a jdbc datasource-->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+    <!-- class based CHECK -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
     <!-- Entity Manager Factory -->
+    <!-- class based CHECK -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="persistenceUnitName" value="timeregistration"/>
@@ -96,6 +102,7 @@
         </property>
     </bean>
     <!-- JNDI lookup of the datasource -->
+    <!-- class based CHECK -->
     <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName" value="java:/comp/env/jdbc/timeregistration"/>
         <property name="resourceRef" value="true" />
@@ -112,9 +119,4 @@
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
     <bean class="org.springframework.orm.hibernate4.HibernateExceptionTranslator" />
     -->
-
-
-        <!-- jndi name
-        <property name="jndiName" value="java:/comp/env/jdbc/timeregistration"/>
-        <property name="resourceRef" value="true" />-->
 </beans>

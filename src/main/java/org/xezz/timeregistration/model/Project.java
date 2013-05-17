@@ -20,9 +20,9 @@ public class Project implements Serializable {
     private String description;
     @ManyToOne(optional = false)
     private Customer customer;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
     // if a project gets deleted, all mapped timeframes will be deleted too, same for persisting
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")

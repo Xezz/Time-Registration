@@ -20,15 +20,15 @@ public class Timeframe implements Serializable {
     private Project project;
     @ManyToOne(optional = false)
     private Coworker coworker;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startTime;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
 
     // "Auditing"
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
 
     @PrePersist

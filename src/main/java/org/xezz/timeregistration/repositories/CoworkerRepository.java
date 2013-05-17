@@ -3,6 +3,7 @@ package org.xezz.timeregistration.repositories;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Project;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * Time: 16:56
  * see also http://static.springsource.org/spring-data/data-jpa/snapshot-site/reference/html/
  */
+@Repository
 public interface CoworkerRepository extends CrudRepository<Coworker, Long> {
     /**
      * Find all Coworkers with this first name

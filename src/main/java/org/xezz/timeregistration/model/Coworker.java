@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +14,8 @@ import java.util.Set;
  * Time: 16:53
  */
 @Entity
-public class Coworker implements Serializable {
+public class Coworker {
+
 
     @Transient
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -25,9 +25,9 @@ public class Coworker implements Serializable {
     private Long coworkerId;
     private String firstName;
     private String lastName;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
     // Delete, Persist etc by cascading
     // mapped by the field coworker in Timeframe

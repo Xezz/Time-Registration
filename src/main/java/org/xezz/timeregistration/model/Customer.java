@@ -18,9 +18,9 @@ public class Customer implements Serializable {
     private Long customerId;
     private String name;
     private String customerInfo;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Set<Project> projects = new HashSet<Project>();

@@ -66,6 +66,7 @@ public class CoworkerServiceImpl implements CoworkerService  {
     }
 
     @Override
+    @Transactional
     public Coworker addNewCoworker(Coworker coworker) {
         logger.info("Service saving coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
         final Coworker save = repo.save(coworker);
@@ -75,6 +76,7 @@ public class CoworkerServiceImpl implements CoworkerService  {
     }
 
     @Override
+    @Transactional
     public Coworker updateCoworker(Coworker coworker) {
         if (repo.exists(coworker.getCoworkerId())) {
             return repo.save(coworker);
