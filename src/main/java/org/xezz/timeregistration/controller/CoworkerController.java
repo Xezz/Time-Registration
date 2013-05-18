@@ -11,6 +11,9 @@ import org.xezz.timeregistration.services.CoworkerService;
 
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+
 /**
  * Handle the requests for Coworkers
  * User: Xezz
@@ -36,7 +39,7 @@ public class CoworkerController {
      * Get all Coworkers via REST request (method GET)
      * @return List of all Coworkers
      */
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<Coworker> getAll() {
         logger.info("Request to get all Coworker");
@@ -48,7 +51,7 @@ public class CoworkerController {
      * @param id Long the ID of the coworker
      * @return Coworker with that id
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker get(@PathVariable("id") Long id) {
         logger.info("Request to get Coworker by id: " + id);
@@ -65,7 +68,7 @@ public class CoworkerController {
      * @param firstname String the first name of the Coworker
      * @return List of all Coworkers with that first name
      */
-    @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<Coworker> getByFirstName(@PathVariable("firstname") String firstname) {
         logger.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
@@ -77,7 +80,7 @@ public class CoworkerController {
      * @param lastname String the last name of th Coworker
      * @return List of all Coworkers with that last name
      */
-    @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<Coworker> getByLastName(@PathVariable("lastname") String lastname) {
         logger.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
@@ -89,7 +92,7 @@ public class CoworkerController {
      * @param coworker the mapped Coworker
      * @return id of the newly created Coworker
      */
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker create(@RequestBody Coworker coworker) {
         logger.info("Post to create Coworker.");
@@ -106,7 +109,7 @@ public class CoworkerController {
      * @param coworker updated Coworker
      * @return Coworker persisted Coworker
      */
-    @RequestMapping(method = RequestMethod.PUT, produces = "application/json")
+    @RequestMapping(method = RequestMethod.PUT, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker update(@RequestBody Coworker coworker) {
         return service.updateCoworker(coworker);
@@ -115,6 +118,12 @@ public class CoworkerController {
     // MVC mapping to jsp
     //
     // View-based mapping
+
+    /**
+     * Receive a list of all Coworkers to be displayed via a jsp View
+     * @param model the model to be passed to the View
+     * @return String describing where to find the corresponding view
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("coworkers", getAll());
@@ -123,6 +132,46 @@ public class CoworkerController {
         return "coworkers/list";
     }
 
+    /**
+     * Receive a Coworker by its ID to be displayed via a jsp View
+     * @param id Long - Distinct identifier
+     * @param model the model to be passed to the View
+     * @return String describing where to find the corresponding view
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String showById(@PathVariable("id") Long id, Model model) {
+        model.addAttribute(get(id));
 
+        // map to WEB-INF/jsp/coworkers/show.jsp
+        return "coworkers/show";
+    }
+
+    /**
+     * Receive all Coworker with the given first name to be be displayed via a jsp View
+     * @param firstName String - the first name to look for
+     * @param model the model to be passed to the View
+     * @return String describing where to find the corresponding view
+     */
+    @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET)
+    public String showByFirstName(@PathVariable("firstname") String firstName, Model model) {
+        model.addAttribute("coworkers", getByFirstName(firstName));
+
+        // map to WEB-INF/jsp/coworkers/list.jsp
+        return "coworkers/list";
+    }
+
+    /**
+     * Receive all Coworker with the given last name to be displayed via a jsp View
+     * @param lastName String - The last name to look for
+     * @param model the model to be passed to the View
+     * @return String describing where to find the corresponding view
+     */
+    @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET)
+    public String showByLastName(@PathVariable("lastname") String lastName, Model model) {
+        model.addAttribute("coworkers", getByLastName(lastName));
+
+        // map to WEB-INF/jsp/coworkers/list.jsp
+        return "coworkers/list";
+    }
 
 }
