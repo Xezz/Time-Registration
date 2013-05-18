@@ -3,10 +3,13 @@ package org.xezz.timeregistration.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
@@ -23,7 +26,18 @@ import java.util.List;
 @Configuration
 @ComponentScan("org.xezz.timeregistration.controller")
 @EnableWebMvc
-public class WebConfig {
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+    /*
+     *    Replacement of <mvc:resources mapping="/static/**" location="/static/"/>
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+        // Make sure extjs can be served ...
+        registry.addResourceHandler("/app/**").addResourceLocations("/static/app/");
+
+    }
 
     @Bean
     public ContentNegotiatingViewResolver viewResolver() {
