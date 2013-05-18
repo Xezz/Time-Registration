@@ -35,6 +35,8 @@ public class DataConfig {
         // Testing here:
         JndiObjectFactoryBean fac = new JndiObjectFactoryBean();
         fac.setJndiName("java:/comp/env/jdbc/timeregistration");
+        // Falsify this, since we add java:/comp/env already for the JNDI name, thus we do not need to let the factory
+        // add a resource reference when it's there already
         fac.setResourceRef(true);
         return fac;
 
@@ -54,11 +56,16 @@ public class DataConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws Exception {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactory.setPackagesToScan(new String[] {"org.xezz.timeregistration"});
-        //entityManagerFactory.setPersistenceUnitName(persistenceUnitName);
-        entityManagerFactory.setDataSource((DataSource) dataSourceFactory().getObject());
+        entityManagerFactory.setPackagesToScan(new String[] {"org.xezz.timeregistration.model.Coworker",
+                                                            "org.xezz.timeregistration.model.Customer",
+                                                            "org.xezz.timeregistration.model.Project",
+                                                            "org.xezz.timeregistration.model.Timeframe"});
+        entityManagerFactory.setPersistenceUnitName(persistenceUnitName);
+        entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter());
         entityManagerFactory.setJpaDialect(new OpenJpaDialect());
+        entityManagerFactory.setPersistenceXmlLocation("classpath:META-INF/persistence.xml");
+        //eMF.setPersUn
 
         return entityManagerFactory;
 
@@ -78,6 +85,7 @@ public class DataConfig {
     public JpaTransactionManager transactionManager() throws Exception {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        transactionManager.setPersistenceUnitName(persistenceUnitName);
 
         return transactionManager;
     }
