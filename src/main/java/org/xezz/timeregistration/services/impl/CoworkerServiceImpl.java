@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.model.Timeframe;
+import org.xezz.timeregistration.model.TimeSpan;
 import org.xezz.timeregistration.repositories.CoworkerRepository;
 import org.xezz.timeregistration.services.CoworkerService;
 
@@ -61,8 +61,8 @@ public class CoworkerServiceImpl implements CoworkerService  {
     }
 
     @Override
-    public Coworker coworkerByTimeFrame(Timeframe timeframe) {
-        return timeframe.getCoworker();
+    public Coworker coworkerByTimeFrame(TimeSpan timeSpan) {
+        return timeSpan.getCoworker();
     }
 
     @Override

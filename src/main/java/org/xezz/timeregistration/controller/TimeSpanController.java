@@ -5,5 +5,5 @@ package org.xezz.timeregistration.controller;
  * Date: 05.05.13
  * Time: 11:18
  */
-public class TimeframeController {
+public class TimeSpanController {
 }

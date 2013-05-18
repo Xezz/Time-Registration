@@ -3,7 +3,7 @@ package org.xezz.timeregistration.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.model.Timeframe;
+import org.xezz.timeregistration.model.TimeSpan;
 import org.xezz.timeregistration.repositories.ProjectRepository;
 import org.xezz.timeregistration.services.ProjectService;
 
@@ -41,7 +41,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project getByTimeFrame(Timeframe t) {
+    public Project getByTimeFrame(TimeSpan t) {
         return repo.findProjectByTimeframe(t);
     }
 

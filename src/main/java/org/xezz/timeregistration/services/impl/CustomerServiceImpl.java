@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.model.Timeframe;
+import org.xezz.timeregistration.model.TimeSpan;
 import org.xezz.timeregistration.repositories.CustomerRepository;
 import org.xezz.timeregistration.services.CustomerService;
 
@@ -49,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer customerByTimeFrame(Timeframe t) {
+    public Customer customerByTimeFrame(TimeSpan t) {
         return t.getProject().getCustomer();
     }
 

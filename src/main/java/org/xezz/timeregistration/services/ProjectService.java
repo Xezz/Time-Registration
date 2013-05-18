@@ -2,7 +2,7 @@ package org.xezz.timeregistration.services;
 
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.model.Timeframe;
+import org.xezz.timeregistration.model.TimeSpan;
 
 import java.util.List;
 
@@ -33,11 +33,11 @@ public interface ProjectService {
     List<Project> getByCustomer(Customer c);
 
     /**
-     * Project by Timeframe
-     * @param t Timeframe assigned to a Project
-     * @return Project that contains this Timeframe
+     * Project by TimeSpan
+     * @param t TimeSpan assigned to a Project
+     * @return Project that contains this TimeSpan
      */
-    Project getByTimeFrame(Timeframe t);
+    Project getByTimeFrame(TimeSpan t);
 
     /**
      * Project by identifier

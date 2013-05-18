@@ -32,7 +32,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
      * @param c Coworker to look for
      * @return List of Customers
      */
-    @Query("SELECT t.project.customer FROM Timeframe t WHERE t.coworker = :coworker")
+    @Query("SELECT t.project.customer FROM TimeSpan t WHERE t.coworker = :coworker")
     public List<Customer> findCustomersByCoworker(Coworker c);
 
     /**

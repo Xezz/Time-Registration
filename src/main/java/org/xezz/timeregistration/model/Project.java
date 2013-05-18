@@ -24,9 +24,9 @@ public class Project implements Serializable {
     private Date creationDate;
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
-    // if a project gets deleted, all mapped timeframes will be deleted too, same for persisting
+    // if a project gets deleted, all mapped timeSpans will be deleted too, same for persisting
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
-    private Set<Timeframe> timeframes = new HashSet<Timeframe>();
+    private Set<TimeSpan> timeSpans = new HashSet<TimeSpan>();
 
     /**
      * Default Constructor to support DI and JPA
@@ -92,12 +92,12 @@ public class Project implements Serializable {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
-    public Set<Timeframe> getTimeframes() {
-        return timeframes;
+    public Set<TimeSpan> getTimeSpans() {
+        return timeSpans;
     }
 
-    public void setTimeframes(Set<Timeframe> timeframes) {
-        this.timeframes = timeframes;
+    public void setTimeSpans(Set<TimeSpan> timeSpans) {
+        this.timeSpans = timeSpans;
     }
 
     @Override
@@ -115,7 +115,7 @@ public class Project implements Serializable {
             return false;
         if (name != null ? !name.equals(project.name) : project.name != null) return false;
         if (projectId != null ? !projectId.equals(project.projectId) : project.projectId != null) return false;
-        if (timeframes != null ? !timeframes.equals(project.timeframes) : project.timeframes != null) return false;
+        if (timeSpans != null ? !timeSpans.equals(project.timeSpans) : project.timeSpans != null) return false;
 
         return true;
     }
@@ -129,7 +129,7 @@ public class Project implements Serializable {
         result = PRIME * result + (customer != null ? customer.hashCode() : 0);
         result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
-        result = PRIME * result + (timeframes != null ? timeframes.hashCode() : 0);
+        result = PRIME * result + (timeSpans != null ? timeSpans.hashCode() : 0);
         return result;
     }
 }

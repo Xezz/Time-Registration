@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.model.Timeframe;
+import org.xezz.timeregistration.model.TimeSpan;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
      * @param coworker Coworker involved into the Project
      * @return List of all Projects the Coworker worked on
      */
-    @Query("SELECT t.project FROM Timeframe t WHERE t.coworker = :coworker")
+    @Query("SELECT t.project FROM TimeSpan t WHERE t.coworker = :coworker")
     public List<Project> findProjectsByCoworker(@Param("project")Coworker coworker);
 
     /**
@@ -49,11 +49,11 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
     public List<Project> findByCustomer(Customer customer);
 
     /**
-     * Get the Project this Timeframe is associated with
-     * @param t Timeframe associated with a Project
-     * @return Project containing the Timeframe
+     * Get the Project this TimeSpan is associated with
+     * @param t TimeSpan associated with a Project
+     * @return Project containing the TimeSpan
      */
     // FIXME: Correct way to query this?
-    @Query("SELECT t.project FROM Timeframe t WHERE t = :timeframe")
-    public Project findProjectByTimeframe(@Param("timeframe")Timeframe t);
+    @Query("SELECT t.project FROM TimeSpan t WHERE t = :timeframe")
+    public Project findProjectByTimeframe(@Param("timeframe")TimeSpan t);
 }

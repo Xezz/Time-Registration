@@ -9,7 +9,7 @@
         <class>org.xezz.timeregistration.model.Coworker</class>
         <class>org.xezz.timeregistration.model.Customer</class>
         <class>org.xezz.timeregistration.model.Project</class>
-        <class>org.xezz.timeregistration.model.Timeframe</class>
+        <class>org.xezz.timeregistration.model.TimeSpan</class>
         <!--<properties>
             <property name="eclipselink.ddl-generation" value="create-tables"/>
             <property name="eclipselink.ddl-generation.output-mode" value="both"/>

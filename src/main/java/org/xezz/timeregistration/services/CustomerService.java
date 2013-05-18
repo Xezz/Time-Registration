@@ -3,7 +3,7 @@ package org.xezz.timeregistration.services;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.model.Timeframe;
+import org.xezz.timeregistration.model.TimeSpan;
 
 import java.util.List;
 
@@ -65,10 +65,10 @@ public interface CustomerService {
 
     /**
      * Get a Customer that is associated to a timeframe
-     * @param t Timeframe of concern
+     * @param t TimeSpan of concern
      * @return Customer that gets charged for the timeframe
      */
-    Customer customerByTimeFrame(Timeframe t);
+    Customer customerByTimeFrame(TimeSpan t);
 
     /**
      * Get all Customers the given Coworker worked for

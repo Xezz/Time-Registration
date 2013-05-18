@@ -30,10 +30,10 @@ public class Coworker {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
     // Delete, Persist etc by cascading
-    // mapped by the field coworker in Timeframe
+    // mapped by the field coworker in TimeSpan
     // fetch the set when populating this entity
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "coworker", fetch = FetchType.EAGER)
-    private Set<Timeframe> timeframes = new HashSet<Timeframe>();
+    private Set<TimeSpan> timeSpans = new HashSet<TimeSpan>();
     /*
      * TODO: Consider adding credentials here too
      */
@@ -94,12 +94,12 @@ public class Coworker {
         return lastUpdatedDate;
     }
 
-    public Set<Timeframe> getTimeframes() {
-        return timeframes;
+    public Set<TimeSpan> getTimeSpans() {
+        return timeSpans;
     }
 
-    public void setTimeframes(Set<Timeframe> timeframes) {
-        this.timeframes = timeframes;
+    public void setTimeSpans(Set<TimeSpan> timeSpans) {
+        this.timeSpans = timeSpans;
     }
 
     @Override
@@ -116,7 +116,7 @@ public class Coworker {
         if (lastName != null ? !lastName.equals(coworker.lastName) : coworker.lastName != null) return false;
         if (lastUpdatedDate != null ? !lastUpdatedDate.equals(coworker.lastUpdatedDate) : coworker.lastUpdatedDate != null)
             return false;
-        if (timeframes != null ? !timeframes.equals(coworker.timeframes) : coworker.timeframes != null) return false;
+        if (timeSpans != null ? !timeSpans.equals(coworker.timeSpans) : coworker.timeSpans != null) return false;
 
         return true;
     }
@@ -129,7 +129,7 @@ public class Coworker {
         result = PRIME * result + (lastName != null ? lastName.hashCode() : 0);
         result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
-        result = PRIME * result + (timeframes != null ? timeframes.hashCode() : 0);
+        result = PRIME * result + (timeSpans != null ? timeSpans.hashCode() : 0);
         return result;
     }
 }

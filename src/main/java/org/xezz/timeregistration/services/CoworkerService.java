@@ -2,7 +2,7 @@ package org.xezz.timeregistration.services;
 
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.model.Timeframe;
+import org.xezz.timeregistration.model.TimeSpan;
 
 import java.util.List;
 
@@ -51,11 +51,11 @@ public interface CoworkerService {
 
     // FIXME: Is this really needed? Coworker is stored already in the timeframe
     /**
-     * Get a Coworker by a specific timeframe
-     * @param timeframe Timeframe a Coworker worked on
-     * @return Coworker that is stored in the Timeframe
+     * Get a Coworker by a specific timeSpan
+     * @param timeSpan TimeSpan a Coworker worked on
+     * @return Coworker that is stored in the TimeSpan
      */
-    Coworker coworkerByTimeFrame(Timeframe timeframe);
+    Coworker coworkerByTimeFrame(TimeSpan timeSpan);
 
     /**
      * Get all Coworkers that worked for a specific Project

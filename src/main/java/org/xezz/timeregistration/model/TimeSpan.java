@@ -10,10 +10,10 @@ import java.util.Date;
  * Time: 17:53
  */
 @Entity
-public class Timeframe implements Serializable {
+public class TimeSpan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long timeframeId;
+    private Long timeSpanId;
 
     // Relevant data
     @ManyToOne(optional = false)
@@ -42,12 +42,12 @@ public class Timeframe implements Serializable {
         lastUpdatedDate = new Date();
     }
 
-    public Long getTimeframeId() {
-        return timeframeId;
+    public Long getTimeSpanId() {
+        return timeSpanId;
     }
 
-    public void setTimeframeId(Long timeframeId) {
-        this.timeframeId = timeframeId;
+    public void setTimeSpanId(Long timeSpanId) {
+        this.timeSpanId = timeSpanId;
     }
 
     public Project getProject() {
@@ -101,19 +101,19 @@ public class Timeframe implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Timeframe)) return false;
+        if (!(o instanceof TimeSpan)) return false;
 
-        Timeframe timeframe = (Timeframe) o;
+        TimeSpan timeSpan = (TimeSpan) o;
 
-        if (coworker != null ? !coworker.equals(timeframe.coworker) : timeframe.coworker != null) return false;
-        if (creationDate != null ? !creationDate.equals(timeframe.creationDate) : timeframe.creationDate != null)
+        if (coworker != null ? !coworker.equals(timeSpan.coworker) : timeSpan.coworker != null) return false;
+        if (creationDate != null ? !creationDate.equals(timeSpan.creationDate) : timeSpan.creationDate != null)
             return false;
-        if (endTime != null ? !endTime.equals(timeframe.endTime) : timeframe.endTime != null) return false;
-        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(timeframe.lastUpdatedDate) : timeframe.lastUpdatedDate != null)
+        if (endTime != null ? !endTime.equals(timeSpan.endTime) : timeSpan.endTime != null) return false;
+        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(timeSpan.lastUpdatedDate) : timeSpan.lastUpdatedDate != null)
             return false;
-        if (project != null ? !project.equals(timeframe.project) : timeframe.project != null) return false;
-        if (startTime != null ? !startTime.equals(timeframe.startTime) : timeframe.startTime != null) return false;
-        if (timeframeId != null ? !timeframeId.equals(timeframe.timeframeId) : timeframe.timeframeId != null)
+        if (project != null ? !project.equals(timeSpan.project) : timeSpan.project != null) return false;
+        if (startTime != null ? !startTime.equals(timeSpan.startTime) : timeSpan.startTime != null) return false;
+        if (timeSpanId != null ? !timeSpanId.equals(timeSpan.timeSpanId) : timeSpan.timeSpanId != null)
             return false;
 
         return true;
@@ -121,7 +121,7 @@ public class Timeframe implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = timeframeId != null ? timeframeId.hashCode() : 0;
+        int result = timeSpanId != null ? timeSpanId.hashCode() : 0;
         final int PRIME = 31;
         result = PRIME * result + (project != null ? project.hashCode() : 0);
         result = PRIME * result + (coworker != null ? coworker.hashCode() : 0);

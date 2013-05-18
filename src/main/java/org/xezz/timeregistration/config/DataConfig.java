@@ -56,16 +56,17 @@ public class DataConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws Exception {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactory.setPackagesToScan(new String[] {"org.xezz.timeregistration.model.Coworker",
-                                                            "org.xezz.timeregistration.model.Customer",
-                                                            "org.xezz.timeregistration.model.Project",
-                                                            "org.xezz.timeregistration.model.Timeframe"});
+        // Most likely redundant, since we load persistence.xml
+        // TODO: Fix enhancing Entities, currently done with maven
+        entityManagerFactory.setPackagesToScan( "org.xezz.timeregistration.model.Coworker",
+                                                "org.xezz.timeregistration.model.Customer",
+                                                "org.xezz.timeregistration.model.Project",
+                                                "org.xezz.timeregistration.model.TimeSpan");
         entityManagerFactory.setPersistenceUnitName(persistenceUnitName);
         entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter());
         entityManagerFactory.setJpaDialect(new OpenJpaDialect());
         entityManagerFactory.setPersistenceXmlLocation("classpath:META-INF/persistence.xml");
-        //eMF.setPersUn
 
         return entityManagerFactory;
 
