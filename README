@@ -1,6 +1,7 @@
 This is a NOT yet finished application. It compiles and deploys fine, but doesn't have a lot of functionality yet.
-I intend to create an application for a friend to get some experience in deploying spring apps.
-At the same time I learn the basics of spring myself, so it's a win-win situation.
+I intend to create an application for a friend to get some experience in deploying spring apps. At the same time I learn the basics of spring myself, so it's a win-win situation.
+
+Important note: I'm currently integrating a JavaScript based UI (fooling around with ExtJs right now, due to the fact that I have some experience with it already). Thus some stuff won't work right now, due to the fact that I locally reference the ext-js library.
 
 The purpose of this application is to track the time one used on a specific project. Since there is usually more than a single person working on said project, it is going to split between:
     - Company
