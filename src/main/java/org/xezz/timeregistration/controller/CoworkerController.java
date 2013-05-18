@@ -29,11 +29,15 @@ public class CoworkerController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    // Starting with JSON mapping
+    //
+    // RESTful mapping
+
     /**
      * Get all Coworkers via REST request (method GET)
      * @return List of all Coworkers
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Coworker> getAll() {
         logger.info("Request to get all Coworker");
@@ -45,7 +49,7 @@ public class CoworkerController {
      * @param id Long the ID of the coworker
      * @return Coworker with that id
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public Coworker get(@PathVariable("id") Long id) {
         logger.info("Request to get Coworker by id: " + id);
@@ -62,7 +66,7 @@ public class CoworkerController {
      * @param firstname String the first name of the Coworker
      * @return List of all Coworkers with that first name
      */
-    @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET)
+    @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Coworker> getByFirstName(@PathVariable("firstname") String firstname) {
         logger.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
@@ -74,7 +78,7 @@ public class CoworkerController {
      * @param lastname String the last name of th Coworker
      * @return List of all Coworkers with that last name
      */
-    @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET)
+    @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Coworker> getByLastName(@PathVariable("lastname") String lastname) {
         logger.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
@@ -86,31 +90,40 @@ public class CoworkerController {
      * @param coworker the mapped Coworker
      * @return id of the newly created Coworker
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public Long create(@RequestBody Coworker coworker) {
+    public Coworker create(@RequestBody Coworker coworker) {
         logger.info("Post to create Coworker.");
         if (coworker == null) {
             logger.info("Coworker == null");
         } else {
             logger.info("Coworker.firstName: " + coworker.getFirstName() + " Coworker.lastName: " + coworker.getLastName());
         }
-        final Coworker coworker1 = service.addNewCoworker(coworker);
-        logger.info("Persisted coworker, id: " + coworker1.getCoworkerId());
-        return coworker1.getCoworkerId();
+        return service.addNewCoworker(coworker);
     }
 
     /**
      * Update an existing Coworker
      * @param coworker updated Coworker
-     * @return String describing the status of the update
+     * @return Coworker persisted Coworker
      */
-    // FIXME: what the heck should one return here
-    // TODO: Figure out what model and bindingresult are good for
-    @RequestMapping(method = RequestMethod.PUT)
-    public String update(@RequestBody Coworker coworker, BindingResult bindingResult, Model model) {
-        final Coworker updatedCoworker = service.updateCoworker(coworker);
-        return (updatedCoworker != null) ? "redirect:/id/" + coworker.getCoworkerId() : "failed";
+    @RequestMapping(method = RequestMethod.PUT, produces = "application/json")
+    @ResponseBody
+    public Coworker update(@RequestBody Coworker coworker) {
+        return service.updateCoworker(coworker);
     }
+
+    // MVC mapping to jsp
+    //
+    // View-based mapping
+    @RequestMapping(method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("coworkers", getAll());
+
+        // map to WEB-INF/jsp/coworkers/list.jsp
+        return "coworkers/list";
+    }
+
+
 
 }
