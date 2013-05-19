@@ -25,6 +25,18 @@ Ext.define('TR.controller.Coworkers', {
     },
 
     updateCoworker: function(button) {
+        // Query component for parent of type window
+        // Query the received window for a component it contains of type form
+        // Receive the record from the form
+        // Receive the values the user typed into the form (This is an array of field->value pairs)
+        // Finally update the record with the new values, close the form window, and sync the Store
+        var win = button.up('window'),
+            form = win.down('form'),
+            record = form.getRecord(),
+            values = form.getValues();
 
+            record.set(values);
+            win.close();
+            this.getCoworkersStore().sync();
     }
 });

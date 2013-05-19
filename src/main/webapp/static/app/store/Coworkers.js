@@ -1,8 +1,17 @@
 Ext.define('TR.store.Coworkers', {
     extend: 'Ext.data.Store',
     model: 'TR.model.Coworker',
-    data: [
-        {firstName: 'Bastian', lastName: 'Koch'},
-        {firstName: 'Werner', lastName: 'Metz'}
-    ]
+    autoLoad: true,
+
+    proxy: {
+        type: 'rest',
+        url: 'coworker',
+        reader: 'json',
+        appendId: false,
+        noCache: false,
+        headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+        pageParam: undefined,
+        startParam: undefined,
+        limitParam: undefined
+    }
 });
