@@ -8,6 +8,8 @@ import org.xezz.timeregistration.services.CustomerService;
 
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 /**
  * User: Xezz
  * Date: 05.05.13
@@ -24,7 +26,7 @@ public class CustomerController {
      * Request all Customers
      * @return List of all Customers
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<Customer> getAll() {
         return service.customersAll();
@@ -35,7 +37,7 @@ public class CustomerController {
      * @param customer Customer to save
      * @return Customer that got saved
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public Customer saveCustomer(@RequestBody Customer customer) {
         // TODO: Verify and Nullcheck
@@ -47,7 +49,7 @@ public class CustomerController {
      * @param customer Customer with new values
      * @return Customer that got updated
      */
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public Customer updateCustomer(@RequestBody Customer customer){
         // TODO: Verify and Nullcheck
@@ -59,7 +61,7 @@ public class CustomerController {
      * @param id Long the id of the Customer
      * @return Customer that matches this id
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public Customer getCustomerById(@PathVariable("id") Long id) {
         return service.customerById(id);
@@ -70,7 +72,7 @@ public class CustomerController {
      * @param name String name to match
      * @return List of all Customers matching the given name
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/name/{name}")
+    @RequestMapping(method = RequestMethod.GET, value = "/name/{name}", produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<Customer> getCustomerByNameMatch(@PathVariable("name") String name) {
         return service.customerByNameMatch(name);
