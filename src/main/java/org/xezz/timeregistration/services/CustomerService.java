@@ -19,7 +19,7 @@ public interface CustomerService {
      * @return List of all Customers
      */
 
-    List<Customer> customersAll();
+    Iterable<Customer> customersAll();
 
     /**
      * Get a Customer by its id
@@ -44,17 +44,19 @@ public interface CustomerService {
 
     /**
      * Receive Customers by their name
+     *
      * @param name String the name of the Customer
      * @return List of Customers that matches a give name
      */
-    List<Customer> customerByName(String name);
+    Iterable<Customer> customerByName(String name);
 
     /**
      * Receive all Customers where a part of its name matches the given name
+     *
      * @param name String part of the name to match
      * @return List of Customers that match a name partially
      */
-    List<Customer> customerByNameMatch(String name);
+    Iterable<Customer> customerByNameMatch(String name);
 
     /**
      * Get the Customer of a Project
@@ -72,8 +74,9 @@ public interface CustomerService {
 
     /**
      * Get all Customers the given Coworker worked for
+     *
      * @param c Coworker in concern
      * @return List of Customers the given Coworker was involved with
      */
-    List<Customer> customerByCoworker(Coworker c);
+    Iterable<Customer> customerByCoworker(Coworker c);
 }

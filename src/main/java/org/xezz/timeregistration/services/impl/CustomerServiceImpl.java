@@ -9,8 +9,6 @@ import org.xezz.timeregistration.model.TimeSpan;
 import org.xezz.timeregistration.repositories.CustomerRepository;
 import org.xezz.timeregistration.services.CustomerService;
 
-import java.util.List;
-
 /**
  * User: Xezz
  * Date: 29.04.13
@@ -23,12 +21,12 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRepository repo;
 
     @Override
-    public List<Customer> customerByName(String name) {
+    public Iterable<Customer> customerByName(String name) {
         return repo.findByName(name);
     }
 
     @Override
-    public List<Customer> customerByNameMatch(String name) {
+    public Iterable<Customer> customerByNameMatch(String name) {
         // TODO: Revisit this
         // make sure we actually like
         // Should most likely not do it for now :D
@@ -54,12 +52,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> customerByCoworker(Coworker c) {
+    public Iterable<Customer> customerByCoworker(Coworker c) {
         return repo.findCustomersByCoworker(c);
     }
 
     @Override
-    public List<Customer> customersAll() {
+    public Iterable<Customer> customersAll() {
         return repo.findAllCustomers();
     }
 

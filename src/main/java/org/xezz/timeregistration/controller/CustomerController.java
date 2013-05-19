@@ -28,7 +28,7 @@ public class CustomerController {
      */
     @RequestMapping(method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Customer> getAll() {
+    public Iterable<Customer> getAll() {
         return service.customersAll();
     }
 
@@ -74,7 +74,7 @@ public class CustomerController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/name/{name}", produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Customer> getCustomerByNameMatch(@PathVariable("name") String name) {
+    public Iterable<Customer> getCustomerByNameMatch(@PathVariable("name") String name) {
         return service.customerByNameMatch(name);
     }
 
