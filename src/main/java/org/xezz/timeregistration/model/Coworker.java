@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +24,9 @@ public class Coworker {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long coworkerId;
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
