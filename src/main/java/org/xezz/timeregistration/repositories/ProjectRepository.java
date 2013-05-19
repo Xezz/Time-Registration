@@ -22,14 +22,14 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
      * @param name String to match exactly for the name
      * @return List of all matching Projects
      */
-    public List<Project> findByName(String name);
+    public Iterable<Project> findByName(String name);
 
     /**
      * Find all projects that contain the given name, use % inside the parameter for matching
      * @param name String to match, use % for matching
      * @return List of all Projects that match the given name
      */
-    public List<Project> findByNameLike(String name);
+    public Iterable<Project> findByNameLike(String name);
 
     // Get the Projects from a timeframe, when the timeframe contains a coworker
     // TODO: Verify this query works (JUnit)
@@ -39,14 +39,14 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
      * @return List of all Projects the Coworker worked on
      */
     @Query("SELECT t.project FROM TimeSpan t WHERE t.coworker = :coworker")
-    public List<Project> findProjectsByCoworker(@Param("project")Coworker coworker);
+    public Iterable<Project> findProjectsByCoworker(@Param("coworker")Coworker coworker);
 
     /**
      * Find all Projects associated with this Customer
      * @param customer Customer to look for
      * @return List of Projects associated with the Customer
      */
-    public List<Project> findByCustomer(Customer customer);
+    public Iterable<Project> findByCustomer(Customer customer);
 
     /**
      * Get the Project this TimeSpan is associated with
