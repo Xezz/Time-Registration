@@ -112,6 +112,7 @@ public class CoworkerController {
     @RequestMapping(method = RequestMethod.PUT, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker update(@RequestBody Coworker coworker) {
+        logger.info("JSON PUT Request to update coworker");
         return service.updateCoworker(coworker);
     }
 
@@ -126,6 +127,7 @@ public class CoworkerController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
+        logger.info("REQUEST for NON JSON .... list");
         model.addAttribute("coworkers", getAll());
 
         // map to WEB-INF/jsp/coworkers/list.jsp
@@ -140,6 +142,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String showById(@PathVariable("id") Long id, Model model) {
+        logger.info("REQUEST NON JSON ... get by id");
         model.addAttribute(get(id));
 
         // map to WEB-INF/jsp/coworkers/show.jsp
@@ -154,6 +157,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET)
     public String showByFirstName(@PathVariable("firstname") String firstName, Model model) {
+        logger.info("REQUEST NON JSON ... by firstname");
         model.addAttribute("coworkers", getByFirstName(firstName));
 
         // map to WEB-INF/jsp/coworkers/list.jsp
@@ -168,6 +172,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET)
     public String showByLastName(@PathVariable("lastname") String lastName, Model model) {
+        logger.info("REQUEST NON JSON ... by lastname");
         model.addAttribute("coworkers", getByLastName(lastName));
 
         // map to WEB-INF/jsp/coworkers/list.jsp
