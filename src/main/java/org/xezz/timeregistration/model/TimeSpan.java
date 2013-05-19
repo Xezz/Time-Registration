@@ -33,7 +33,7 @@ public class TimeSpan implements Serializable {
 
     @PrePersist
     private void setDateBeforePersisting() {
-        if (creationDate== null) creationDate = new Date();
+        if (creationDate == null) creationDate = new Date();
         lastUpdatedDate = (Date) creationDate.clone();
     }
 

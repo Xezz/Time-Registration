@@ -24,7 +24,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Iterable<Project> getByName(String name) {
-        return repo.findByName(name);
+        return repo.findByNameLike("%" + name + "%");
     }
 
     @Override

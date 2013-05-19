@@ -58,10 +58,10 @@ public class DataConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         // Most likely redundant, since we load persistence.xml
         // TODO: Fix enhancing Entities, currently done with maven
-        entityManagerFactory.setPackagesToScan( "org.xezz.timeregistration.model.Coworker",
-                                                "org.xezz.timeregistration.model.Customer",
-                                                "org.xezz.timeregistration.model.Project",
-                                                "org.xezz.timeregistration.model.TimeSpan");
+        entityManagerFactory.setPackagesToScan("org.xezz.timeregistration.model.Coworker",
+                "org.xezz.timeregistration.model.Customer",
+                "org.xezz.timeregistration.model.Project",
+                "org.xezz.timeregistration.model.TimeSpan");
         entityManagerFactory.setPersistenceUnitName(persistenceUnitName);
         entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter());
@@ -92,7 +92,7 @@ public class DataConfig {
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 
         return new PersistenceExceptionTranslationPostProcessor();
     }

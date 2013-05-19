@@ -19,7 +19,7 @@ import org.xezz.timeregistration.services.CoworkerService;
  */
 @Service
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-public class CoworkerServiceImpl implements CoworkerService  {
+public class CoworkerServiceImpl implements CoworkerService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired

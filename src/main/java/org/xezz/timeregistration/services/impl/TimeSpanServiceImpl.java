@@ -9,7 +9,6 @@ import org.xezz.timeregistration.repositories.TimeSpanRepository;
 import org.xezz.timeregistration.services.TimeSpanService;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * User: Xezz
@@ -24,12 +23,12 @@ public class TimeSpanServiceImpl implements TimeSpanService {
     TimeSpanRepository repo;
 
     @Override
-    public List<TimeSpan> timeSpansForCoworker(Coworker coworker) {
+    public Iterable<TimeSpan> timeSpansForCoworker(Coworker coworker) {
         return repo.findByCoworker(coworker);
     }
 
     @Override
-    public List<TimeSpan> timeSpansForProject(Project project) {
+    public Iterable<TimeSpan> timeSpansForProject(Project project) {
         return repo.findByProject(project);
     }
 
@@ -48,6 +47,21 @@ public class TimeSpanServiceImpl implements TimeSpanService {
         return repo.findOne(id);
     }
 
+    @Override
+    public TimeSpan createNewTimeSpan(TimeSpan timeSpan) {
+        return repo.save(timeSpan);
+    }
+
+    @Override
+    public TimeSpan updateTimeSpan(TimeSpan timeSpan) {
+        return repo.save(timeSpan);
+    }
+
+    @Override
+    public Iterable<TimeSpan> findAllTimeSpans() {
+        return repo.findAll();
+    }
+
     public TimeSpanRepository getRepo() {
         return repo;
     }
@@ -55,4 +69,6 @@ public class TimeSpanServiceImpl implements TimeSpanService {
     public void setRepo(TimeSpanRepository repo) {
         this.repo = repo;
     }
+
+
 }

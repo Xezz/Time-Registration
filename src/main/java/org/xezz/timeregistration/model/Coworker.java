@@ -44,7 +44,8 @@ public class Coworker {
     /**
      * Default Constructor for JPA
      */
-    public Coworker() {}
+    public Coworker() {
+    }
 
     /**
      * Set the creation date before this entity is going to be persisted

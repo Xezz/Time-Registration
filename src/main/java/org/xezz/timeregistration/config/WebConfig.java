@@ -3,7 +3,6 @@ package org.xezz.timeregistration.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;

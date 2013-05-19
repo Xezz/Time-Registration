@@ -3,15 +3,12 @@ package org.xezz.timeregistration.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.services.CoworkerService;
-
-import java.util.List;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
 /**
@@ -28,7 +25,6 @@ public class CoworkerController {
     // DI the service
     @Autowired
     CoworkerService service;
-
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // Starting with JSON mapping
@@ -37,9 +33,10 @@ public class CoworkerController {
 
     /**
      * Get all Coworkers via REST request (method GET)
+     *
      * @return List of all Coworkers
      */
-    @RequestMapping(method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<Coworker> getAll() {
         logger.info("Request to get all Coworker");
@@ -48,15 +45,16 @@ public class CoworkerController {
 
     /**
      * Get a Coworker by its id
+     *
      * @param id Long the ID of the coworker
      * @return Coworker with that id
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker get(@PathVariable("id") Long id) {
         logger.info("Request to get Coworker by id: " + id);
         final Coworker coworker = service.coworkerById(id);
-        logger.info("Coworker found == null? " + (coworker==null));
+        logger.info("Coworker found == null? " + (coworker == null));
         if (coworker != null) {
             logger.info("Coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
         }
@@ -65,10 +63,11 @@ public class CoworkerController {
 
     /**
      * Get a List of all Coworkers with the given first name
+     *
      * @param firstname String the first name of the Coworker
      * @return List of all Coworkers with that first name
      */
-    @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<Coworker> getByFirstName(@PathVariable("firstname") String firstname) {
         logger.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
@@ -77,10 +76,11 @@ public class CoworkerController {
 
     /**
      * Get all Coworkers with the given last name
+     *
      * @param lastname String the last name of th Coworker
      * @return List of all Coworkers with that last name
      */
-    @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<Coworker> getByLastName(@PathVariable("lastname") String lastname) {
         logger.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
@@ -89,10 +89,11 @@ public class CoworkerController {
 
     /**
      * Create a new Coworker
+     *
      * @param coworker the mapped Coworker
      * @return id of the newly created Coworker
      */
-    @RequestMapping(method = RequestMethod.POST, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker create(@RequestBody Coworker coworker) {
         logger.info("Post to create Coworker.");
@@ -106,10 +107,11 @@ public class CoworkerController {
 
     /**
      * Update an existing Coworker
+     *
      * @param coworker updated Coworker
      * @return Coworker persisted Coworker
      */
-    @RequestMapping(method = RequestMethod.PUT, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker update(@RequestBody Coworker coworker) {
         logger.info("JSON PUT Request to update coworker");
@@ -122,6 +124,7 @@ public class CoworkerController {
 
     /**
      * Receive a list of all Coworkers to be displayed via a jsp View
+     *
      * @param model the model to be passed to the View
      * @return String describing where to find the corresponding view
      */
@@ -136,7 +139,8 @@ public class CoworkerController {
 
     /**
      * Receive a Coworker by its ID to be displayed via a jsp View
-     * @param id Long - Distinct identifier
+     *
+     * @param id    Long - Distinct identifier
      * @param model the model to be passed to the View
      * @return String describing where to find the corresponding view
      */
@@ -151,8 +155,9 @@ public class CoworkerController {
 
     /**
      * Receive all Coworker with the given first name to be be displayed via a jsp View
+     *
      * @param firstName String - the first name to look for
-     * @param model the model to be passed to the View
+     * @param model     the model to be passed to the View
      * @return String describing where to find the corresponding view
      */
     @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET)
@@ -166,8 +171,9 @@ public class CoworkerController {
 
     /**
      * Receive all Coworker with the given last name to be displayed via a jsp View
+     *
      * @param lastName String - The last name to look for
-     * @param model the model to be passed to the View
+     * @param model    the model to be passed to the View
      * @return String describing where to find the corresponding view
      */
     @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET)
@@ -179,4 +185,5 @@ public class CoworkerController {
         return "coworkers/list";
     }
     // TODO: Add DELETE for Coworkers
+    // TODO: Remove MVC part?
 }

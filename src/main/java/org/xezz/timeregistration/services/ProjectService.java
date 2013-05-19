@@ -4,8 +4,6 @@ import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.model.TimeSpan;
 
-import java.util.List;
-
 /**
  * User: Xezz
  * Date: 29.04.13
@@ -14,6 +12,7 @@ import java.util.List;
 public interface ProjectService {
     /**
      * Get all Projects
+     *
      * @return List of all Projects
      */
     Iterable<Project> getAll();
@@ -36,6 +35,7 @@ public interface ProjectService {
 
     /**
      * Project by TimeSpan
+     *
      * @param t TimeSpan assigned to a Project
      * @return Project that contains this TimeSpan
      */
@@ -43,6 +43,7 @@ public interface ProjectService {
 
     /**
      * Project by identifier
+     *
      * @param id Long the id
      * @return Project with this id or null if not exist
      */
@@ -50,6 +51,7 @@ public interface ProjectService {
 
     /**
      * Persist a Project
+     *
      * @param p Project to persist
      * @return persisted Project
      */
@@ -57,6 +59,7 @@ public interface ProjectService {
 
     /**
      * Updated existing Project
+     *
      * @param p Project that has been updated
      * @return Project that has been persisted
      */

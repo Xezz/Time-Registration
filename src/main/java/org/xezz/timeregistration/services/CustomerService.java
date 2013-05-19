@@ -5,8 +5,6 @@ import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.model.TimeSpan;
 
-import java.util.List;
-
 /**
  * User: Xezz
  * Date: 29.04.13
@@ -16,6 +14,7 @@ public interface CustomerService {
 
     /**
      * Receive all Customers
+     *
      * @return List of all Customers
      */
 
@@ -23,6 +22,7 @@ public interface CustomerService {
 
     /**
      * Get a Customer by its id
+     *
      * @param id Long the id of a given Customer
      * @return Customer that has the id
      */
@@ -30,6 +30,7 @@ public interface CustomerService {
 
     /**
      * Persist a new Customer
+     *
      * @param c Customer to persist
      * @return Persisted Customer
      */
@@ -37,6 +38,7 @@ public interface CustomerService {
 
     /**
      * Update an existing Customer
+     *
      * @param c Customer that has been updated
      * @return Customer after persisting
      */
@@ -60,6 +62,7 @@ public interface CustomerService {
 
     /**
      * Get the Customer of a Project
+     *
      * @param p Project to get a Customer of
      * @return Customer that owns the Project
      */
@@ -67,6 +70,7 @@ public interface CustomerService {
 
     /**
      * Get a Customer that is associated to a timeframe
+     *
      * @param t TimeSpan of concern
      * @return Customer that gets charged for the timeframe
      */

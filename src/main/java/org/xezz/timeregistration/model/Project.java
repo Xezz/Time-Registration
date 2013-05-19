@@ -31,11 +31,12 @@ public class Project implements Serializable {
     /**
      * Default Constructor to support DI and JPA
      */
-    public Project() {}
+    public Project() {
+    }
 
     @PrePersist
     private void setDateBeforePersisting() {
-        if (creationDate== null) creationDate = new Date();
+        if (creationDate == null) creationDate = new Date();
         lastUpdatedDate = (Date) creationDate.clone();
     }
 

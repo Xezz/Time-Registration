@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Project;
 
-import java.util.List;
-
 /**
  * User: Xezz
  * Date: 26.04.13
@@ -37,7 +35,7 @@ public interface CoworkerRepository extends CrudRepository<Coworker, Long> {
      * Find all Coworker with the given first and last name
      *
      * @param firstName String the first name
-     * @param lastName String the last name
+     * @param lastName  String the last name
      * @return List of all Coworkers matching the last and first name
      */
     public Iterable<Coworker> findByFirstNameAndLastName(String firstName, String lastName);
@@ -55,6 +53,7 @@ public interface CoworkerRepository extends CrudRepository<Coworker, Long> {
 
     /**
      * Get all Coworkers
+     *
      * @return List of all Coworkers
      */
     @Query("SELECT c FROM Coworker c")

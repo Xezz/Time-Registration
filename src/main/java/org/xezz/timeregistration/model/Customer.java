@@ -28,7 +28,8 @@ public class Customer implements Serializable {
     /**
      * Default constructor for JPA/Spring/Whatever
      */
-    public Customer() {}
+    public Customer() {
+    }
 
     /**
      * Set the date of creation to the current time
