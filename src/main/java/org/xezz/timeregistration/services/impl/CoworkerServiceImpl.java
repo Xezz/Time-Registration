@@ -12,8 +12,6 @@ import org.xezz.timeregistration.model.TimeSpan;
 import org.xezz.timeregistration.repositories.CoworkerRepository;
 import org.xezz.timeregistration.services.CoworkerService;
 
-import java.util.List;
-
 /**
  * User: Xezz
  * Date: 29.04.13
@@ -28,27 +26,27 @@ public class CoworkerServiceImpl implements CoworkerService  {
     CoworkerRepository repo;
 
     @Override
-    public List<Coworker> coworkersAll() {
+    public Iterable<Coworker> coworkersAll() {
         return repo.findAllCoworkers();
     }
 
     @Override
-    public List<Coworker> coworkersByFirstName(String firstName) {
+    public Iterable<Coworker> coworkersByFirstName(String firstName) {
         return repo.findByFirstName(firstName);
     }
 
     @Override
-    public List<Coworker> coworkersByLastName(String lastName) {
+    public Iterable<Coworker> coworkersByLastName(String lastName) {
         return repo.findByLastName(lastName);
     }
 
     @Override
-    public List<Coworker> coworkersByFirstAndLastName(String firstName, String lastName) {
+    public Iterable<Coworker> coworkersByFirstAndLastName(String firstName, String lastName) {
         return repo.findByFirstNameAndLastName(firstName, lastName);
     }
 
     @Override
-    public List<Coworker> coworkersByProject(Project p) {
+    public Iterable<Coworker> coworkersByProject(Project p) {
         return repo.findCoworkersByProject(p);
     }
 

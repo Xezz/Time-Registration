@@ -7,9 +7,6 @@ import org.xezz.timeregistration.model.TimeSpan;
 import org.xezz.timeregistration.repositories.ProjectRepository;
 import org.xezz.timeregistration.services.ProjectService;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * User: Xezz
  * Date: 05.05.13
@@ -21,22 +18,17 @@ public class ProjectServiceImpl implements ProjectService {
     ProjectRepository repo;
 
     @Override
-    public List<Project> getAll() {
-        final Iterable<Project> all = repo.findAll();
-        List<Project> retVal = new ArrayList<Project>();
-        for (Project p : all) {
-            retVal.add(p);
-        }
-        return retVal;
+    public Iterable<Project> getAll() {
+        return repo.findAll();
     }
 
     @Override
-    public List<Project> getByName(String name) {
+    public Iterable<Project> getByName(String name) {
         return repo.findByName(name);
     }
 
     @Override
-    public List<Project> getByCustomer(Customer c) {
+    public Iterable<Project> getByCustomer(Customer c) {
         return repo.findByCustomer(c);
     }
 

@@ -16,21 +16,23 @@ public interface ProjectService {
      * Get all Projects
      * @return List of all Projects
      */
-    List<Project> getAll();
+    Iterable<Project> getAll();
 
     /**
      * List of Projects by name
+     *
      * @param name of the Project
      * @return List of all Projects with that name
      */
-    List<Project> getByName(String name);
+    Iterable<Project> getByName(String name);
 
     /**
      * List of Projects by Customer
+     *
      * @param c Customer
      * @return List of all Projects of this Customer
      */
-    List<Project> getByCustomer(Customer c);
+    Iterable<Project> getByCustomer(Customer c);
 
     /**
      * Project by TimeSpan

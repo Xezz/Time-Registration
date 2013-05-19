@@ -18,29 +18,32 @@ public interface CoworkerService {
      * Get all coworkers
      * @return List of all Coworkers
      */
-    List<Coworker> coworkersAll();
+    Iterable<Coworker> coworkersAll();
 
     /**
      * Get all coworkers with this first name
+     *
      * @param firstName String the first name of the Coworkers
      * @return List of all Coworkers with this first name
      */
-    List<Coworker> coworkersByFirstName(String firstName);
+    Iterable<Coworker> coworkersByFirstName(String firstName);
 
     /**
      * Get all Coworkers with this last name
+     *
      * @param lastName String the last name of the Coworkers
      * @return List of all Coworkers with this last name
      */
-    List<Coworker> coworkersByLastName(String lastName);
+    Iterable<Coworker> coworkersByLastName(String lastName);
 
     /**
      * Get all Coworkers that match the given first and last name
+     *
      * @param firstName String the first name of the coworker
      * @param lastName String the last name of the coworker
      * @return List of all Coworkers that match the first and last name
      */
-    List<Coworker> coworkersByFirstAndLastName(String firstName, String lastName);
+    Iterable<Coworker> coworkersByFirstAndLastName(String firstName, String lastName);
 
     /**
      * Get a specific Coworker by its ID
@@ -59,10 +62,11 @@ public interface CoworkerService {
 
     /**
      * Get all Coworkers that worked for a specific Project
+     *
      * @param p Project to get all Coworkers
      * @return List of all Coworkers involved in the Project
      */
-    List<Coworker> coworkersByProject(Project p);
+    Iterable<Coworker> coworkersByProject(Project p);
 
     /**
      * Persist a new Coworker

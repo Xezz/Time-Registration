@@ -77,4 +77,6 @@ public class CustomerController {
     public List<Customer> getCustomerByNameMatch(@PathVariable("name") String name) {
         return service.customerByNameMatch(name);
     }
+
+    // TODO: Add DELETE for Customers
 }

@@ -41,7 +41,7 @@ public class CoworkerController {
      */
     @RequestMapping(method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Coworker> getAll() {
+    public Iterable<Coworker> getAll() {
         logger.info("Request to get all Coworker");
         return service.coworkersAll();
     }
@@ -70,7 +70,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Coworker> getByFirstName(@PathVariable("firstname") String firstname) {
+    public Iterable<Coworker> getByFirstName(@PathVariable("firstname") String firstname) {
         logger.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
         return service.coworkersByFirstName(firstname);
     }
@@ -82,7 +82,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Coworker> getByLastName(@PathVariable("lastname") String lastname) {
+    public Iterable<Coworker> getByLastName(@PathVariable("lastname") String lastname) {
         logger.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
         return service.coworkersByLastName(lastname);
     }
@@ -178,5 +178,5 @@ public class CoworkerController {
         // map to WEB-INF/jsp/coworkers/list.jsp
         return "coworkers/list";
     }
-
+    // TODO: Add DELETE for Coworkers
 }
