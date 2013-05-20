@@ -2,7 +2,7 @@ Ext.define('TR.view.coworker.Edit', {
     extend: 'Ext.window.Window',
     alias: 'widget.coworkeredit',
 
-    title: 'Coworker Edit',
+    title: 'Mitarbeiter - Bearbeiten',
     layout: 'fit',
     autoShow: true,
 

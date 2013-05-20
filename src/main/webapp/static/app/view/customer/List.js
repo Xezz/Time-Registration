@@ -1,7 +1,7 @@
 Ext.define('TR.view.customer.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.customerlist',
-    title: 'All Customers',
+    title: 'Kunden - Liste',
     store: 'Customers',
 
     initComponent: function() {

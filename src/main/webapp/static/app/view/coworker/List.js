@@ -1,7 +1,7 @@
 Ext.define('TR.view.coworker.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.coworkerlist',
-    title: 'All Coworkers',
+    title: 'Mitarbeiter - Liste',
     store: 'Coworkers',
 
     initComponent: function() {

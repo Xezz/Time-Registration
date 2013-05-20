@@ -2,7 +2,7 @@ Ext.define('TR.view.customer.Edit', {
     extend: 'Ext.window.Window',
     alias: 'widget.customeredit',
 
-    title: 'Customer Edit',
+    title: 'Kunde - Bearbeiten',
     layout: 'fit',
     autoShow: true,
 
