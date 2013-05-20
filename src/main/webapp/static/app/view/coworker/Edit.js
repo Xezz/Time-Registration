@@ -29,8 +29,7 @@ Ext.define('TR.view.coworker.Edit', {
             {
                 text: 'Speichern',
                 action: 'save'
-            },
-            {
+            }, {
                 text: 'Abbrechen',
                 scope: this,
                 handler: this.close
