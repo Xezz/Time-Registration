@@ -4,21 +4,31 @@ Ext.define('TR.controller.Customers', {
     model: ['Customer'],
     views: ['customer.List', 'customer.Edit', 'customer.Create'],
 
-    function init() {
+    init: function() {
         this.control({
             'viewport > customerlist' : {
-                // do stuff here
+                // double clicking on a customer to open a form to edit it
+                itemdblclick: this.openEditCustomerForm
             },
             'customeredit button[action=save]' : {
-                click: this.saveCustomer
+                click: this.editCustomer
             },
             'customercreate button[action=save]' : {
                 click: this.createCustomer
             }
         });
     },
+
+    // Called on double click on an item in the grid
+    openEditCustomerForm: function(grid, record) {
+        // create a view from the aliasname customeredit
+        var view = Ext.widget('customeredit');
+        // take the view and get its subcomponent of type form
+        // call loadrecord
+        view.down('form').loadRecord(record);
+    },
     // TODO: Finish ExtJS after the whole RESTful service is done
-    saveCustomer: function(button) {
+    createCustomer: function(button) {
         var win = button.up('window'),
             form = win.down('form'),
             values = form.getValues(),
@@ -31,7 +41,7 @@ Ext.define('TR.controller.Customers', {
         this.getCustomerStore().sync();
     },
 
-    createCustomer: function(button) {
+    editCustomer: function(button) {
         var win = button.up('window'),
             form = win.down('form'),
             record = form.getRecord(),
@@ -39,7 +49,7 @@ Ext.define('TR.controller.Customers', {
 
         record.set(values);
         win.close();
-        this.getCustomerStore().sync();
+        this.getCustomersStore().sync();
     }
 
 });

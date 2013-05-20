@@ -34,17 +34,15 @@ public class Customer implements Serializable {
     /**
      * Set the date of creation to the current time
      */
-    @PreUpdate
+    @PrePersist
     private void setCreationDate() {
-        this.creationDate = new Date();
-        // Set the last updated date to the creation date
-        this.lastUpdatedDate = (Date) creationDate.clone();
+        this.lastUpdatedDate = this.creationDate = new Date();
     }
 
     /**
      * Update the date of last modification to the current time
      */
-    @PrePersist
+    @PreUpdate
     private void setLastUpdatedDate() {
         this.lastUpdatedDate = new Date();
     }

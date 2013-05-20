@@ -4,15 +4,22 @@ Ext.application({
 
     appFolder: 'app',
     controllers: [
-      'Coworkers'
+      'Coworkers',
+      'Customers'
     ],
 
     launch: function() {
         Ext.create('Ext.container.Viewport', {
-            layout: 'fit',
+            layout: 'border',
             items: [
                 {
-                xtype: 'coworkerlist',
+                    xtype: 'coworkerlist',
+                    region: 'north',
+                    height: 250
+
+                }, {
+                    xtype: 'customerlist',
+                    region: 'center'
                 }
             ]
         });
