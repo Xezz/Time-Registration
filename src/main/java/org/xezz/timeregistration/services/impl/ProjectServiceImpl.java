@@ -1,6 +1,7 @@
 package org.xezz.timeregistration.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.model.TimeSpan;
@@ -12,6 +13,7 @@ import org.xezz.timeregistration.services.ProjectService;
  * Date: 05.05.13
  * Time: 11:14
  */
+@Service
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired

@@ -70,14 +70,14 @@ public class ProjectController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Project getById(@RequestParam("id") Long id) {
+    public Project getById(@PathVariable("id") Long id) {
         logger.info("Request to get a Project by id");
         return service.getById(id);
     }
 
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    private Iterable<Project> getByName(@RequestParam("name") String name) {
+    private Iterable<Project> getByName(@PathVariable("name") String name) {
         logger.info("Request to get Projects by name");
         return service.getByName(name);
     }
