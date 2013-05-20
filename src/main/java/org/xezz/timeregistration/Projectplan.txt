@@ -44,8 +44,9 @@ Login falls User nicht eingelogged ist
 Liste von Projekten (EXTRA: Filtered by User)
     -> Auswahl von Projekt
         -> Detailansicht des Projekts
-        -> Button Zeitraum hinzufügen
+        *  Button Zeitraum hinzufügen
             -> Hinzufügen Clicked
-            -> Open Form: (WICHTIG: User wird vom Backend übernommen!!!)
-                -> Datum und Dauer für das gewählte Projekt hinzufügen
-                -> ODER: Abbrechen
+                -> Open Form: (WICHTIG: User wird vom Backend übernommen!!!)
+                    -> Datum und Dauer für das gewählte Projekt hinzufügen (dauer positiv)
+                    -> ODER: Abbrechen
+            <- Detailansicht des Projekts
