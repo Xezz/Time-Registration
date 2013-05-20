@@ -14,7 +14,6 @@ und zum anderen auch ortsunabhängig zu halten.
 
 Anforderung an zu nutzende Technologien:
 Spring 3.x (Genaue Version TBD)
-In-Memory Datenbank (Genau Version / Provider TBD (und eine nützliche Anwendung dafür finden))
 Anforderungen an das System:
 Daten persistieren
 Anmeldung an das System für Mitarbeiter
@@ -30,7 +29,6 @@ Bearbeiten eines Projekts
 Auflisten von allen Projekten (Filtern und Sortieren)
 Erstellen eines Zeitraums in dem für ein Projekt gearbeitet wurde
 Hinzufügen eines Zeitraums zu einem Projekt
-Bearbeiten eines Zeitraums
 Ansicht von Projekt
     z.B.: Gesamte Arbeitszeit für das Projekt
     z.B.: Gesamte Arbeitszeiten je nach Mitarbeiter
@@ -38,40 +36,16 @@ Ansicht von Mitarbeiter
     z.B.: Projekte für die Arbeitszeiten eingetragen sind
     z.B.: Gesamte Zeiten pro Projekt
 
+UI:
+Login falls User nicht eingelogged ist
+    Login fail => zurück zu Login frame!!!!!!!!!!!
+-> PreReq: User ist eingelogged
 
-
-
- im Allgemeinen
-Eine UI zum Anzeigen der Lottozahlen für jede bekannte Ziehung
-Eine UI zum Anzeigen des Lottoscheins
-Eine UI zum Anzeigen des Vergleichs von Ziehung <-> Lottoschein
-    PRO Lottoschein
-    Für alle Lottoscheine
-    Für abgelaufene Lottoscheine
-Eine UI zum Anzeigen der Historie
-
-Datenpersistence
-    Lottoscheine
-    Lottoziehung
-    (sinnlos: Gewinne)
-Eine Möglichkeit den Lottoschein auf das Programm zu übertragen
-
-Die Daten einer Ziehung zu digitalisieren
-    Daten von lotto.de zu ziehen (Siehe auch postdata.txt für potenzielle Formulardaten)
-    Manuell Daten eintragen
-    Regelmässig überprüfen ob neue Daten vorliegen
-        Nur dann pullen, wenn nötig (sprich gerade aktualisiert mit aktuellen Daten, dann nur wenn forced)
-Vergleich des digitalen Lottoscheins mit Ziehungen
-    Nur dann vergleichen, wenn Ziehung auch im Gültigkeitsbereich des Scheins
-Mehrere Lottoscheine verwalten
-Auswahl von verschiedenen Lottoscheinen
-Bearbeiten von Lottoscheinen
-    Verlängerung der Laufzeit
-    Ändern der Daten
-        Zahlen
-        Superzahl
-        Startdatum
-        Enddatum
-        Superzahl
-------------------------------------------------------------------------------------------------------------------------
-EVT: Spiel 77 etc.
+Liste von Projekten (EXTRA: Filtered by User)
+    -> Auswahl von Projekt
+        -> Detailansicht des Projekts
+        -> Button Zeitraum hinzufügen
+            -> Hinzufügen Clicked
+            -> Open Form: (WICHTIG: User wird vom Backend übernommen!!!)
+                -> Datum und Dauer für das gewählte Projekt hinzufügen
+                -> ODER: Abbrechen

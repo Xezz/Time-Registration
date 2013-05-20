@@ -15,7 +15,8 @@ Ext.application({
                 {
                     xtype: 'coworkerlist',
                     region: 'north',
-                    height: 250
+                    height: 250,
+                    split: true
 
                 }, {
                     xtype: 'customerlist',
