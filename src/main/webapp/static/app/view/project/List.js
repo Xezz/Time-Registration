@@ -23,5 +23,8 @@ Ext.define('TR.view.project.List', {
             {header: 'Erstellt am', dataIndex: 'creationDate', width: 180, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')},
             {header: 'Bearbeitet am', dataIndex: 'lastUpdatedDate', width: 180, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')}
         ]
+
+        this.callParent(arguments);
     }
+
 });

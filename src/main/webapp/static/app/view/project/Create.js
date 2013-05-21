@@ -53,7 +53,8 @@ Ext.define('TR.view.project.Create', {
             }
         ];
         // SAME WTF as above, why a semicolon after these. JS or Framework specific?
-
+        // call super? suppose so
+        // ... super call has to be inside initComponents
+        this.callParent(arguments);
     }
-
 });

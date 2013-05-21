@@ -1,29 +1,29 @@
-Ext.define('TR.view.coworker.Edit', {
+Ext.define('TR.view.project.Edit', {
     extend: 'Ext.window.Window',
-    alias: 'widget.coworkeredit',
-    title: 'Mitarbeiter - Bearbeiten',
+    alias: 'widget.projectedit',
+    title: 'Projekt - Bearbeiten',
     layout: 'fit',
     autoShow: true,
 
     initComponent: function() {
-        this.items = [
+        this.items: [
             {
                 xtype: 'form',
                 items: [
                     {
                         xtype: 'textfield',
-                        name: 'firstName',
-                        fieldLabel: 'Vorname'
+                        name: 'name',
+                        fieldLabel: 'Name'
                     }, {
-                        xtype: 'textfield',
-                        name: 'lastName',
-                        fieldLabel: 'Nachname'
+                        xtype: 'textarea',
+                        name: 'description',
+                        fieldLabel: 'Beschreibung'
                     }
                 ]
             }
         ];
 
-        this.buttons = [
+        this.buttons: [
             {
                 text: 'Speichern',
                 action: 'save'
@@ -36,4 +36,6 @@ Ext.define('TR.view.coworker.Edit', {
 
         this.callParent(arguments);
     }
+
+
 });
