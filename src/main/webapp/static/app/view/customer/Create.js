@@ -1,7 +1,6 @@
 Ext.define('TR.view.customer.Create', {
     extend: 'Ext.window.Window',
     alias: 'widget.customercreate',
-
     title: 'Kunde - Erstellen',
     layout: 'fit',
     autoShow: true,

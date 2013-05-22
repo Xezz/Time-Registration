@@ -6,7 +6,7 @@ Ext.define('TR.view.project.Edit', {
     autoShow: true,
 
     initComponent: function() {
-        this.items: [
+        this.items = [
             {
                 xtype: 'form',
                 items: [
@@ -23,7 +23,7 @@ Ext.define('TR.view.project.Edit', {
             }
         ];
 
-        this.buttons: [
+        this.buttons = [
             {
                 text: 'Speichern',
                 action: 'save'

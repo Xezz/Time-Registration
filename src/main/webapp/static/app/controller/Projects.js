@@ -1,26 +1,31 @@
 Ext.define('TR.controller.Projects', {
     extend: 'Ext.app.Controller',
-    store: ['Projects'],
+    stores: ['Projects'],
     model: ['Project'],
-    views: ['project.List'
+    views: ['project.List',
             'project.Create',
             'project.Edit'],
     // Three actions to handle?
     init: function() {
         // Listeners, Check also Component Query on ExtJs API docs
-        this.control = ({
+        this.control({
             // Event happend on project edit, button with action save
             'projectedit button[action=save]' : {
-                // Event type is click
-                // thus after editing, we have to update now -> call func
                 click: this.updateProject
             },
             'projectcreate button[action=save]' : {
                 click: this.persistProject
+            },
+            'projectlist button[action=add]' : {
+                click: this.openNewProjectForm
             }
-
         });
 
+    },
+
+    openNewProjectForm: function() {
+        console.log('openNewProjectForm clicked');
+        var view = Ext.widget('projectcreate');
     },
 
     updateProject: function(button) {
@@ -44,9 +49,8 @@ Ext.define('TR.controller.Projects', {
         var win = button.up('window'),
             form = win.down('form'),
             values = form.getValues(),
-            record = new Project();
+            record = Ext.create('TR.model.Project', values);
 
-        record.setValues(values);
         win.close();
         this.getProjectsStore().insert(0, record);
         this.getProjectsStore().sync();

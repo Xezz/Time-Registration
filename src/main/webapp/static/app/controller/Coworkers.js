@@ -16,7 +16,7 @@ Ext.define('TR.controller.Coworkers', {
                 click: this.updateCoworker
             },
             'coworkerlist button[action=add]' : {
-                click: this.editCoworker
+                //click: this.editCoworker
             }
         });
     },

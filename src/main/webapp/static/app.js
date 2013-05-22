@@ -5,7 +5,8 @@ Ext.application({
     appFolder: 'app',
     controllers: [
       'Coworkers',
-      'Customers'
+      'Customers',
+      'Projects'
     ],
 
     launch: function() {
@@ -21,6 +22,11 @@ Ext.application({
                 }, {
                     xtype: 'customerlist',
                     region: 'center'
+                }, {
+                    xtype: 'projectlist',
+                    region: 'west',
+                    width: 120,
+                    split: true
                 }
             ]
         });
