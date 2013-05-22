@@ -2,6 +2,7 @@ package org.xezz.timeregistration.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.model.TimeSpan;
@@ -14,6 +15,7 @@ import org.xezz.timeregistration.services.ProjectService;
  * Time: 11:14
  */
 @Service
+@Transactional
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
@@ -44,11 +46,13 @@ public class ProjectServiceImpl implements ProjectService {
         return repo.findOne(id);
     }
 
+    @Transactional
     @Override
     public Project addNewProject(Project p) {
         return repo.save(p);
     }
 
+    @Transactional
     @Override
     public Project updateProject(Project p) {
         // TODO: update or (as of right now) also safe (aka against REST)

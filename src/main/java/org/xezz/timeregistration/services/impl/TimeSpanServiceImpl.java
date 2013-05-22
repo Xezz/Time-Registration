@@ -2,6 +2,7 @@ package org.xezz.timeregistration.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.model.TimeSpan;
@@ -17,6 +18,7 @@ import java.util.Date;
  * Implementation of the TimeSpanService with Spring repository functionality
  */
 @Service
+@Transactional
 public class TimeSpanServiceImpl implements TimeSpanService {
 
     @Autowired
@@ -47,11 +49,13 @@ public class TimeSpanServiceImpl implements TimeSpanService {
         return repo.findOne(id);
     }
 
+    @Transactional
     @Override
     public TimeSpan createNewTimeSpan(TimeSpan timeSpan) {
         return repo.save(timeSpan);
     }
 
+    @Transactional
     @Override
     public TimeSpan updateTimeSpan(TimeSpan timeSpan) {
         return repo.save(timeSpan);

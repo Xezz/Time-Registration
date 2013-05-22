@@ -2,6 +2,7 @@ package org.xezz.timeregistration.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
@@ -15,6 +16,7 @@ import org.xezz.timeregistration.services.CustomerService;
  * Time: 22:44
  */
 @Service
+@Transactional
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
@@ -66,11 +68,13 @@ public class CustomerServiceImpl implements CustomerService {
         return repo.findOne(id);
     }
 
+    @Transactional
     @Override
     public Customer addNewCustomer(Customer c) {
         return repo.save(c);
     }
 
+    @Transactional
     @Override
     public Customer updateCustomer(Customer c) {
         if (repo.exists(c.getCustomerId())) {
