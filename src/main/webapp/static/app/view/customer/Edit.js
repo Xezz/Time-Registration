@@ -15,8 +15,7 @@ Ext.define('TR.view.customer.Edit', {
                         xtype: 'textfield',
                         name: 'name',
                         fieldLabel: 'Name'
-                    },
-                    {
+                    }, {
                         xtype: 'textarea',
                         name: 'customerInfo',
                         fieldLabel: 'Beschreibung'
@@ -29,8 +28,7 @@ Ext.define('TR.view.customer.Edit', {
             {
                 text: 'Speichern',
                 action: 'save'
-            },
-            {
+            }, {
                 text: 'Abbrechen',
                 scope: this,
                 handler: this.close

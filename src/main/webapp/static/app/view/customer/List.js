@@ -14,5 +14,20 @@ Ext.define('TR.view.customer.List', {
             {header: 'Bearbeitet am', dataIndex: 'lastUpdatedDate', flex: 1, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')}
         ];
         this.callParent(arguments);
-    }
+    },
+
+    // Add tools to the header!
+    dockedItems: [
+        {
+            xtype: 'toolbar',
+            dock: 'top',
+            items: [
+                {
+                    xytpe: 'button',
+                    text: 'Neuer Eintrag',
+                    action: 'add'
+                }
+            ]
+        }
+    ]
 });
