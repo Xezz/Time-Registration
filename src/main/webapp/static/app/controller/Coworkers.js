@@ -2,23 +2,28 @@ Ext.define('TR.controller.Coworkers', {
     extend: 'Ext.app.Controller',
     stores: ['Coworkers'],
     models: ['Coworker'],
-    views: [
-        'coworker.List',
-        'coworker.Edit'
-    ],
+    views: ['coworker.List',
+            'coworker.Edit'],
 
     init: function() {
         this.control({
+            // Selector get the component viewport and then its child coworkerlist
+            // attach an Observer to double click to call editCoworker
             'viewport > coworkerlist' : {
                 itemdblclick: this.editCoworker
             },
             'coworkeredit button[action=save]': {
                 click: this.updateCoworker
+            },
+            'coworkerlist button[action=add]' : {
+                click: this.editCoworker
             }
         });
     },
 
     editCoworker: function(grid, record) {
+        // TODO: Assure this is how I think it works:
+            // I think this creates a widget and loads it (in this case a new form of type window, called by its name coworkeredit)
         var view = Ext.widget('coworkeredit');
 
         view.down('form').loadRecord(record);
@@ -38,5 +43,9 @@ Ext.define('TR.controller.Coworkers', {
             record.set(values);
             win.close();
             this.getCoworkersStore().sync();
+    },
+
+    refreshList: function() {
+        this.getCoworkersStore().sync();
     }
 });
