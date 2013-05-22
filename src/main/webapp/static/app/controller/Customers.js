@@ -15,6 +15,9 @@ Ext.define('TR.controller.Customers', {
             },
             'customercreate button[action=save]' : {
                 click: this.createCustomer
+            },
+            'customerlist button[action=add]' : {
+                click: this.openNewCustomerForm
             }
         });
     },
@@ -27,18 +30,20 @@ Ext.define('TR.controller.Customers', {
         // call loadrecord
         view.down('form').loadRecord(record);
     },
+
+    openNewCustomerForm: function() {
+        var view = Ext.widget('customercreate');
+    },
     // TODO: Finish ExtJS after the whole RESTful service is done
     createCustomer: function(button) {
         var win = button.up('window'),
             form = win.down('form'),
             values = form.getValues(),
-            record = new Customer();
+            record = Ext.create('TR.model.Customer', values);
 
-
-        record.set(values);
         win.close();
-        this.getCustomerStore().insert(0, record);
-        this.getCustomerStore().sync();
+        this.getCustomersStore().insert(0, record);
+        this.getCustomersStore().sync();
     },
 
     editCustomer: function(button) {
