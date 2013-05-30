@@ -20,7 +20,8 @@ import org.xezz.timeregistration.services.CoworkerService;
 @Service
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class CoworkerServiceImpl implements CoworkerService {
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CoworkerServiceImpl.class);
 
     @Autowired
     CoworkerRepository repo;
@@ -52,9 +53,9 @@ public class CoworkerServiceImpl implements CoworkerService {
 
     @Override
     public Coworker coworkerById(Long id) {
-        logger.info("Trying to find coworker with id: " + id);
+        LOGGER.info("Trying to find coworker with id: " + id);
         final Coworker one = repo.findOne(id);
-        logger.info("Found one?: " + (one != null));
+        LOGGER.info("Found one?: " + (one != null));
         return one;
     }
 
@@ -66,10 +67,10 @@ public class CoworkerServiceImpl implements CoworkerService {
     @Override
     @Transactional
     public Coworker addNewCoworker(Coworker coworker) {
-        logger.info("Service saving coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
+        LOGGER.info("Service saving coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
         final Coworker save = repo.save(coworker);
-        logger.info("Service saved coworker, is it != null? " + (save != null));
-        logger.info("First name: " + save.getFirstName() + " Last name: " + save.getLastName() + " Date created: " + save.getCreationDate() + " id: " + save.getCoworkerId());
+        LOGGER.info("Service saved coworker, is it != null? " + (save != null));
+        LOGGER.info("First name: " + save.getFirstName() + " Last name: " + save.getLastName() + " Date created: " + save.getCreationDate() + " id: " + save.getCoworkerId());
         return save;
     }
 

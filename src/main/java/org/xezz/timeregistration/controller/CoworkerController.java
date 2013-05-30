@@ -25,7 +25,7 @@ public class CoworkerController {
     // DI the service
     @Autowired
     CoworkerService service;
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final static Logger LOGGER = LoggerFactory.getLogger(CoworkerController.class);
 
     // Starting with JSON mapping
     //
@@ -39,7 +39,7 @@ public class CoworkerController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<Coworker> getAll() {
-        logger.info("Request to get all Coworker");
+        LOGGER.info("Request to get all Coworker");
         return service.coworkersAll();
     }
 
@@ -52,11 +52,11 @@ public class CoworkerController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker get(@PathVariable("id") Long id) {
-        logger.info("Request to get Coworker by id: " + id);
+        LOGGER.info("Request to get Coworker by id: " + id);
         final Coworker coworker = service.coworkerById(id);
-        logger.info("Coworker found == null? " + (coworker == null));
+        LOGGER.info("Coworker found == null? " + (coworker == null));
         if (coworker != null) {
-            logger.info("Coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
+            LOGGER.info("Coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
         }
         return coworker;
     }
@@ -70,7 +70,7 @@ public class CoworkerController {
     @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<Coworker> getByFirstName(@PathVariable("firstname") String firstname) {
-        logger.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
+        LOGGER.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
         return service.coworkersByFirstName(firstname);
     }
 
@@ -83,7 +83,7 @@ public class CoworkerController {
     @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<Coworker> getByLastName(@PathVariable("lastname") String lastname) {
-        logger.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
+        LOGGER.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
         return service.coworkersByLastName(lastname);
     }
 
@@ -96,11 +96,11 @@ public class CoworkerController {
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker create(@RequestBody Coworker coworker) {
-        logger.info("Post to create Coworker.");
+        LOGGER.info("Post to create Coworker.");
         if (coworker == null) {
-            logger.info("Coworker == null");
+            LOGGER.info("Coworker == null");
         } else {
-            logger.info("Coworker.firstName: " + coworker.getFirstName() + " Coworker.lastName: " + coworker.getLastName());
+            LOGGER.info("Coworker.firstName: " + coworker.getFirstName() + " Coworker.lastName: " + coworker.getLastName());
         }
         return service.addNewCoworker(coworker);
     }
@@ -114,7 +114,7 @@ public class CoworkerController {
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Coworker update(@RequestBody Coworker coworker) {
-        logger.info("JSON PUT Request to update coworker");
+        LOGGER.info("JSON PUT Request to update coworker");
         return service.updateCoworker(coworker);
     }
 
@@ -130,7 +130,7 @@ public class CoworkerController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
-        logger.info("REQUEST for NON JSON .... list");
+        LOGGER.info("REQUEST for NON JSON .... list");
         model.addAttribute("coworkers", getAll());
 
         // map to WEB-INF/jsp/coworkers/list.jsp
@@ -146,7 +146,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String showById(@PathVariable("id") Long id, Model model) {
-        logger.info("REQUEST NON JSON ... get by id");
+        LOGGER.info("REQUEST NON JSON ... get by id");
         model.addAttribute(get(id));
 
         // map to WEB-INF/jsp/coworkers/show.jsp
@@ -162,7 +162,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET)
     public String showByFirstName(@PathVariable("firstname") String firstName, Model model) {
-        logger.info("REQUEST NON JSON ... by firstname");
+        LOGGER.info("REQUEST NON JSON ... by firstname");
         model.addAttribute("coworkers", getByFirstName(firstName));
 
         // map to WEB-INF/jsp/coworkers/list.jsp
@@ -178,7 +178,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET)
     public String showByLastName(@PathVariable("lastname") String lastName, Model model) {
-        logger.info("REQUEST NON JSON ... by lastname");
+        LOGGER.info("REQUEST NON JSON ... by lastname");
         model.addAttribute("coworkers", getByLastName(lastName));
 
         // map to WEB-INF/jsp/coworkers/list.jsp

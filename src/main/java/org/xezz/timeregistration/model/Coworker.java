@@ -17,10 +17,6 @@ import java.util.Set;
 @Entity
 public class Coworker {
 
-
-    @Transient
-    Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long coworkerId;
@@ -52,10 +48,7 @@ public class Coworker {
      */
     @PrePersist
     private void setDateBeforePersisting() {
-        logger.info("Inside prepersisting a Coworker");
-        creationDate = new Date();
-        // Set the last updated Date to the creation date
-        lastUpdatedDate = (Date) creationDate.clone();
+        creationDate = lastUpdatedDate = new Date();
     }
 
     /**

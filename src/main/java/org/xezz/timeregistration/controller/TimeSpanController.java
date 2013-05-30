@@ -24,26 +24,26 @@ public class TimeSpanController {
     @Autowired
     TimeSpanService service;
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final static Logger LOGGER = LoggerFactory.getLogger(TimeSpanController.class);
 
     @RequestMapping(method = RequestMethod.GET, value = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<TimeSpan> getAll() {
-        logger.info("Request to get all TimeSpans");
+        LOGGER.info("Request to get all TimeSpans");
         return service.findAllTimeSpans();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public TimeSpan create(@RequestBody TimeSpan timeSpan) {
-        logger.info("Request to create a new TimeSpan");
+        LOGGER.info("Request to create a new TimeSpan");
         return service.createNewTimeSpan(timeSpan);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public TimeSpan update(@RequestBody TimeSpan timeSpan) {
-        logger.info("Request to update an existing TimeSpan");
+        LOGGER.info("Request to update an existing TimeSpan");
         return service.updateTimeSpan(timeSpan);
     }
 

@@ -22,7 +22,7 @@ public class ProjectController {
     @Autowired
     ProjectService service;
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final static Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 
     /**
      * Request all Projects
@@ -32,7 +32,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<Project> getAll() {
-        logger.info("Requested all Projects");
+        LOGGER.info("Requested all Projects");
         return service.getAll();
     }
 
@@ -45,7 +45,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Project create(@RequestBody Project project) {
-        logger.info("Request to create a new Project");
+        LOGGER.info("Request to create a new Project");
         return service.addNewProject(project);
     }
 
@@ -58,7 +58,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Project update(@RequestBody Project project) {
-        logger.info("Request to update an existing project");
+        LOGGER.info("Request to update an existing project");
         return service.updateProject(project);
     }
 
@@ -71,14 +71,14 @@ public class ProjectController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Project getById(@PathVariable("id") Long id) {
-        logger.info("Request to get a Project by id");
+        LOGGER.info("Request to get a Project by id");
         return service.getById(id);
     }
 
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     private Iterable<Project> getByName(@PathVariable("name") String name) {
-        logger.info("Request to get Projects by name");
+        LOGGER.info("Request to get Projects by name");
         return service.getByName(name);
     }
 
