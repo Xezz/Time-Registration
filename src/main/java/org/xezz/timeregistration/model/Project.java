@@ -1,5 +1,10 @@
 package org.xezz.timeregistration.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.xezz.timeregistration.services.CustomerService;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -19,6 +24,7 @@ public class Project implements Serializable {
     private String name;
     private String description;
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Customer customer;
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
@@ -27,6 +33,10 @@ public class Project implements Serializable {
     // if a project gets deleted, all mapped timeSpans will be deleted too, same for persisting
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<TimeSpan> timeSpans = new HashSet<TimeSpan>();
+
+    @Transient
+    @Autowired
+    CustomerService customerService;
 
     /**
      * Default Constructor to support DI and JPA
@@ -42,6 +52,11 @@ public class Project implements Serializable {
     @PreUpdate
     private void updateLastEditedDate() {
         lastUpdatedDate = new Date();
+    }
+
+    @JsonProperty(value="customer_id")
+    public void setCustomer_id(Long customer_id) {
+        this.customer = customerService.customerById(customer_id);
     }
 
     public Long getProjectId() {
