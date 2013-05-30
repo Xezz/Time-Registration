@@ -21,7 +21,7 @@ Ext.define('TR.view.project.Create', {
                     }, {
                         // Select a Customer this belongs to
                         xtype: 'combobox',
-                        name: 'customer',
+                        name: 'customerId',
                         fieldLabel: 'Kunde',
                         displayField: 'name',
                         valueField: 'customerId',

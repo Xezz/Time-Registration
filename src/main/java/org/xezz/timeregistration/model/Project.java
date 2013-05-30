@@ -54,7 +54,7 @@ public class Project implements Serializable {
         lastUpdatedDate = new Date();
     }
 
-    @JsonProperty(value="customer_id")
+    @JsonProperty(value = "customerId")
     public void setCustomer_id(Long customer_id) {
         this.customer = customerService.customerById(customer_id);
     }

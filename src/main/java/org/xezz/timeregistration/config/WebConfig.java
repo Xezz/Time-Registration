@@ -72,8 +72,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         MappingJacksonJsonView jacksonJsonView = new MappingJacksonJsonView();
         // TODO: If validation of JSON fails, set prefix to false
         jacksonJsonView.setPrefixJson(true);
-
+        jacksonJsonView.setPrettyPrint(true);
         views.add(jacksonJsonView);
+
         return views;
     }
 }
