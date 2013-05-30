@@ -7,7 +7,7 @@ import java.util.Date;
  * Date: 30.05.13
  * Time: 22:50
  */
-public class Customer {
+public class CustomerDAO {
     private Long customerId;
     private String name;
     private String customerInfo;
@@ -57,9 +57,9 @@ public class Customer {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
+        if (!(o instanceof CustomerDAO)) return false;
 
-        Customer customer = (Customer) o;
+        CustomerDAO customer = (CustomerDAO) o;
 
         if (creationDate != null ? !creationDate.equals(customer.creationDate) : customer.creationDate != null)
             return false;

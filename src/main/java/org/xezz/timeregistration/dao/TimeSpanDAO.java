@@ -7,7 +7,7 @@ import java.util.Date;
  * Date: 30.05.13
  * Time: 22:50
  */
-public class TimeSpan {
+public class TimeSpanDAO {
     private Long timeSpanId;
     private Long projectId;
     private Long coworkerId;
@@ -75,9 +75,9 @@ public class TimeSpan {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TimeSpan)) return false;
+        if (!(o instanceof TimeSpanDAO)) return false;
 
-        TimeSpan timeSpan = (TimeSpan) o;
+        TimeSpanDAO timeSpan = (TimeSpanDAO) o;
 
         if (!coworkerId.equals(timeSpan.coworkerId)) return false;
         if (creationDate != null ? !creationDate.equals(timeSpan.creationDate) : timeSpan.creationDate != null)

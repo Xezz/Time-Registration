@@ -7,7 +7,7 @@ import java.util.Date;
  * Date: 30.05.13
  * Time: 22:50
  */
-public class Coworker {
+public class CoworkerDAO {
     private Long coworkerId;
     private String firstName;
     private String lastName;
@@ -57,9 +57,9 @@ public class Coworker {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Coworker)) return false;
+        if (!(o instanceof CoworkerDAO)) return false;
 
-        Coworker coworker = (Coworker) o;
+        CoworkerDAO coworker = (CoworkerDAO) o;
 
         if (coworkerId != null ? !coworkerId.equals(coworker.coworkerId) : coworker.coworkerId != null) return false;
         if (creationDate != null ? !creationDate.equals(coworker.creationDate) : coworker.creationDate != null)

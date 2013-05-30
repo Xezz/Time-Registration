@@ -7,7 +7,7 @@ import java.util.Date;
  * Date: 30.05.13
  * Time: 22:50
  */
-public class Project {
+public class ProjectDAO {
     private Long projectId;
     private String name;
     private String description;
@@ -66,9 +66,9 @@ public class Project {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Project)) return false;
+        if (!(o instanceof ProjectDAO)) return false;
 
-        Project project = (Project) o;
+        ProjectDAO project = (ProjectDAO) o;
 
         if (creationDate != null ? !creationDate.equals(project.creationDate) : project.creationDate != null)
             return false;
