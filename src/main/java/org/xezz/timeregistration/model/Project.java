@@ -1,15 +1,12 @@
 package org.xezz.timeregistration.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.xezz.timeregistration.dao.ProjectDAO;
 import org.xezz.timeregistration.services.CustomerService;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * User: Xezz
@@ -24,15 +21,11 @@ public class Project implements Serializable {
     private String name;
     private String description;
     @ManyToOne(optional = false)
-    @JsonIgnore
     private Customer customer;
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
-    // if a project gets deleted, all mapped timeSpans will be deleted too, same for persisting
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
-    private Set<TimeSpan> timeSpans = new HashSet<TimeSpan>();
 
     @Transient
     @Autowired
@@ -44,6 +37,17 @@ public class Project implements Serializable {
     public Project() {
     }
 
+    public Project(ProjectDAO p) {
+        if (p.getProjectId() != null) {
+            this.projectId = p.getProjectId();
+        }
+        this.name = p.getName();
+        this.description = p.getDescription();
+        this.creationDate = p.getCreationDate();
+        this.lastUpdatedDate = p.getLastUpdatedDate();
+        this.customer = p.getCustomer();
+    }
+
     @PrePersist
     private void setDateBeforePersisting() {
         lastUpdatedDate = creationDate = new Date();
@@ -52,11 +56,6 @@ public class Project implements Serializable {
     @PreUpdate
     private void updateLastEditedDate() {
         lastUpdatedDate = new Date();
-    }
-
-    @JsonProperty(value = "customerId")
-    public void setCustomer_id(Long customer_id) {
-        this.customer = customerService.customerById(customer_id);
     }
 
     public Long getProjectId() {
@@ -107,14 +106,6 @@ public class Project implements Serializable {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
-    public Set<TimeSpan> getTimeSpans() {
-        return timeSpans;
-    }
-
-    public void setTimeSpans(Set<TimeSpan> timeSpans) {
-        this.timeSpans = timeSpans;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,7 +121,6 @@ public class Project implements Serializable {
             return false;
         if (name != null ? !name.equals(project.name) : project.name != null) return false;
         if (projectId != null ? !projectId.equals(project.projectId) : project.projectId != null) return false;
-        if (timeSpans != null ? !timeSpans.equals(project.timeSpans) : project.timeSpans != null) return false;
 
         return true;
     }
@@ -144,7 +134,7 @@ public class Project implements Serializable {
         result = PRIME * result + (customer != null ? customer.hashCode() : 0);
         result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
-        result = PRIME * result + (timeSpans != null ? timeSpans.hashCode() : 0);
+
         return result;
     }
 }

@@ -1,13 +1,10 @@
 package org.xezz.timeregistration.model;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.xezz.timeregistration.dao.CoworkerDAO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * User: Xezz
@@ -28,11 +25,6 @@ public class Coworker {
     private Date creationDate;
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
-    // Delete, Persist etc by cascading
-    // mapped by the field coworker in TimeSpan
-    // fetch the set when populating this entity
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coworker", fetch = FetchType.EAGER)
-    private Set<TimeSpan> timeSpans = new HashSet<TimeSpan>();
     /*
      * TODO: Consider adding credentials here too
      */
@@ -40,7 +32,22 @@ public class Coworker {
     /**
      * Default Constructor for JPA
      */
-    public Coworker() {
+    public Coworker() {}
+
+    /**
+     * Create a Coworker from a DAO
+     * Only call this if there is already an existing entity
+     * @param c
+     */
+    public Coworker(CoworkerDAO c) {
+        if (c.getCoworkerId() != null) {
+            this.coworkerId = c.getCoworkerId();
+        }
+        this.firstName = c.getFirstName();
+        this.lastName = c.getLastName();
+        this.creationDate = c.getCreationDate();
+        // This should get updated by PrePersist
+        this.lastUpdatedDate = c.getLastUpdatedDate();
     }
 
     /**
@@ -91,14 +98,6 @@ public class Coworker {
         return lastUpdatedDate;
     }
 
-    public Set<TimeSpan> getTimeSpans() {
-        return timeSpans;
-    }
-
-    public void setTimeSpans(Set<TimeSpan> timeSpans) {
-        this.timeSpans = timeSpans;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -113,7 +112,6 @@ public class Coworker {
         if (lastName != null ? !lastName.equals(coworker.lastName) : coworker.lastName != null) return false;
         if (lastUpdatedDate != null ? !lastUpdatedDate.equals(coworker.lastUpdatedDate) : coworker.lastUpdatedDate != null)
             return false;
-        if (timeSpans != null ? !timeSpans.equals(coworker.timeSpans) : coworker.timeSpans != null) return false;
 
         return true;
     }
@@ -126,7 +124,6 @@ public class Coworker {
         result = PRIME * result + (lastName != null ? lastName.hashCode() : 0);
         result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
-        result = PRIME * result + (timeSpans != null ? timeSpans.hashCode() : 0);
         return result;
     }
 }

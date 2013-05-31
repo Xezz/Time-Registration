@@ -1,5 +1,12 @@
 package org.xezz.timeregistration.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.model.Project;
+import org.xezz.timeregistration.model.TimeSpan;
+import org.xezz.timeregistration.repositories.CoworkerRepository;
+import org.xezz.timeregistration.repositories.ProjectRepository;
+
 import java.util.Date;
 
 /**
@@ -15,6 +22,23 @@ public class TimeSpanDAO {
     private Date endTime;
     private Date creationDate;
     private Date lastUpdatedDate;
+    @Autowired
+    CoworkerRepository coworkerRepository;
+    @Autowired
+    ProjectRepository projectRepository;
+
+    public TimeSpanDAO() {}
+
+    // TODO: Make sure that project and coworker in TimeSpan can not be null!
+    public TimeSpanDAO(TimeSpan timeSpan) {
+        this.timeSpanId = timeSpan.getTimeSpanId();
+        this.projectId = timeSpan.getProject().getProjectId();
+        this.coworkerId = timeSpan.getCoworker().getCoworkerId();
+        this.startTime = timeSpan.getStartTime();
+        this.endTime = timeSpan.getEndTime();
+        this.creationDate = timeSpan.getCreationDate();
+        this.lastUpdatedDate = timeSpan.getLastUpdatedDate();
+    }
 
     public Long getTimeSpanId() {
         return timeSpanId;
@@ -102,5 +126,13 @@ public class TimeSpanDAO {
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = 31 * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;
+    }
+
+    public Project getProject() {
+        return projectRepository.findOne(projectId);
+    }
+
+    public Coworker getCoworker() {
+        return coworkerRepository.findOne(coworkerId);
     }
 }

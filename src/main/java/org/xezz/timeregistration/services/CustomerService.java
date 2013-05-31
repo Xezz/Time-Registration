@@ -1,9 +1,9 @@
 package org.xezz.timeregistration.services;
 
-import org.xezz.timeregistration.model.Coworker;
-import org.xezz.timeregistration.model.Customer;
-import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.model.TimeSpan;
+import org.xezz.timeregistration.dao.CoworkerDAO;
+import org.xezz.timeregistration.dao.CustomerDAO;
+import org.xezz.timeregistration.dao.ProjectDAO;
+import org.xezz.timeregistration.dao.TimeSpanDAO;
 
 /**
  * User: Xezz
@@ -18,7 +18,7 @@ public interface CustomerService {
      * @return List of all Customers
      */
 
-    Iterable<Customer> customersAll();
+    Iterable<CustomerDAO> customersAll();
 
     /**
      * Get a Customer by its id
@@ -26,7 +26,7 @@ public interface CustomerService {
      * @param id Long the id of a given Customer
      * @return Customer that has the id
      */
-    Customer customerById(Long id);
+    CustomerDAO customerById(Long id);
 
     /**
      * Persist a new Customer
@@ -34,7 +34,7 @@ public interface CustomerService {
      * @param c Customer to persist
      * @return Persisted Customer
      */
-    Customer addNewCustomer(Customer c);
+    CustomerDAO addNewCustomer(CustomerDAO c);
 
     /**
      * Update an existing Customer
@@ -42,7 +42,7 @@ public interface CustomerService {
      * @param c Customer that has been updated
      * @return Customer after persisting
      */
-    Customer updateCustomer(Customer c);
+    CustomerDAO updateCustomer(CustomerDAO c);
 
     /**
      * Receive Customers by their name
@@ -50,7 +50,7 @@ public interface CustomerService {
      * @param name String the name of the Customer
      * @return List of Customers that matches a give name
      */
-    Iterable<Customer> customerByName(String name);
+    Iterable<CustomerDAO> customerByName(String name);
 
     /**
      * Receive all Customers where a part of its name matches the given name
@@ -58,7 +58,7 @@ public interface CustomerService {
      * @param name String part of the name to match
      * @return List of Customers that match a name partially
      */
-    Iterable<Customer> customerByNameMatch(String name);
+    Iterable<CustomerDAO> customerByNameMatch(String name);
 
     /**
      * Get the Customer of a Project
@@ -66,7 +66,7 @@ public interface CustomerService {
      * @param p Project to get a Customer of
      * @return Customer that owns the Project
      */
-    Customer customerByProject(Project p);
+    CustomerDAO customerByProject(ProjectDAO p);
 
     /**
      * Get a Customer that is associated to a timeframe
@@ -74,7 +74,7 @@ public interface CustomerService {
      * @param t TimeSpan of concern
      * @return Customer that gets charged for the timeframe
      */
-    Customer customerByTimeFrame(TimeSpan t);
+    CustomerDAO customerByTimeFrame(TimeSpanDAO t);
 
     /**
      * Get all Customers the given Coworker worked for
@@ -82,5 +82,5 @@ public interface CustomerService {
      * @param c Coworker in concern
      * @return List of Customers the given Coworker was involved with
      */
-    Iterable<Customer> customerByCoworker(Coworker c);
+    Iterable<CustomerDAO> customerByCoworker(CoworkerDAO c);
 }

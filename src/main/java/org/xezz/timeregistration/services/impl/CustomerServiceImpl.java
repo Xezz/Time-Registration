@@ -3,12 +3,18 @@ package org.xezz.timeregistration.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.dao.CoworkerDAO;
+import org.xezz.timeregistration.dao.CustomerDAO;
+import org.xezz.timeregistration.dao.ProjectDAO;
+import org.xezz.timeregistration.dao.TimeSpanDAO;
 import org.xezz.timeregistration.model.Customer;
-import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.model.TimeSpan;
 import org.xezz.timeregistration.repositories.CustomerRepository;
+import org.xezz.timeregistration.repositories.ProjectRepository;
+import org.xezz.timeregistration.repositories.TimeSpanRepository;
 import org.xezz.timeregistration.services.CustomerService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: Xezz
@@ -20,15 +26,24 @@ import org.xezz.timeregistration.services.CustomerService;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    CustomerRepository repo;
+    CustomerRepository baseRepo;
+    @Autowired
+    ProjectRepository projectRepository;
+    @Autowired
+    TimeSpanRepository timeSpanRepository;
 
     @Override
-    public Iterable<Customer> customerByName(String name) {
-        return repo.findByName(name);
+    public Iterable<CustomerDAO> customerByName(String name) {
+        final Iterable<Customer> byName = baseRepo.findByName(name);
+        final List<CustomerDAO> cList = new ArrayList<CustomerDAO>();
+        for (Customer c : byName) {
+            cList.add(new CustomerDAO(c));
+        }
+        return cList;
     }
 
     @Override
-    public Iterable<Customer> customerByNameMatch(String name) {
+    public Iterable<CustomerDAO> customerByNameMatch(String name) {
         // TODO: Revisit this
         // make sure we actually like
         // Should most likely not do it for now :D
@@ -40,45 +55,63 @@ public class CustomerServiceImpl implements CustomerService {
         if (!name.endsWith("%")) {
             builder.append("%");
         }
-        return repo.findByNameLike(builder.toString());
+        final Iterable<Customer> byNameLike = baseRepo.findByNameLike(builder.toString());
+        final List<CustomerDAO> cList = new ArrayList<CustomerDAO>();
+        for (Customer c : byNameLike) {
+            cList.add(new CustomerDAO(c));
+        }
+        return cList;
+    }
+
+    // FIXME: NULL CHECK too lazy right now
+    @Override
+    public CustomerDAO customerByProject(ProjectDAO p) {
+        return customerById(projectRepository.findOne(p.getProjectId()).getCustomer().getCustomerId());
+    }
+
+    // FIXME: LOTSA NULL CHECKS HERE NEEDED
+    @Override
+    public CustomerDAO customerByTimeFrame(TimeSpanDAO t) {
+        return customerById(timeSpanRepository.findOne(t.getTimeSpanId()).getCoworker().getCoworkerId());
     }
 
     @Override
-    public Customer customerByProject(Project p) {
-        return p.getCustomer();
+    public Iterable<CustomerDAO> customerByCoworker(CoworkerDAO c) {
+        final Iterable<Customer> customersByCoworker = baseRepo.findCustomersByCoworker(c);
+        final List<CustomerDAO> daoList = new ArrayList<CustomerDAO>();
+        for (Customer customer : customersByCoworker) {
+            daoList.add(new CustomerDAO(customer));
+        }
+        return daoList;
     }
 
     @Override
-    public Customer customerByTimeFrame(TimeSpan t) {
-        return t.getProject().getCustomer();
+    public Iterable<CustomerDAO> customersAll() {
+        final Iterable<Customer> allCustomers = baseRepo.findAllCustomers();
+        final List<CustomerDAO> customerDAOList = new ArrayList<CustomerDAO>();
+        for (Customer c : allCustomers) {
+            customerDAOList.add(new CustomerDAO(c));
+        }
+        return customerDAOList;
     }
 
     @Override
-    public Iterable<Customer> customerByCoworker(Coworker c) {
-        return repo.findCustomersByCoworker(c);
-    }
-
-    @Override
-    public Iterable<Customer> customersAll() {
-        return repo.findAllCustomers();
-    }
-
-    @Override
-    public Customer customerById(Long id) {
-        return repo.findOne(id);
+    public CustomerDAO customerById(Long id) {
+        return new CustomerDAO(baseRepo.findOne(id));
     }
 
     @Transactional
     @Override
-    public Customer addNewCustomer(Customer c) {
-        return repo.save(c);
+    public CustomerDAO addNewCustomer(CustomerDAO c) {
+        return new CustomerDAO(baseRepo.save(new Customer(c)));
     }
 
     @Transactional
     @Override
-    public Customer updateCustomer(Customer c) {
-        if (repo.exists(c.getCustomerId())) {
-            return repo.save(c);
+    public CustomerDAO updateCustomer(CustomerDAO c) {
+        if (baseRepo.exists(c.getCustomerId())) {
+            final CustomerDAO save = new CustomerDAO(baseRepo.save(new Customer(c)));
+            return save;
         }
         // TODO: Can also save the Customer anyway, instead of discarding
         // This would be against pure REST, since a PUT means a resource exists already

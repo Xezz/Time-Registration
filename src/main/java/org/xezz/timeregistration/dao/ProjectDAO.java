@@ -1,5 +1,10 @@
 package org.xezz.timeregistration.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.xezz.timeregistration.model.Customer;
+import org.xezz.timeregistration.model.Project;
+import org.xezz.timeregistration.repositories.CustomerRepository;
+
 import java.util.Date;
 
 /**
@@ -9,11 +14,24 @@ import java.util.Date;
  */
 public class ProjectDAO {
     private Long projectId;
+    private Long customerId;
     private String name;
     private String description;
-    private Long customerId;
     private Date creationDate;
     private Date lastUpdatedDate;
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    public ProjectDAO() {}
+
+    public ProjectDAO(Project project) {
+        this.projectId = project.getProjectId();
+        this.name = project.getName();
+        this.description = project.getDescription();
+        this.customerId = project.getCustomer().getCustomerId();
+        this.creationDate = project.getCreationDate();
+        this.lastUpdatedDate = project.getLastUpdatedDate();
+    }
 
     public Long getProjectId() {
         return projectId;
@@ -91,5 +109,9 @@ public class ProjectDAO {
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = 31 * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;
+    }
+
+    public Customer getCustomer() {
+        return customerRepository.findOne(customerId);
     }
 }

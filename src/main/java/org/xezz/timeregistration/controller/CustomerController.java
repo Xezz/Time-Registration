@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.xezz.timeregistration.model.Customer;
+import org.xezz.timeregistration.dao.CustomerDAO;
 import org.xezz.timeregistration.services.CustomerService;
 
 /**
@@ -26,34 +26,34 @@ public class CustomerController {
      */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<Customer> getAll() {
+    public Iterable<CustomerDAO> getAll() {
         return service.customersAll();
     }
 
     /**
      * Save a new Customer
      *
-     * @param customer Customer to save
+     * @param customerDAO Customer to save
      * @return Customer that got saved
      */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Customer saveCustomer(@RequestBody Customer customer) {
+    public CustomerDAO saveCustomer(@RequestBody CustomerDAO customerDAO) {
         // TODO: Verify and Nullcheck
-        return service.addNewCustomer(customer);
+        return service.addNewCustomer(customerDAO);
     }
 
     /**
      * Update an existing Customer
      *
-     * @param customer Customer with new values
+     * @param customerDAO Customer with new values
      * @return Customer that got updated
      */
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Customer updateCustomer(@RequestBody Customer customer) {
+    public CustomerDAO updateCustomer(@RequestBody CustomerDAO customerDAO) {
         // TODO: Verify and Nullcheck
-        return service.updateCustomer(customer);
+        return service.updateCustomer(customerDAO);
     }
 
     /**
@@ -64,7 +64,7 @@ public class CustomerController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Customer getCustomerById(@PathVariable("id") Long id) {
+    public CustomerDAO getCustomerById(@PathVariable("id") Long id) {
         return service.customerById(id);
     }
 
@@ -76,7 +76,7 @@ public class CustomerController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<Customer> getCustomerByNameMatch(@PathVariable("name") String name) {
+    public Iterable<CustomerDAO> getCustomerByNameMatch(@PathVariable("name") String name) {
         return service.customerByNameMatch(name);
     }
 

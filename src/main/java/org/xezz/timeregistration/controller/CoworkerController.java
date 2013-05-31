@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.dao.CoworkerDAO;
 import org.xezz.timeregistration.services.CoworkerService;
 
 
@@ -38,7 +38,7 @@ public class CoworkerController {
      */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<Coworker> getAll() {
+    public Iterable<CoworkerDAO> getAll() {
         LOGGER.info("Request to get all Coworker");
         return service.coworkersAll();
     }
@@ -51,14 +51,14 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Coworker get(@PathVariable("id") Long id) {
+    public CoworkerDAO get(@PathVariable("id") Long id) {
         LOGGER.info("Request to get Coworker by id: " + id);
-        final Coworker coworker = service.coworkerById(id);
-        LOGGER.info("Coworker found == null? " + (coworker == null));
-        if (coworker != null) {
-            LOGGER.info("Coworker: " + coworker.getFirstName() + " " + coworker.getLastName());
+        final CoworkerDAO coworkerDAO = service.coworkerById(id);
+        LOGGER.info("Coworker found == null? " + (coworkerDAO == null));
+        if (coworkerDAO != null) {
+            LOGGER.info("Coworker: " + coworkerDAO.getFirstName() + " " + coworkerDAO.getLastName());
         }
-        return coworker;
+        return coworkerDAO;
     }
 
     /**
@@ -69,7 +69,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/firstname/{firstname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<Coworker> getByFirstName(@PathVariable("firstname") String firstname) {
+    public Iterable<CoworkerDAO> getByFirstName(@PathVariable("firstname") String firstname) {
         LOGGER.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
         return service.coworkersByFirstName(firstname);
     }
@@ -82,7 +82,7 @@ public class CoworkerController {
      */
     @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<Coworker> getByLastName(@PathVariable("lastname") String lastname) {
+    public Iterable<CoworkerDAO> getByLastName(@PathVariable("lastname") String lastname) {
         LOGGER.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
         return service.coworkersByLastName(lastname);
     }
@@ -90,32 +90,32 @@ public class CoworkerController {
     /**
      * Create a new Coworker
      *
-     * @param coworker the mapped Coworker
+     * @param coworkerDAO the mapped Coworker
      * @return id of the newly created Coworker
      */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Coworker create(@RequestBody Coworker coworker) {
+    public CoworkerDAO create(@RequestBody CoworkerDAO coworkerDAO) {
         LOGGER.info("Post to create Coworker.");
-        if (coworker == null) {
+        if (coworkerDAO == null) {
             LOGGER.info("Coworker == null");
         } else {
-            LOGGER.info("Coworker.firstName: " + coworker.getFirstName() + " Coworker.lastName: " + coworker.getLastName());
+            LOGGER.info("Coworker.firstName: " + coworkerDAO.getFirstName() + " Coworker.lastName: " + coworkerDAO.getLastName());
         }
-        return service.addNewCoworker(coworker);
+        return service.addNewCoworker(coworkerDAO);
     }
 
     /**
      * Update an existing Coworker
      *
-     * @param coworker updated Coworker
+     * @param coworkerDAO updated Coworker
      * @return Coworker persisted Coworker
      */
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Coworker update(@RequestBody Coworker coworker) {
+    public CoworkerDAO update(@RequestBody CoworkerDAO coworkerDAO) {
         LOGGER.info("JSON PUT Request to update coworker");
-        return service.updateCoworker(coworker);
+        return service.updateCoworker(coworkerDAO);
     }
 
     // MVC mapping to jsp

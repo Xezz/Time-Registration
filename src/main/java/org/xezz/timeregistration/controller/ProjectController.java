@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.xezz.timeregistration.model.Project;
+import org.xezz.timeregistration.dao.ProjectDAO;
 import org.xezz.timeregistration.services.ProjectService;
 
 /**
@@ -31,7 +31,7 @@ public class ProjectController {
      */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<Project> getAll() {
+    public Iterable<ProjectDAO> getAll() {
         LOGGER.info("Requested all Projects");
         return service.getAll();
     }
@@ -39,27 +39,27 @@ public class ProjectController {
     /**
      * Request to create a new Project
      *
-     * @param project The Project to persist
+     * @param projectDAO The Project to persist
      * @return Persisted Project
      */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Project create(@RequestBody Project project) {
+    public ProjectDAO create(@RequestBody ProjectDAO projectDAO) {
         LOGGER.info("Request to create a new Project");
-        return service.addNewProject(project);
+        return service.addNewProject(projectDAO);
     }
 
     /**
      * Request to upate an existing Project
      *
-     * @param project The Project to update
+     * @param projectDAO The Project to update
      * @return Updated Project
      */
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Project update(@RequestBody Project project) {
+    public ProjectDAO update(@RequestBody ProjectDAO projectDAO) {
         LOGGER.info("Request to update an existing project");
-        return service.updateProject(project);
+        return service.updateProject(projectDAO);
     }
 
     /**
@@ -70,14 +70,14 @@ public class ProjectController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Project getById(@PathVariable("id") Long id) {
+    public ProjectDAO getById(@PathVariable("id") Long id) {
         LOGGER.info("Request to get a Project by id");
         return service.getById(id);
     }
 
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    private Iterable<Project> getByName(@PathVariable("name") String name) {
+    private Iterable<ProjectDAO> getByName(@PathVariable("name") String name) {
         LOGGER.info("Request to get Projects by name");
         return service.getByName(name);
     }

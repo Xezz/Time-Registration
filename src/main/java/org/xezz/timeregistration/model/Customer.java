@@ -1,10 +1,10 @@
 package org.xezz.timeregistration.model;
 
+import org.xezz.timeregistration.dao.CustomerDAO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * User: Xezz
@@ -22,14 +22,24 @@ public class Customer implements Serializable {
     private Date creationDate;
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-    private Set<Project> projects = new HashSet<Project>();
 
     /**
      * Default constructor for JPA/Spring/Whatever
      */
-    public Customer() {
+    public Customer() {}
+    public Customer(CustomerDAO dao) {
+        if (null == dao) {
+            throw new IllegalArgumentException("CustomerDAO was null");
+        }
+        if (dao.getCustomerId() != null) {
+            this.customerId = dao.getCustomerId();
+        }
+        this.name = dao.getName();
+        this.customerInfo = dao.getCustomerInfo();
+        this.creationDate = dao.getCreationDate();
+        this.lastUpdatedDate = dao.getLastUpdatedDate();
     }
+
 
     /**
      * Set the date of creation to the current time
@@ -79,14 +89,6 @@ public class Customer implements Serializable {
         return lastUpdatedDate;
     }
 
-    public Set<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -102,7 +104,6 @@ public class Customer implements Serializable {
         if (lastUpdatedDate != null ? !lastUpdatedDate.equals(customer.lastUpdatedDate) : customer.lastUpdatedDate != null)
             return false;
         if (name != null ? !name.equals(customer.name) : customer.name != null) return false;
-        if (projects != null ? !projects.equals(customer.projects) : customer.projects != null) return false;
 
         return true;
     }
@@ -115,7 +116,6 @@ public class Customer implements Serializable {
         result = PRIME * result + (customerInfo != null ? customerInfo.hashCode() : 0);
         result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
-        result = PRIME * result + (projects != null ? projects.hashCode() : 0);
         return result;
     }
 }

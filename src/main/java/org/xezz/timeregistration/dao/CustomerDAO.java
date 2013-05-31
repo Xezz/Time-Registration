@@ -1,5 +1,7 @@
 package org.xezz.timeregistration.dao;
 
+import org.xezz.timeregistration.model.Customer;
+
 import java.util.Date;
 
 /**
@@ -13,6 +15,16 @@ public class CustomerDAO {
     private String customerInfo;
     private Date creationDate;
     private Date lastUpdatedDate;
+
+    public CustomerDAO() {}
+
+    public CustomerDAO(Customer customer) {
+        this.customerId = customer.getCustomerId();
+        this.name = customer.getName();
+        this.customerInfo = customer.getCustomerInfo();
+        this.creationDate = customer.getCreationDate();
+        this.lastUpdatedDate = customer.getLastUpdatedDate();
+    }
 
     public Long getCustomerId() {
         return customerId;

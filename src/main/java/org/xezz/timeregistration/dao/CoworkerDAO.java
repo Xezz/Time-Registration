@@ -1,11 +1,14 @@
 package org.xezz.timeregistration.dao;
 
+import org.xezz.timeregistration.model.Coworker;
+
 import java.util.Date;
 
 /**
  * User: Xezz
  * Date: 30.05.13
  * Time: 22:50
+ * Coworker Data Access Object for RESTful services
  */
 public class CoworkerDAO {
     private Long coworkerId;
@@ -13,6 +16,31 @@ public class CoworkerDAO {
     private String lastName;
     private Date creationDate;
     private Date lastUpdatedDate;
+
+    public CoworkerDAO(Long coworkerId, String firstName, String lastName, Date creationDate, Date lastUpdatedDate) {
+        this.coworkerId = coworkerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.creationDate = creationDate;
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    /**
+     * Create a DAO from a coworker
+     * @param coworker the Coworker to use
+     */
+    public CoworkerDAO(Coworker coworker) {
+        this.coworkerId = coworker.getCoworkerId();
+        this.firstName = coworker.getFirstName();
+        this.lastName = coworker.getLastName();
+        this.creationDate = coworker.getCreationDate();
+        this.lastUpdatedDate = coworker.getLastUpdatedDate();
+    }
+
+    /**
+     * Just in case default constructor
+     */
+    public CoworkerDAO() {}
 
     public Long getCoworkerId() {
         return coworkerId;

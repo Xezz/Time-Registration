@@ -1,5 +1,7 @@
 package org.xezz.timeregistration.model;
 
+import org.xezz.timeregistration.dao.TimeSpanDAO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -30,6 +32,18 @@ public class TimeSpan implements Serializable {
     private Date creationDate;
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
+
+    public TimeSpan() {}
+
+    public TimeSpan(TimeSpanDAO t) {
+        this.timeSpanId = t.getTimeSpanId();
+        this.project = t.getProject();
+        this.coworker = t.getCoworker();
+        this.startTime = t.getStartTime();
+        this.endTime = t.getEndTime();
+        this.creationDate = t.getCreationDate();
+        this.lastUpdatedDate = t.getLastUpdatedDate();
+    }
 
     @PrePersist
     private void setDateBeforePersisting() {

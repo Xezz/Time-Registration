@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.xezz.timeregistration.model.TimeSpan;
+import org.xezz.timeregistration.dao.TimeSpanDAO;
 import org.xezz.timeregistration.services.TimeSpanService;
 
 /**
@@ -28,23 +28,23 @@ public class TimeSpanController {
 
     @RequestMapping(method = RequestMethod.GET, value = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Iterable<TimeSpan> getAll() {
+    public Iterable<TimeSpanDAO> getAll() {
         LOGGER.info("Request to get all TimeSpans");
         return service.findAllTimeSpans();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public TimeSpan create(@RequestBody TimeSpan timeSpan) {
+    public TimeSpanDAO create(@RequestBody TimeSpanDAO timeSpanDAO) {
         LOGGER.info("Request to create a new TimeSpan");
-        return service.createNewTimeSpan(timeSpan);
+        return service.createNewTimeSpan(timeSpanDAO);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public TimeSpan update(@RequestBody TimeSpan timeSpan) {
+    public TimeSpanDAO update(@RequestBody TimeSpanDAO timeSpanDAO) {
         LOGGER.info("Request to update an existing TimeSpan");
-        return service.updateTimeSpan(timeSpan);
+        return service.updateTimeSpan(timeSpanDAO);
     }
 
 

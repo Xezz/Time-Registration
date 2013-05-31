@@ -2,7 +2,7 @@ package org.xezz.timeregistration.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.dao.CoworkerDAO;
 import org.xezz.timeregistration.model.Customer;
 
 /**
@@ -33,8 +33,9 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
      * @param c Coworker to look for
      * @return List of Customers
      */
+    // FIXME: MIght be broken, will have to revisit
     @Query("SELECT t.project.customer FROM TimeSpan t WHERE t.coworker = :coworker")
-    public Iterable<Customer> findCustomersByCoworker(Coworker c);
+    public Iterable<Customer> findCustomersByCoworker(CoworkerDAO c);
 
     /**
      * Fetch all Customers
