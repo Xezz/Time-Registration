@@ -13,6 +13,7 @@
     <properties>
         <!-- Project specific props -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <aspectj-maven-plugin.version>1.4</aspectj-maven-plugin.version>
         <!-- Test -->
         <junit.version>4.11</junit.version>
 
@@ -28,6 +29,8 @@
         <!-- Spring -->
         <spring.version>3.2.2.RELEASE</spring.version>
         <spring-data.version>1.3.1.RELEASE</spring-data.version>
+        <!-- Compile Time Weaving -->
+        <org.aspectj-version>1.7.0</org.aspectj-version>
 
         <!-- marshalling -->
         <jackson.version>2.1.4</jackson.version>
@@ -43,6 +46,8 @@
         <openjpa-asm-shaded.version>2.2.0</openjpa-asm-shaded.version>
         <openjpa-maven-plugin.version>2.2.2</openjpa-maven-plugin.version>
         <openjpa.version>2.2.0</openjpa.version>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
     <repositories>
         <repository>
@@ -64,15 +69,6 @@
     </repositories>
 
     <dependencies>
-        <!-- DEBUGGING OpenJPA -->
-        <!--
-        <dependency>
-            <groupId>org.apache.openejb.patch</groupId>
-            <artifactId>openjpa-asm-shaded</artifactId>
-            <version>${openjpa-asm-shaded.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        -->
         <!-- OpenJPA dependency required to enhance entities at compile time -->
         <dependency>
             <groupId>org.apache.openjpa</groupId>
@@ -141,6 +137,24 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
@@ -164,6 +178,14 @@
             <version>${javax-inject.version}</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Compiletime Weaving of non-spring classes to enable injection -->
+        <!-- Disabling this for now until I know if spring-aspects is enough
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${org.aspectj-version}</version>
+        </dependency>
+        -->
         <!-- JSF
         <dependency>
             <groupId>com.sun.faces</groupId>
@@ -228,20 +250,6 @@
                 </dependency>-->
 
         <!-- SQLITE for testing -->
-        <!--<dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>${sqlite-jdbc.version}</version>
-            <scope>compile</scope>
-        </dependency>-->
-        <!--
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-        -->
-
         <!-- EL
         <dependency>
             <groupId>org.glassfish.web</groupId>
@@ -267,8 +275,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -296,6 +304,30 @@
                         <version>${openjpa.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <version>${aspectj-maven-plugin.version}</version>
+                <configuration>
+                    <!-- Required as the plugin does not resolve this by default -->
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <aspectLibraries>
+                        <aspectLibrary>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-aspects</artifactId>
+                        </aspectLibrary>
+                    </aspectLibraries>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
