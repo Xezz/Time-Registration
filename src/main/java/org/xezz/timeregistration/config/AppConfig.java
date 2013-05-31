@@ -3,6 +3,7 @@ package org.xezz.timeregistration.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -16,5 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 // Disabled webconfig for now, as it should get loaded from the context
 @Import({DataConfig.class/*, WebConfig.class*/})
 @Configuration
+@EnableSpringConfigured
 public class AppConfig {
 }
