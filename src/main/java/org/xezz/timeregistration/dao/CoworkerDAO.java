@@ -1,5 +1,6 @@
 package org.xezz.timeregistration.dao;
 
+import org.springframework.beans.factory.annotation.Configurable;
 import org.xezz.timeregistration.model.Coworker;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
  * Time: 22:50
  * Coworker Data Access Object for RESTful services
  */
+@Configurable
 public class CoworkerDAO {
     private Long coworkerId;
     private String firstName;
@@ -27,6 +29,7 @@ public class CoworkerDAO {
 
     /**
      * Create a DAO from a coworker
+     *
      * @param coworker the Coworker to use
      */
     public CoworkerDAO(Coworker coworker) {
@@ -40,7 +43,8 @@ public class CoworkerDAO {
     /**
      * Just in case default constructor
      */
-    public CoworkerDAO() {}
+    public CoworkerDAO() {
+    }
 
     public Long getCoworkerId() {
         return coworkerId;

@@ -1,6 +1,11 @@
 package org.xezz.timeregistration.dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Required;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.repositories.CustomerRepository;
@@ -12,6 +17,7 @@ import java.util.Date;
  * Date: 30.05.13
  * Time: 22:50
  */
+@Configurable(autowire = Autowire.BY_TYPE, dependencyCheck = true)
 public class ProjectDAO {
     private Long projectId;
     private Long customerId;
@@ -19,10 +25,12 @@ public class ProjectDAO {
     private String description;
     private Date creationDate;
     private Date lastUpdatedDate;
-    @Autowired
-    private CustomerRepository customerRepository;
 
-    public ProjectDAO() {}
+    private CustomerRepository customerRepository;
+    private final static Logger LOGGER = LoggerFactory.getLogger(ProjectDAO.class);
+
+    public ProjectDAO() {
+    }
 
     public ProjectDAO(Project project) {
         this.projectId = project.getProjectId();
@@ -31,6 +39,12 @@ public class ProjectDAO {
         this.customerId = project.getCustomer().getCustomerId();
         this.creationDate = project.getCreationDate();
         this.lastUpdatedDate = project.getLastUpdatedDate();
+    }
+
+    @Autowired
+    @Required
+    public void setCustomerRepository(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     public Long getProjectId() {
@@ -112,6 +126,10 @@ public class ProjectDAO {
     }
 
     public Customer getCustomer() {
+        LOGGER.info("Receiving Customer from ProjectDAO");
+        if (customerRepository == null) {
+            LOGGER.warn("REPOSITORY IS NULL");
+        }
         return customerRepository.findOne(customerId);
     }
 }

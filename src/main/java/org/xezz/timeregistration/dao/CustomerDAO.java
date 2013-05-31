@@ -1,5 +1,6 @@
 package org.xezz.timeregistration.dao;
 
+import org.springframework.beans.factory.annotation.Configurable;
 import org.xezz.timeregistration.model.Customer;
 
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
  * Date: 30.05.13
  * Time: 22:50
  */
+@Configurable
 public class CustomerDAO {
     private Long customerId;
     private String name;
@@ -16,7 +18,8 @@ public class CustomerDAO {
     private Date creationDate;
     private Date lastUpdatedDate;
 
-    public CustomerDAO() {}
+    public CustomerDAO() {
+    }
 
     public CustomerDAO(Customer customer) {
         this.customerId = customer.getCustomerId();

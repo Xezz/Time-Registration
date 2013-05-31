@@ -1,6 +1,8 @@
 package org.xezz.timeregistration.dao;
 
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.model.TimeSpan;
@@ -14,6 +16,7 @@ import java.util.Date;
  * Date: 30.05.13
  * Time: 22:50
  */
+@Configurable(autowire = Autowire.BY_TYPE)
 public class TimeSpanDAO {
     private Long timeSpanId;
     private Long projectId;
@@ -27,7 +30,8 @@ public class TimeSpanDAO {
     @Autowired
     ProjectRepository projectRepository;
 
-    public TimeSpanDAO() {}
+    public TimeSpanDAO() {
+    }
 
     // TODO: Make sure that project and coworker in TimeSpan can not be null!
     public TimeSpanDAO(TimeSpan timeSpan) {
