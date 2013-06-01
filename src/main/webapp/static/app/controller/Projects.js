@@ -9,7 +9,7 @@ Ext.define('TR.controller.Projects', {
     init: function() {
         // Listeners, Check also Component Query on ExtJs API docs
         this.control({
-            // Event happend on project edit, button with action save
+            // Event happened on project edit, button with action save
             'projectedit button[action=save]' : {
                 click: this.updateProject
             },
