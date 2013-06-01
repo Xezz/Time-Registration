@@ -7,11 +7,11 @@ Ext.define('TR.view.customer.List', {
     initComponent: function() {
 
         this.columns = [
-            {header: 'ID', dataIndex: 'customerId', width: 80},
+            {header: 'ID', dataIndex: 'customerId', width: 60},
             {header: 'Name', dataIndex: 'name', flex: 1},
-            {header: 'Beschreibung', dataIndex: 'customerInfo', width: 180},
-            {header: 'Erstellt am', dataIndex: 'creationDate', flex: 1, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')},
-            {header: 'Bearbeitet am', dataIndex: 'lastUpdatedDate', flex: 1, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')}
+            {header: 'Beschreibung', dataIndex: 'customerInfo', flex: 2},
+            {header: 'Erstellt am', dataIndex: 'creationDate', width: 140, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')},
+            {header: 'Bearbeitet am', dataIndex: 'lastUpdatedDate', width: 140, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')}
         ];
         this.callParent(arguments);
     },

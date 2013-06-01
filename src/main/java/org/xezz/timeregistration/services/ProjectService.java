@@ -65,4 +65,10 @@ public interface ProjectService {
      */
     ProjectDAO updateProject(ProjectDAO p);
 
+    /**
+     * Delete an existing Project
+     * @param p Project to delete
+     */
+    void deleteProject(ProjectDAO p);
+
 }

@@ -12,6 +12,12 @@ Ext.define('TR.store.Projects', {
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
         pageParam: undefined,
         startParam: undefined,
-        limitParam: undefined
+        limitParam: undefined,
+        api: {
+            read: 'project',
+            create: 'project',
+            update: 'project',
+            destroy: 'project'
+        }
     }
 });

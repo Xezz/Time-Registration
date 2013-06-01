@@ -25,7 +25,7 @@ Ext.application({
                 }, {
                     xtype: 'projectlist',
                     region: 'west',
-                    width: 120,
+                    width: 800,
                     split: true
                 }
             ]

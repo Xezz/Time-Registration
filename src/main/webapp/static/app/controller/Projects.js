@@ -18,6 +18,9 @@ Ext.define('TR.controller.Projects', {
             },
             'projectlist button[action=add]' : {
                 click: this.openNewProjectForm
+            },
+            'projectlist button[action=delete]' : {
+                click: this.deleteSelectedProject
             }
         });
 
@@ -54,9 +57,23 @@ Ext.define('TR.controller.Projects', {
         win.close();
         this.getProjectsStore().insert(0, record);
         this.getProjectsStore().sync();
-
+    },
+    deleteSelectedProject: function(button) {
+        // Explanation why this works:
+        // We got a button and go up the tree to the grid that contains the button
+        // From the grid we get the selection
+        var grid = button.up('grid'),
+            record = grid.getSelectionModel();
+        console.log("Inside delete");
+        if (record !== null) {
+            // Now we got a record
+            console.log("Record not null: " + String(record));
+            // and from that selectionmodel we get the underlying selection
+            this.getProjectsStore().remove(record.getSelection());
+            this.getProjectsStore().sync();
+        } else {
+            console.log("Record was null");
+        }
 
     }
-
-
 });

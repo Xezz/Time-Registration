@@ -84,4 +84,9 @@ public class ProjectServiceImpl implements ProjectService {
         // TODO: update or (as of right now) also safe (aka against REST)
         return new ProjectDAO(repo.save(new Project(p)));
     }
+
+    @Override
+    public void deleteProject(ProjectDAO p) {
+        repo.delete(new Project(p));
+    }
 }

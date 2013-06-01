@@ -82,6 +82,13 @@ public class ProjectController {
         return service.getByName(name);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    private void delete(@RequestBody ProjectDAO projectDAO) {
+        LOGGER.info("Request to delete a Project");
+        service.deleteProject(projectDAO);
+    }
+
 
     // TODO: Add DELETE for Project
     // TODO: Decide how to add a time span etc.
