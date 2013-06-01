@@ -26,7 +26,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    CustomerRepository baseRepo;
+    CustomerRepository customerRepository;
     @Autowired
     ProjectRepository projectRepository;
     @Autowired
@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Iterable<CustomerDAO> customerByName(String name) {
-        final Iterable<Customer> byName = baseRepo.findByName(name);
+        final Iterable<Customer> byName = customerRepository.findByName(name);
         final List<CustomerDAO> cList = new ArrayList<CustomerDAO>();
         for (Customer c : byName) {
             cList.add(new CustomerDAO(c));
@@ -55,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (!name.endsWith("%")) {
             builder.append("%");
         }
-        final Iterable<Customer> byNameLike = baseRepo.findByNameLike(builder.toString());
+        final Iterable<Customer> byNameLike = customerRepository.findByNameLike(builder.toString());
         final List<CustomerDAO> cList = new ArrayList<CustomerDAO>();
         for (Customer c : byNameLike) {
             cList.add(new CustomerDAO(c));
@@ -77,7 +77,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Iterable<CustomerDAO> customerByCoworker(CoworkerDAO c) {
-        final Iterable<Customer> customersByCoworker = baseRepo.findCustomersByCoworker(c);
+        final Iterable<Customer> customersByCoworker = customerRepository.findCustomersByCoworker(c);
         final List<CustomerDAO> daoList = new ArrayList<CustomerDAO>();
         for (Customer customer : customersByCoworker) {
             daoList.add(new CustomerDAO(customer));
@@ -87,7 +87,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Iterable<CustomerDAO> customersAll() {
-        final Iterable<Customer> allCustomers = baseRepo.findAllCustomers();
+        final Iterable<Customer> allCustomers = customerRepository.findAllCustomers();
         final List<CustomerDAO> customerDAOList = new ArrayList<CustomerDAO>();
         for (Customer c : allCustomers) {
             customerDAOList.add(new CustomerDAO(c));
@@ -97,25 +97,33 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDAO customerById(Long id) {
-        return new CustomerDAO(baseRepo.findOne(id));
+        return new CustomerDAO(customerRepository.findOne(id));
     }
 
     @Transactional
     @Override
     public CustomerDAO addNewCustomer(CustomerDAO c) {
-        return new CustomerDAO(baseRepo.save(new Customer(c)));
+        return new CustomerDAO(customerRepository.save(new Customer(c)));
     }
 
     @Transactional
     @Override
     public CustomerDAO updateCustomer(CustomerDAO c) {
-        if (baseRepo.exists(c.getCustomerId())) {
-            final CustomerDAO save = new CustomerDAO(baseRepo.save(new Customer(c)));
+        if (customerRepository.exists(c.getCustomerId())) {
+            final CustomerDAO save = new CustomerDAO(customerRepository.save(new Customer(c)));
             return save;
         }
         // TODO: Can also save the Customer anyway, instead of discarding
         // This would be against pure REST, since a PUT means a resource exists already
         // On the other hand, might just do it sloppy
         return null;
+    }
+
+    @Override
+    public void deleteCustomer(CustomerDAO customerDAO) {
+        final Customer customer = customerRepository.findOne(customerDAO.getCustomerId());
+        if (customer != null) {
+            customerRepository.delete(customer);
+        }
     }
 }

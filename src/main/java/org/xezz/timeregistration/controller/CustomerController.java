@@ -57,6 +57,17 @@ public class CustomerController {
     }
 
     /**
+     * Delete an existing Customer
+     *
+     * @param customerDAO Customer to delete
+     */
+    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteCustomer(@RequestBody CustomerDAO customerDAO) {
+        // TODO: Verify and Nullcheck
+        service.deleteCustomer(customerDAO);
+    }
+
+    /**
      * Get a Customer by its id
      *
      * @param id Long the id of the Customer

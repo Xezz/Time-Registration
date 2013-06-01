@@ -83,4 +83,11 @@ public interface CustomerService {
      * @return List of Customers the given Coworker was involved with
      */
     Iterable<CustomerDAO> customerByCoworker(CoworkerDAO c);
+
+    /**
+     * Delete an existing Customer
+     *
+     * @param customerDAO Customer to delete
+     */
+    void deleteCustomer(CustomerDAO customerDAO);
 }
