@@ -26,21 +26,21 @@ public class TimeSpanController {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(TimeSpanController.class);
 
-    @RequestMapping(method = RequestMethod.GET, value = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<TimeSpanDAO> getAll() {
         LOGGER.info("Request to get all TimeSpans");
         return service.findAllTimeSpans();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public TimeSpanDAO create(@RequestBody TimeSpanDAO timeSpanDAO) {
         LOGGER.info("Request to create a new TimeSpan");
         return service.createNewTimeSpan(timeSpanDAO);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public TimeSpanDAO update(@RequestBody TimeSpanDAO timeSpanDAO) {
         LOGGER.info("Request to update an existing TimeSpan");
