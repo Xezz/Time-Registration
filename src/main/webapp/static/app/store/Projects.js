@@ -5,19 +5,19 @@ Ext.define('TR.store.Projects', {
 
     proxy: {
         type: 'rest',
-        url: 'project',
+        url: 'api/project',
         reader: 'json',
         appendId: false,
         noCache: false,
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
         pageParam: undefined,
         startParam: undefined,
-        limitParam: undefined,
+        limitParam: undefined /*,
         api: {
-            read: 'project',
-            create: 'project',
-            update: 'project',
-            destroy: 'project'
-        }
+            read: 'api/project',
+            create: 'api/project',
+            update: 'api/project',
+            destroy: 'api/project'
+        }*/
     }
 });

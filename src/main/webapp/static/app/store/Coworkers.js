@@ -5,7 +5,7 @@ Ext.define('TR.store.Coworkers', {
 
     proxy: {
         type: 'rest',
-        url: 'coworker',
+        url: 'api/coworker',
         reader: 'json',
         appendId: false,
         noCache: false,

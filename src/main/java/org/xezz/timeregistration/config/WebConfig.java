@@ -35,7 +35,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
         // Make sure extjs can be served ...
-        //registry.addResourceHandler("/app/**").addResourceLocations("/static/app/");
+        registry.addResourceHandler("/app/**").addResourceLocations("/static/app/");
 
     }
 

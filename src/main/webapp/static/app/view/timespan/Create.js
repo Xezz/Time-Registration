@@ -15,7 +15,7 @@ Ext.define('TR.view.timespan.Create', {
                         name: 'durationInMinutes',
                         fieldLabel: 'Dauer (m)'
                     }, {
-                        xtype: 'datetimepicker',
+                        xtype: 'datepicker',
                         name: 'startTime',
                         fieldLabel: 'Startzeitpunkt'
                     }, {

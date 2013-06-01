@@ -5,7 +5,7 @@ Ext.define('TR.store.Customers', {
 
     proxy: {
         type: 'rest',
-        url: 'customer',
+        url: 'api/customer',
         reader: 'json',
         appendId: false,
         noCache: false,

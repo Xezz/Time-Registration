@@ -5,7 +5,7 @@ Ext.define('TR.store.TimeSpans', {
 
     proxy: {
         type: 'rest',
-        url: 'timespan',
+        url: 'api/timespan',
         reader: 'json',
         appendId: false,
         noCache: false,
