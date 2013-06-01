@@ -24,8 +24,8 @@ public class TimeSpan implements Serializable {
     private Coworker coworker;
     @Temporal(TemporalType.TIMESTAMP)
     private Date startTime;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endTime;
+    private Long durationInMinutes;
+
 
     // "Auditing"
     @Temporal(TemporalType.TIMESTAMP)
@@ -40,7 +40,7 @@ public class TimeSpan implements Serializable {
         this.project = t.getProject();
         this.coworker = t.getCoworker();
         this.startTime = t.getStartTime();
-        this.endTime = t.getEndTime();
+        this.durationInMinutes = t.getDurationInMinutes();
         this.creationDate = t.getCreationDate();
         this.lastUpdatedDate = t.getLastUpdatedDate();
     }
@@ -103,12 +103,12 @@ public class TimeSpan implements Serializable {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
-        return endTime;
+    public Long getDurationInMinutes() {
+        return durationInMinutes;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public void setDurationInMinutes(Long durationInMinutes) {
+        this.durationInMinutes = durationInMinutes;
     }
 
     @Override
@@ -121,13 +121,13 @@ public class TimeSpan implements Serializable {
         if (coworker != null ? !coworker.equals(timeSpan.coworker) : timeSpan.coworker != null) return false;
         if (creationDate != null ? !creationDate.equals(timeSpan.creationDate) : timeSpan.creationDate != null)
             return false;
-        if (endTime != null ? !endTime.equals(timeSpan.endTime) : timeSpan.endTime != null) return false;
+        if (durationInMinutes != null ? !durationInMinutes.equals(timeSpan.durationInMinutes) : timeSpan.durationInMinutes != null)
+            return false;
         if (lastUpdatedDate != null ? !lastUpdatedDate.equals(timeSpan.lastUpdatedDate) : timeSpan.lastUpdatedDate != null)
             return false;
         if (project != null ? !project.equals(timeSpan.project) : timeSpan.project != null) return false;
         if (startTime != null ? !startTime.equals(timeSpan.startTime) : timeSpan.startTime != null) return false;
-        if (timeSpanId != null ? !timeSpanId.equals(timeSpan.timeSpanId) : timeSpan.timeSpanId != null)
-            return false;
+        if (timeSpanId != null ? !timeSpanId.equals(timeSpan.timeSpanId) : timeSpan.timeSpanId != null) return false;
 
         return true;
     }
@@ -135,13 +135,12 @@ public class TimeSpan implements Serializable {
     @Override
     public int hashCode() {
         int result = timeSpanId != null ? timeSpanId.hashCode() : 0;
-        final int PRIME = 31;
-        result = PRIME * result + (project != null ? project.hashCode() : 0);
-        result = PRIME * result + (coworker != null ? coworker.hashCode() : 0);
-        result = PRIME * result + (startTime != null ? startTime.hashCode() : 0);
-        result = PRIME * result + (endTime != null ? endTime.hashCode() : 0);
-        result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
-        result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        result = 31 * result + (project != null ? project.hashCode() : 0);
+        result = 31 * result + (coworker != null ? coworker.hashCode() : 0);
+        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
+        result = 31 * result + (durationInMinutes != null ? durationInMinutes.hashCode() : 0);
+        result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = 31 * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;
     }
 }

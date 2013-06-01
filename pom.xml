@@ -41,8 +41,6 @@
         <!-- sqlite -->
         <sqlite-jdbc.version>3.7.2</sqlite-jdbc.version>
         <slf4j-api.version>1.7.1</slf4j-api.version>
-        <hibernate-core.version>4.2.1.Final</hibernate-core.version>
-        <hibernate-validator.version>4.3.0.Final</hibernate-validator.version>
         <openjpa-asm-shaded.version>2.2.0</openjpa-asm-shaded.version>
         <openjpa-maven-plugin.version>2.2.2</openjpa-maven-plugin.version>
         <openjpa.version>2.2.0</openjpa.version>
@@ -83,27 +81,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Hibernate -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate-core.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate-core.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate-validator.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
 
         <!-- spring logging -->
         <dependency>

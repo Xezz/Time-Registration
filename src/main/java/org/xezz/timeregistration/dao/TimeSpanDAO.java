@@ -22,7 +22,7 @@ public class TimeSpanDAO {
     private Long projectId;
     private Long coworkerId;
     private Date startTime;
-    private Date endTime;
+    private Long durationInMinutes;
     private Date creationDate;
     private Date lastUpdatedDate;
     @Autowired
@@ -39,7 +39,7 @@ public class TimeSpanDAO {
         this.projectId = timeSpan.getProject().getProjectId();
         this.coworkerId = timeSpan.getCoworker().getCoworkerId();
         this.startTime = timeSpan.getStartTime();
-        this.endTime = timeSpan.getEndTime();
+        this.durationInMinutes = timeSpan.getDurationInMinutes();
         this.creationDate = timeSpan.getCreationDate();
         this.lastUpdatedDate = timeSpan.getLastUpdatedDate();
     }
@@ -76,12 +76,12 @@ public class TimeSpanDAO {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
-        return endTime;
+    public Long getDurationInMinutes() {
+        return durationInMinutes;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public void setDurationInMinutes(Long durationInMinutes) {
+        this.durationInMinutes = durationInMinutes;
     }
 
     public Date getCreationDate() {
@@ -105,17 +105,21 @@ public class TimeSpanDAO {
         if (this == o) return true;
         if (!(o instanceof TimeSpanDAO)) return false;
 
-        TimeSpanDAO timeSpan = (TimeSpanDAO) o;
+        TimeSpanDAO that = (TimeSpanDAO) o;
 
-        if (!coworkerId.equals(timeSpan.coworkerId)) return false;
-        if (creationDate != null ? !creationDate.equals(timeSpan.creationDate) : timeSpan.creationDate != null)
+        if (coworkerId != null ? !coworkerId.equals(that.coworkerId) : that.coworkerId != null) return false;
+        if (coworkerRepository != null ? !coworkerRepository.equals(that.coworkerRepository) : that.coworkerRepository != null)
             return false;
-        if (!endTime.equals(timeSpan.endTime)) return false;
-        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(timeSpan.lastUpdatedDate) : timeSpan.lastUpdatedDate != null)
+        if (creationDate != null ? !creationDate.equals(that.creationDate) : that.creationDate != null) return false;
+        if (durationInMinutes != null ? !durationInMinutes.equals(that.durationInMinutes) : that.durationInMinutes != null)
             return false;
-        if (!projectId.equals(timeSpan.projectId)) return false;
-        if (!startTime.equals(timeSpan.startTime)) return false;
-        if (timeSpanId != null ? !timeSpanId.equals(timeSpan.timeSpanId) : timeSpan.timeSpanId != null) return false;
+        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(that.lastUpdatedDate) : that.lastUpdatedDate != null)
+            return false;
+        if (projectId != null ? !projectId.equals(that.projectId) : that.projectId != null) return false;
+        if (projectRepository != null ? !projectRepository.equals(that.projectRepository) : that.projectRepository != null)
+            return false;
+        if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
+        if (timeSpanId != null ? !timeSpanId.equals(that.timeSpanId) : that.timeSpanId != null) return false;
 
         return true;
     }
@@ -123,12 +127,14 @@ public class TimeSpanDAO {
     @Override
     public int hashCode() {
         int result = timeSpanId != null ? timeSpanId.hashCode() : 0;
-        result = 31 * result + projectId.hashCode();
-        result = 31 * result + coworkerId.hashCode();
-        result = 31 * result + startTime.hashCode();
-        result = 31 * result + endTime.hashCode();
+        result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
+        result = 31 * result + (coworkerId != null ? coworkerId.hashCode() : 0);
+        result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
+        result = 31 * result + (durationInMinutes != null ? durationInMinutes.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = 31 * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        result = 31 * result + (coworkerRepository != null ? coworkerRepository.hashCode() : 0);
+        result = 31 * result + (projectRepository != null ? projectRepository.hashCode() : 0);
         return result;
     }
 
