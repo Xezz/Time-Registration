@@ -47,6 +47,12 @@ public class TimeSpanController {
         return service.updateTimeSpan(timeSpanDAO);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void delete(@RequestBody TimeSpanDAO timeSpanDAO) {
+        LOGGER.info("Request to update an existing TimeSpan");
+        service.deleteTimeSpan(timeSpanDAO);
+    }
+
 
     // TODO: Add DELETE for TimeSpan
 }

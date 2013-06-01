@@ -60,4 +60,10 @@ public interface TimeSpanService {
     TimeSpanDAO updateTimeSpan(TimeSpanDAO timeSpanDAO);
 
 
+    /**
+     * Delete an existing TimeSpan
+     *
+     * @param timeSpanDAO the TimeSpan to delete
+     */
+    void deleteTimeSpan(TimeSpanDAO timeSpanDAO);
 }

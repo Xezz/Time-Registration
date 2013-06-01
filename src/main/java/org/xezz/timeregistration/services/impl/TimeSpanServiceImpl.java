@@ -79,13 +79,11 @@ public class TimeSpanServiceImpl implements TimeSpanService {
         return getTimeSpanDAOs(all);
     }
 
-    public TimeSpanRepository getRepo() {
-        return repo;
+    @Override
+    public void deleteTimeSpan(TimeSpanDAO timeSpanDAO) {
+        TimeSpan timeSpan = repo.findOne(timeSpanDAO.getTimeSpanId());
+        if (timeSpan != null) {
+            repo.delete(timeSpan);
+        }
     }
-
-    public void setRepo(TimeSpanRepository repo) {
-        this.repo = repo;
-    }
-
-
 }
