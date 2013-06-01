@@ -10,11 +10,11 @@ Ext.define('TR.controller.Customers', {
                 // double clicking on a customer to open a form to edit it
                 itemdblclick: this.openEditCustomerForm
             },
-            'customeredit button[action=save]' : {
+            'customeredit button[action=update]' : {
                 click: this.editCustomer
             },
             'customercreate button[action=save]' : {
-                click: this.createCustomer
+                click: this.saveCustomer
             },
             'customerlist button[action=add]' : {
                 click: this.openNewCustomerForm
@@ -35,7 +35,7 @@ Ext.define('TR.controller.Customers', {
         var view = Ext.widget('customercreate');
     },
     // TODO: Finish ExtJS after the whole RESTful service is done
-    createCustomer: function(button) {
+    saveCustomer: function(button) {
         var win = button.up('window'),
             form = win.down('form'),
             values = form.getValues(),

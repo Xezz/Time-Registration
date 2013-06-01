@@ -27,7 +27,7 @@ Ext.define('TR.view.customer.Edit', {
         this.buttons = [
             {
                 text: 'Speichern',
-                action: 'save'
+                action: 'update'
             }, {
                 text: 'Abbrechen',
                 scope: this,

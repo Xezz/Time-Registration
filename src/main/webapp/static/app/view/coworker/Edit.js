@@ -26,7 +26,7 @@ Ext.define('TR.view.coworker.Edit', {
         this.buttons = [
             {
                 text: 'Speichern',
-                action: 'save'
+                action: 'update'
             }, {
                 text: 'Abbrechen',
                 scope: this,

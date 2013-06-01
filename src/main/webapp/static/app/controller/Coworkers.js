@@ -13,7 +13,7 @@ Ext.define('TR.controller.Coworkers', {
             'viewport > coworkerlist' : {
                 itemdblclick: this.openEditCoworkerForm
             },
-            'coworkeredit button[action=save]': {
+            'coworkeredit button[action=update]': {
                 click: this.updateCoworker
             },
             'coworkerlist button[action=add]' : {

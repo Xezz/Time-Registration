@@ -9,12 +9,12 @@ Ext.define('TR.controller.Projects', {
     init: function() {
         // Listeners, Check also Component Query on ExtJs API docs
         this.control({
-            // Event happened on project edit, button with action save
-            'projectedit button[action=save]' : {
+            // Event happened on project edit, button with action update
+            'projectedit button[action=update]' : {
                 click: this.updateProject
             },
             'projectcreate button[action=save]' : {
-                click: this.persistProject
+                click: this.saveProject
             },
             'projectlist button[action=add]' : {
                 click: this.openNewProjectForm
@@ -47,7 +47,7 @@ Ext.define('TR.controller.Projects', {
         this.getProjectsStore().sync();
     },
     // TODO: Refactor to a function(button, isNew);
-    persistProject: function(button) {
+    saveProject: function(button) {
         // Persist project
         var win = button.up('window'),
             form = win.down('form'),
