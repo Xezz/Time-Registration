@@ -90,6 +90,5 @@ public class ProjectController {
     }
 
 
-    // TODO: Add DELETE for Project
     // TODO: Decide how to add a time span etc.
 }
