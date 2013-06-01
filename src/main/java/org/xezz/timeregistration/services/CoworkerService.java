@@ -85,4 +85,11 @@ public interface CoworkerService {
      * @return Coworker the persisted Coworker
      */
     CoworkerDAO updateCoworker(CoworkerDAO coworkerDAO);
+
+    /**
+     * Delete an existing Coworker
+     *
+     * @param coworkerDAO the Coworker to delete
+     */
+    void deleteCoworker(CoworkerDAO coworkerDAO);
 }

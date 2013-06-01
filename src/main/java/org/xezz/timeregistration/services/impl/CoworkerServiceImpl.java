@@ -33,7 +33,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     @Autowired
     ProjectRepository projectRepository;
 
-   // FIXME: SO this for a real way to handle it
+    // FIXME: SO this for a real way to handle it
     @Override
     public Iterable<CoworkerDAO> coworkersAll() {
         final Iterable<Coworker> allCoworkers = coworkerRepository.findAllCoworkers();
@@ -116,6 +116,14 @@ public class CoworkerServiceImpl implements CoworkerService {
             return new CoworkerDAO(coworkerRepository.save(coworker));
         } else {
             return null;
+        }
+    }
+
+    @Override
+    public void deleteCoworker(CoworkerDAO coworkerDAO) {
+        final Coworker coworker = coworkerRepository.findOne(coworkerDAO.getCoworkerId());
+        if (coworker != null) {
+            coworkerRepository.delete(coworker);
         }
     }
 }

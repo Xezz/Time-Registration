@@ -118,6 +118,19 @@ public class CoworkerController {
         return service.updateCoworker(coworkerDAO);
     }
 
+    /**
+     * DELETE an existing Coworker
+     *
+     * @param coworkerDAO updated Coworker
+     * @return Coworker persisted Coworker
+     */
+    // FIXME: RETURN Correct HTTP HEADER INSTEAD
+    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void delete(@RequestBody CoworkerDAO coworkerDAO) {
+        LOGGER.info("JSON DELETE Request to delete a coworker");
+        service.deleteCoworker(coworkerDAO);
+    }
+
     // MVC mapping to jsp
     //
     // View-based mapping
@@ -176,6 +189,7 @@ public class CoworkerController {
      * @param model    the model to be passed to the View
      * @return String describing where to find the corresponding view
      */
+    // TODO: Remove this as soon as RESTful is stable
     @RequestMapping(value = "/lastname/{lastname}", method = RequestMethod.GET)
     public String showByLastName(@PathVariable("lastname") String lastName, Model model) {
         LOGGER.info("REQUEST NON JSON ... by lastname");
@@ -184,6 +198,4 @@ public class CoworkerController {
         // map to WEB-INF/jsp/coworkers/list.jsp
         return "coworkers/list";
     }
-    // TODO: Add DELETE for Coworkers
-    // TODO: Remove MVC part?
 }
