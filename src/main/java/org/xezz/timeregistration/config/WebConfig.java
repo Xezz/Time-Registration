@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
@@ -34,7 +35,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
         // Make sure extjs can be served ...
-        registry.addResourceHandler("/app/**").addResourceLocations("/static/app/");
+        //registry.addResourceHandler("/app/**").addResourceLocations("/static/app/");
 
     }
 
@@ -57,7 +58,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public List<ViewResolver> viewResolvers() {
         List<ViewResolver> views = new ArrayList<ViewResolver>();
-        UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setViewClass(org.springframework.web.servlet.view.JstlView.class);
         resolver.setPrefix("/WEB-INF/jsp/");
         resolver.setSuffix(".jsp");

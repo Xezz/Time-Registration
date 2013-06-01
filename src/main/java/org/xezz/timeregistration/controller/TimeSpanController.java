@@ -18,7 +18,7 @@ import org.xezz.timeregistration.services.TimeSpanService;
  * Time: 11:18
  */
 @Controller
-@RequestMapping(value = "/timespan")
+@RequestMapping(value = "api/timespan")
 public class TimeSpanController {
 
     @Autowired

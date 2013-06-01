@@ -38,9 +38,13 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>/WEB-INF/jsp/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>timeregistration</servlet-name>
         <!-- TODO: decide in the real pattern for url's -->
-        <url-pattern>/api/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

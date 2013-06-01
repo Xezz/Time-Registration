@@ -6,8 +6,10 @@ Ext.application({
     controllers: [
       'Coworkers',
       'Customers',
-      'Projects'
+      'Projects',
+      'TimeSpans'
     ],
+    //requires: ['TR.ux.form.DateTimePicker'],
 
     launch: function() {
         Ext.create('Ext.container.Viewport', {
@@ -26,6 +28,11 @@ Ext.application({
                     xtype: 'projectlist',
                     region: 'west',
                     width: 800,
+                    split: true
+                }, {
+                    xtype: 'timespanlist',
+                    region: 'south',
+                    height: 250,
                     split: true
                 }
             ]

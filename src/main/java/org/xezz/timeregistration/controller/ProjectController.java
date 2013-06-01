@@ -16,7 +16,7 @@ import org.xezz.timeregistration.services.ProjectService;
  * Handle requests for Projects
  */
 @Controller
-@RequestMapping(value = "/project")
+@RequestMapping(value = "api/project")
 public class ProjectController {
 
     @Autowired

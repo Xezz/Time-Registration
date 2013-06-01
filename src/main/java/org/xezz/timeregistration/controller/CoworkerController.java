@@ -20,7 +20,7 @@ import org.xezz.timeregistration.services.CoworkerService;
 // Make this a controller
 @Controller
 // requests are mapped to /coworker
-@RequestMapping(value = "coworker")
+@RequestMapping(value = "api/coworker")
 public class CoworkerController {
     // DI the service
     @Autowired

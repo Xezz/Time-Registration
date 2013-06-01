@@ -13,7 +13,7 @@ import org.xezz.timeregistration.services.CustomerService;
  * Time: 11:17
  */
 @Controller
-@RequestMapping(value = "customer")
+@RequestMapping(value = "api/customer")
 public class CustomerController {
 
     @Autowired
