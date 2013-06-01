@@ -44,6 +44,7 @@
         <openjpa-asm-shaded.version>2.2.0</openjpa-asm-shaded.version>
         <openjpa-maven-plugin.version>2.2.2</openjpa-maven-plugin.version>
         <openjpa.version>2.2.0</openjpa.version>
+        <hibernate-validator.version>4.3.0.Final</hibernate-validator.version>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
@@ -89,7 +90,12 @@
             <version>${slf4j-api.version}</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <!-- Persistence API -->
         <dependency>
             <!-- Maybe normal javax persistence? -->
