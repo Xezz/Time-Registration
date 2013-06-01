@@ -5,18 +5,20 @@ Ext.define('TR.view.coworker.Create', {
     layout: 'fit',
     autoShow: true,
 
-    initComponents: function() {
+    initComponent: function() {
         this.items = [
             {
                 xtype: 'form',
                 items: [
-                    xtype: 'textfield',
-                    name: 'firstName',
-                    fieldLabel: 'Vorname'
-                ], [
-                    xtype: 'textfield',
-                    name: 'lastName',
-                    fieldLabel: 'Nachname'
+                    {
+                        xtype: 'textfield',
+                        name: 'firstName',
+                        fieldLabel: 'Vorname'
+                    }, {
+                        xtype: 'textfield',
+                        name: 'lastName',
+                        fieldLabel: 'Nachname'
+                    }
                 ]
             }
         ];
