@@ -22,6 +22,7 @@ Ext.define('TR.view.timespan.Create', {
                         fieldLabel: 'Startzeitpunkt'
                     }, {
                         xtype: 'timefield',
+                        // if 2 fields have the same name, they are returned as an array eg: startTime[]
                         name: 'startTime',
                         format: 'H:i',
                         value: new Date(),

@@ -27,7 +27,6 @@ Ext.define('TR.controller.Projects', {
     },
 
     openNewProjectForm: function() {
-        console.log('openNewProjectForm clicked');
         var view = Ext.widget('projectcreate');
     },
 
@@ -64,15 +63,13 @@ Ext.define('TR.controller.Projects', {
         // From the grid we get the selection
         var grid = button.up('grid'),
             record = grid.getSelectionModel();
-        console.log("Inside delete");
         if (record !== null) {
             // Now we got a record
-            console.log("Record not null: " + String(record));
             // and from that selectionmodel we get the underlying selection
             this.getProjectsStore().remove(record.getSelection());
             this.getProjectsStore().sync();
         } else {
-            console.log("Record was null");
+            console.log("Record or Selection was null");
         }
 
     }

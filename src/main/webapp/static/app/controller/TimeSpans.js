@@ -40,9 +40,18 @@ Ext.define('TR.controller.TimeSpans', {
     updateTimeSpan: function(button) {
         var win = button.up('window'),
             form = win.down('form'),
+            formatDay = 'd.m.Y',
+            formatTime = 'H:i',
+            formatDate = formatDay + ' ' + formatTime,
+
             record = form.getRecord(),
-            values = form.getValues();
-        record.setValues(values);
+            values = form.getValues(),
+            valStartDayAndTime = values.startTime[0] + ' ' + values.startTime[1],
+            startDayTime = Ext.Date.parse(valStartDayAndTime, formatDate);
+
+        // get the Date as timestamp
+        values.startTime = Ext.Date.format(startDayTime, 'time');
+        record.set(values);
         win.close();
         this.getTimeSpansStore().sync();
     },
@@ -50,12 +59,19 @@ Ext.define('TR.controller.TimeSpans', {
     saveTimeSpan: function(button) {
         var win = button.up('window'),
             form = win.down('form'),
+            formatDay = 'd.m.Y',
+            formatTime = 'H:i',
+            formatDate = formatDay + ' ' + formatTime,
             values = form.getValues(),
-            record = Ext.create('TR.model.TimeSpan', values);
+            valStartDayAndTime = values.startTime[0] + ' ' + values.startTime[1],
+            startDayTime = Ext.Date.parse(valStartDayAndTime, formatDate);
+
+        values.startTime = Ext.Date.format(startDayTime, 'time');
+        var record = Ext.create('TR.model.TimeSpan', values);
+
 
         win.close();
-        console.log(values);
-        //this.getTimeSpansStore().insert(0, record);
+        this.getTimeSpansStore().insert(0, record);
         this.getTimeSpansStore().sync();
     },
 
