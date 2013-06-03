@@ -37,6 +37,7 @@ Ext.define('TR.controller.TimeSpans', {
         //var dblStartTime = {record.startTime, recordStartTime};
         // Hax workaround to make an array instead of a single value, to suit both datepicker and timepicker ...
         //record.startTime = dblStartTime;
+        console.log('Opening TimeSpan for editing');
         console.log(record);
         view.down('form').loadRecord(record);
     },
@@ -44,18 +45,11 @@ Ext.define('TR.controller.TimeSpans', {
     updateTimeSpan: function(button) {
         var win = button.up('window'),
             form = win.down('form'),
-            formatDay = 'd.m.Y',
-            formatTime = 'H:i',
-            formatDate = formatDay + ' ' + formatTime,
-
             record = form.getRecord(),
-            values = form.getValues(),
-            valStartDayAndTime = values.startTime[0] + ' ' + values.startTime[1],
-            startDayTime = Ext.Date.parse(valStartDayAndTime, formatDate);
+            values = form.getValues();
 
-        // get the Date as timestamp
-        values.startTime = Ext.Date.format(startDayTime, 'time');
         record.set(values);
+        console.log(values);
         win.close();
         this.getTimeSpansStore().sync();
     },
@@ -63,18 +57,14 @@ Ext.define('TR.controller.TimeSpans', {
     saveTimeSpan: function(button) {
         var win = button.up('window'),
             form = win.down('form'),
-            formatDay = 'd.m.Y',
-            formatTime = 'H:i',
-            formatDate = formatDay + ' ' + formatTime,
-            values = form.getValues(),
-            valStartDayAndTime = values.startTime[0] + ' ' + values.startTime[1],
-            startDayTime = Ext.Date.parse(valStartDayAndTime, formatDate);
+            values = form.getValues();
 
-        values.startTime = Ext.Date.format(startDayTime, 'time');
         var record = Ext.create('TR.model.TimeSpan', values);
 
 
         win.close();
+        console.log('Saving a new TimeSpan:');
+        console.log(values);
         this.getTimeSpansStore().insert(0, record);
         this.getTimeSpansStore().sync();
     },
