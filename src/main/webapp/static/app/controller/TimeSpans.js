@@ -34,6 +34,10 @@ Ext.define('TR.controller.TimeSpans', {
 
     openEditTimeSpanForm: function(grid, record) {
         var view = Ext.widget('timespanedit');
+        //var dblStartTime = {record.startTime, recordStartTime};
+        // Hax workaround to make an array instead of a single value, to suit both datepicker and timepicker ...
+        //record.startTime = dblStartTime;
+        console.log(record);
         view.down('form').loadRecord(record);
     },
 

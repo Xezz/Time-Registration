@@ -125,7 +125,7 @@ public class ProjectDAO {
         return result;
     }
 
-    public Customer getCustomer() {
+    public Customer receiveCustomer() {
         LOGGER.info("Receiving Customer from ProjectDAO");
         if (customerRepository == null) {
             LOGGER.warn("REPOSITORY IS NULL");

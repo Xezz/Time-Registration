@@ -33,12 +33,13 @@ public class TimeSpan implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
 
-    public TimeSpan() {}
+    public TimeSpan() {
+    }
 
     public TimeSpan(TimeSpanDAO t) {
         this.timeSpanId = t.getTimeSpanId();
-        this.project = t.getProject();
-        this.coworker = t.getCoworker();
+        this.project = t.receiveProject();
+        this.coworker = t.receiveCoworker();
         this.startTime = t.getStartTime();
         this.durationInMinutes = t.getDurationInMinutes();
         this.creationDate = t.getCreationDate();

@@ -45,7 +45,7 @@ public class Project implements Serializable {
         this.description = p.getDescription();
         this.creationDate = p.getCreationDate();
         this.lastUpdatedDate = p.getLastUpdatedDate();
-        this.customer = p.getCustomer();
+        this.customer = p.receiveCustomer();
     }
 
     @PrePersist

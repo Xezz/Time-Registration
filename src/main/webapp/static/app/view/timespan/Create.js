@@ -20,6 +20,8 @@ Ext.define('TR.view.timespan.Create', {
                         format: 'd.m.Y',
                         value: new Date(),
                         fieldLabel: 'Startzeitpunkt'
+                        // If I would be able to pack those two together, then use:
+                        //submitFormat:
                     }, {
                         xtype: 'timefield',
                         // if 2 fields have the same name, they are returned as an array eg: startTime[]
@@ -46,6 +48,7 @@ Ext.define('TR.view.timespan.Create', {
                        valueField: 'coworkerId',
                        queryMode: 'local',
                        forceSelection: true,
+                       value: 1,
                        store: 'Coworkers'
                    }
                 ]

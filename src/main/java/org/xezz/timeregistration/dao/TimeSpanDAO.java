@@ -138,11 +138,11 @@ public class TimeSpanDAO {
         return result;
     }
 
-    public Project getProject() {
+    public Project receiveProject() {
         return projectRepository.findOne(projectId);
     }
 
-    public Coworker getCoworker() {
+    public Coworker receiveCoworker() {
         return coworkerRepository.findOne(coworkerId);
     }
 }
