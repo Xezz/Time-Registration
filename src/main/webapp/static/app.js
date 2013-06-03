@@ -9,9 +9,9 @@ Ext.application({
       'Projects',
       'TimeSpans'
     ],
-    //requires: ['TR.ux.form.DateTimePicker'],
 
     launch: function() {
+        delete Ext.tip.Tip.prototype.minWidth;
         Ext.create('Ext.container.Viewport', {
             layout: 'border',
             items: [
