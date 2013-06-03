@@ -1,4 +1,4 @@
-Ext.define('TR.view.project.List', {
+﻿Ext.define('TR.view.project.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.projectlist',
     title: 'Projekte - Liste',
@@ -10,8 +10,8 @@ Ext.define('TR.view.project.List', {
             {header: 'ID', dataIndex: 'projectId', width: 60},
             {header: 'Name', dataIndex: 'name', flex: 1},
             {header: 'Beschreibung', dataIndex: 'description', flex: 2},
-            {header: 'Erstellt am', dataIndex: 'creationDate', width: 140, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')},
-            {header: 'Bearbeitet am', dataIndex: 'lastUpdatedDate', width: 140, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')}
+            {header: 'Erstellt am', dataIndex: 'creationDate', width: 140, renderer: Ext.util.Format.dateRenderer('d.m.Y H:i')},
+            {header: 'Bearbeitet am', dataIndex: 'lastUpdatedDate', width: 140, renderer: Ext.util.Format.dateRenderer('d.m.Y H:i')}
         ];
 
         this.callParent(arguments);

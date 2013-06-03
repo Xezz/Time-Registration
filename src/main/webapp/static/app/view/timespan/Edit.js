@@ -9,6 +9,10 @@ Ext.define('TR.view.timespan.Edit', {
         this.items = [
             {
                 xtype: 'form',
+                layout: {
+                    type: 'table',
+                    columns: 2
+                },
                 items: [
                     {
                         xtype: 'textfield',

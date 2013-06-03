@@ -1,4 +1,4 @@
-Ext.define('TR.view.timespan.List', {
+﻿Ext.define('TR.view.timespan.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.timespanlist',
     title: 'Zeitspannen - Liste',
@@ -7,10 +7,10 @@ Ext.define('TR.view.timespan.List', {
     initComponent: function() {
         this.columns = [
             {header: 'ID', dataIndex: 'timeSpanId', width: 60},
-            {header: 'Startzeit', dataIndex: 'startTime', width: 140, renderer: Ext.util.Format.dateRenderer('d.M.Y H:i')},
-            {header: 'Dauer', dataIndex: 'durationInMInutes', width: 60},
-            {header: 'Mitarbeiter', dataIndex: 'coworkerId', flex: 1, renderer: this.coworkerNameRenderer}/*,
-            {header: 'Projekt', dataIndex: 'projectId', flex: 1, renderer: this.projectNameRenderer},
+            {header: 'Startzeit', dataIndex: 'startTime', width: 140, renderer: Ext.util.Format.dateRenderer('d.m.Y H:i')},
+            {header: 'Dauer', dataIndex: 'durationInMinutes', width: 60},
+            {header: 'Mitarbeiter', dataIndex: 'coworkerId', flex: 1, renderer: this.coworkerNameRenderer},
+            {header: 'Projekt', dataIndex: 'projectId', flex: 1, renderer: this.projectNameRenderer}/*,
             {header: }*/
         ];
         this.callParent(arguments);
@@ -29,6 +29,10 @@ Ext.define('TR.view.timespan.List', {
                     xtype: 'button',
                     text: 'Löschen',
                     action: 'delete'
+                }, {
+                    xtype: 'button',
+                    text: 'Ändern',
+                    action: 'edit'
                 }
             ]
         }
@@ -39,11 +43,12 @@ Ext.define('TR.view.timespan.List', {
         // Lookup Store by name
         // Get record by Id
         // Get field-value by field-name
-        return Ext.data.StoreManager.lookup('Coworkers').getById(value).get('lastName');
+        return this.getDisplayValueByStoreAndKey(value, 'Coworkers', 'lastName');
+        //return Ext.data.StoreManager.lookup('Coworkers').getById(value).get('lastName');
     },
 
     projectNameRenderer: function(value) {
-
+        return this.getDisplayValueByStoreAndKey(value, 'Projects', 'name');
     },
 
     getDisplayValueByStoreAndKey: function(value, storeName, keyName) {

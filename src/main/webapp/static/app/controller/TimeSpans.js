@@ -54,7 +54,8 @@ Ext.define('TR.controller.TimeSpans', {
             record = Ext.create('TR.model.TimeSpan', values);
 
         win.close();
-        this.getTimeSpansStore().insert(0, record);
+        console.log(values);
+        //this.getTimeSpansStore().insert(0, record);
         this.getTimeSpansStore().sync();
     },
 

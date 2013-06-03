@@ -15,9 +15,17 @@ Ext.define('TR.view.timespan.Create', {
                         name: 'durationInMinutes',
                         fieldLabel: 'Dauer (m)'
                     }, {
-                        xtype: 'datepicker',
+                        xtype: 'datefield',
                         name: 'startTime',
+                        format: 'd.m.Y',
+                        value: new Date(),
                         fieldLabel: 'Startzeitpunkt'
+                    }, {
+                        xtype: 'timefield',
+                        name: 'startTime',
+                        format: 'H:i',
+                        value: new Date(),
+                        fieldLabel: 'Startuhrzeit'
                     }, {
                        // Select a Customer this belongs to
                        xtype: 'combobox',
@@ -25,7 +33,7 @@ Ext.define('TR.view.timespan.Create', {
                        fieldLabel: 'Projekt',
                        displayField: 'name',
                        valueField: 'projectId',
-                       queryMode: 'remote',
+                       queryMode: 'local',
                        forceSelection: true,
                        store: 'Projects'
                    }, {
@@ -35,7 +43,7 @@ Ext.define('TR.view.timespan.Create', {
                        fieldLabel: 'Mitarbeiter',
                        displayField: 'lastName',
                        valueField: 'coworkerId',
-                       queryMode: 'remote',
+                       queryMode: 'local',
                        forceSelection: true,
                        store: 'Coworkers'
                    }
