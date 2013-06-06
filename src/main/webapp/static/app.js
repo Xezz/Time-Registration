@@ -1,13 +1,16 @@
 Ext.application({
-    requires: ['Ext.container.Viewport'],
+    requires: [
+        'Ext.container.Viewport',
+        'Ext.window.MessageBox'
+    ],
     name: 'TR',
 
     appFolder: 'app',
     controllers: [
-      'Coworkers',
-      'Customers',
-      'Projects',
-      'TimeSpans'
+        'Coworkers',
+        'Customers',
+        'Projects',
+        'TimeSpans'
     ],
 
     launch: function() {
@@ -18,21 +21,25 @@ Ext.application({
                 {
                     xtype: 'coworkerlist',
                     region: 'north',
-                    height: 250,
+                    flex: 0.5,
+                    collapsible: true,
                     split: true
 
                 }, {
-                    xtype: 'customerlist',
-                    region: 'center'
-                }, {
                     xtype: 'projectlist',
+                    region: 'center',
+                    //height: flex 1
+                }, {
+                    xtype: 'customerlist',
                     region: 'west',
-                    width: 800,
+                    flex: 0.5,
+                    collapsible: true,
                     split: true
                 }, {
                     xtype: 'timespanlist',
                     region: 'south',
-                    height: 250,
+                    flex: 0.5,
+                    collapsible: true,
                     split: true
                 }
             ]

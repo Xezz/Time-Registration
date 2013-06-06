@@ -7,11 +7,20 @@ Ext.define('TR.controller.TimeSpans', {
         'timespan.Create',
         'timespan.Edit'
         ],
+    requires: [
+        'Ext.window.MessageBox',
+        'TR.messages.NoSelection'
+        ],
+
+    messageNoSelect: undefined,
 
     init: function() {
         this.control({
             'timespanlist': {
                 itemdblclick: this.openEditTimeSpanForm
+            },
+            'timespanlist button[action=edit]': {
+                click: this.editSelectedTimeSpan
             },
             'timespanlist button[action=add]': {
                 click: this.openNewTimeSpanForm
@@ -26,10 +35,34 @@ Ext.define('TR.controller.TimeSpans', {
                 click: this.updateTimeSpan
             }
         });
+        this.messageNoSelect = Ext.widget('noselectionmsg').errors;
     },
 
     openNewTimeSpanForm: function() {
         var view = Ext.widget('timespancreate');
+    },
+
+    editSelectedTimeSpan: function(button) {
+        var me = this,
+            grid = button.up('grid'),
+            selectionModel = grid.getSelectionModel();
+        if (selectionModel.hasSelection()) {
+            record = selectionModel.getSelection()[0];
+
+            this.openEditTimeSpanForm(grid, record);
+        } else {
+            // MessageBox
+            //Ext.widget('noselectmsgbox');
+            Ext.Msg.show(me.messageNoSelect);
+            /*
+            Ext.Msg.show({
+                title: 'Keine Auswahl',
+                msg: 'Es wurde kein Eintrag ausgewählt!',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+            */
+        }
     },
 
     openEditTimeSpanForm: function(grid, record) {
@@ -37,8 +70,6 @@ Ext.define('TR.controller.TimeSpans', {
         //var dblStartTime = {record.startTime, recordStartTime};
         // Hax workaround to make an array instead of a single value, to suit both datepicker and timepicker ...
         //record.startTime = dblStartTime;
-        console.log('Opening TimeSpan for editing');
-        console.log(record);
         view.down('form').loadRecord(record);
     },
 
@@ -49,7 +80,6 @@ Ext.define('TR.controller.TimeSpans', {
             values = form.getValues();
 
         record.set(values);
-        console.log(values);
         win.close();
         this.getTimeSpansStore().sync();
     },
@@ -63,17 +93,15 @@ Ext.define('TR.controller.TimeSpans', {
 
 
         win.close();
-        console.log('Saving a new TimeSpan:');
-        console.log(values);
         this.getTimeSpansStore().insert(0, record);
         this.getTimeSpansStore().sync();
     },
 
     deleteSelectedTimeSpan: function(button) {
         var grid = button.up('grid'),
-            record = grid.getSelectionModel();
-        if (record !== null) {
-            this.getTimeSpansStore().remove(record.getSelection());
+            selectionModel = grid.getSelectionModel();
+        if (selectionModel.hasSelection) {
+            this.getTimeSpansStore().remove(selectionModel.getSelection());
             this.getTimeSpansStore().sync();
         }
     }

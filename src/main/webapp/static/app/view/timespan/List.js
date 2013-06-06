@@ -44,7 +44,6 @@
         // Get record by Id
         // Get field-value by field-name
         return this.getDisplayValueByStoreAndKey(value, 'Coworkers', 'lastName');
-        //return Ext.data.StoreManager.lookup('Coworkers').getById(value).get('lastName');
     },
 
     projectNameRenderer: function(value) {
