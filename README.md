@@ -6,6 +6,7 @@ This is a NOT yet finished application. It has the base functionality done and a
 
 ### Purpose
 The purpose of this application is to track the time one used on a specific project. Since there is usually more than a single person working on said project, it is going to split between:
+
     * Company
     + Project
     * Coworker
@@ -17,6 +18,7 @@ I recently moved the UI to its own project, so that it's more strictly divided w
 
 ### ToDo
 There is quite some stuff to add and fix. Ordered by priority / timeline:
+
 	* Unittest
 	* pmd / checkstyle
 	* Integrationtest
