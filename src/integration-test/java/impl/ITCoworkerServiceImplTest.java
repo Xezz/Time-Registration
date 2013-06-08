@@ -1,4 +1,4 @@
-package org.xezz.timeregistration.services.impl;
+package impl;
 
 import org.junit.After;
 import org.junit.Before;
@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.xezz.timeregistration.services.impl.CoworkerServiceImpl;
 
 /**
  * User: bkoch
@@ -14,7 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestExecutionListeners({})
-public class CoworkerServiceImplTest {
+public class ITCoworkerServiceImplTest {
+    private CoworkerServiceImpl coworkerService;
+
     @Before
     public void setUp() throws Exception {
 
