@@ -35,8 +35,7 @@ public class TimeSpanServiceImpl implements TimeSpanService {
     @Override
     public Iterable<TimeSpanDAO> timeSpansForCoworker(CoworkerDAO coworkerDAO) {
         final Iterable<TimeSpan> byCoworker = repo.findByCoworker(coworkerRepository.findOne(coworkerDAO.getCoworkerId()));
-        final List<TimeSpanDAO> daoList = getTimeSpanDAOs(byCoworker);
-        return daoList;
+        return getTimeSpanDAOs(byCoworker);
     }
 
     private List<TimeSpanDAO> getTimeSpanDAOs(Iterable<TimeSpan> timeSpanList) {
@@ -50,8 +49,7 @@ public class TimeSpanServiceImpl implements TimeSpanService {
     @Override
     public Iterable<TimeSpanDAO> timeSpansForProject(ProjectDAO projectDAO) {
         final Iterable<TimeSpan> byProject = repo.findByProject(projectRepository.findOne(projectDAO.getProjectId()));
-        final List<TimeSpanDAO> daoList = getTimeSpanDAOs(byProject);
-        return daoList;
+        return getTimeSpanDAOs(byProject);
     }
 
 

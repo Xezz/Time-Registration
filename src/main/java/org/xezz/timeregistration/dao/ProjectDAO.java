@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.beans.factory.annotation.Required;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.repositories.CustomerRepository;
@@ -26,6 +25,7 @@ public class ProjectDAO {
     private Date creationDate;
     private Date lastUpdatedDate;
 
+    @Autowired
     private CustomerRepository customerRepository;
     private final static Logger LOGGER = LoggerFactory.getLogger(ProjectDAO.class);
 
@@ -39,12 +39,6 @@ public class ProjectDAO {
         this.customerId = project.getCustomer().getCustomerId();
         this.creationDate = project.getCreationDate();
         this.lastUpdatedDate = project.getLastUpdatedDate();
-    }
-
-    @Autowired
-    @Required
-    public void setCustomerRepository(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
     }
 
     public Long getProjectId() {
@@ -126,10 +120,6 @@ public class ProjectDAO {
     }
 
     public Customer receiveCustomer() {
-        LOGGER.info("Receiving Customer from ProjectDAO");
-        if (customerRepository == null) {
-            LOGGER.warn("REPOSITORY IS NULL");
-        }
         return customerRepository.findOne(customerId);
     }
 }

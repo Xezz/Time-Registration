@@ -122,7 +122,6 @@ public class CoworkerController {
      * DELETE an existing Coworker
      *
      * @param coworkerDAO updated Coworker
-     * @return Coworker persisted Coworker
      */
     // FIXME: RETURN Correct HTTP HEADER INSTEAD
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)

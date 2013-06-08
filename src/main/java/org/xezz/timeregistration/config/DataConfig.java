@@ -31,7 +31,7 @@ public class DataConfig {
     private final String persistenceUnitName = "timeregistration";
 
     @Bean
-    public JndiObjectFactoryBean dataSourceFactory() throws Exception {
+    public JndiObjectFactoryBean dataSourceFactory() {
         // Testing here:
         JndiObjectFactoryBean fac = new JndiObjectFactoryBean();
         fac.setJndiName("java:/comp/env/jdbc/timeregistration");
@@ -73,7 +73,7 @@ public class DataConfig {
     }
 
     @Bean
-    public JpaVendorAdapter jpaVendorAdapter() throws Exception {
+    public JpaVendorAdapter jpaVendorAdapter() {
         OpenJpaVendorAdapter jpaVendorAdapter = new OpenJpaVendorAdapter();
         jpaVendorAdapter.setGenerateDdl(true);
         jpaVendorAdapter.setShowSql(true);

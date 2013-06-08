@@ -32,12 +32,14 @@ public class Coworker {
     /**
      * Default Constructor for JPA
      */
-    public Coworker() {}
+    public Coworker() {
+    }
 
     /**
      * Create a Coworker from a DAO
      * Only call this if there is already an existing entity
-     * @param c
+     *
+     * @param c CoworkerDAO that contains coworker-specific data
      */
     public Coworker(CoworkerDAO c) {
         if (c.getCoworkerId() != null) {

@@ -110,8 +110,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDAO updateCustomer(CustomerDAO c) {
         if (customerRepository.exists(c.getCustomerId())) {
-            final CustomerDAO save = new CustomerDAO(customerRepository.save(new Customer(c)));
-            return save;
+            return addNewCustomer(c);
         }
         // TODO: Can also save the Customer anyway, instead of discarding
         // This would be against pure REST, since a PUT means a resource exists already
