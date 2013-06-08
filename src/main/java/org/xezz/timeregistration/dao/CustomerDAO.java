@@ -29,7 +29,7 @@ public class CustomerDAO {
         this.lastUpdatedDate = customer.getLastUpdatedDate();
     }
 
-    public CustomerDAO(Date creationDate, Long customerId, String customerInfo, Date lastUpdatedDate, String name) {
+    public CustomerDAO(Long customerId, String name, String customerInfo, Date creationDate, Date lastUpdatedDate) {
         this.creationDate = creationDate;
         this.customerId = customerId;
         this.customerInfo = customerInfo;
