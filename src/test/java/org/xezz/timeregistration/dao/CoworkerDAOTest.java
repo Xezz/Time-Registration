@@ -22,8 +22,8 @@ public class CoworkerDAOTest {
     private final String lastname = "Lastname";
     private final Date creationDate = new Date();
     private final Date lastUpdatedDate = new Date();
-    private CoworkerDAO dao;
     private Long coworkerId = 1337666L;
+    private CoworkerDAO dao;
 
     @Before
     public void setUp() throws Exception {
