@@ -100,6 +100,14 @@ public class Coworker {
         return lastUpdatedDate;
     }
 
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
