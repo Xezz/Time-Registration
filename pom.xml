@@ -53,6 +53,10 @@
     </properties>
     <repositories>
         <repository>
+            <id>Default repo</id>
+            <url>http://repo2.maven.org/maven2/</url>
+        </repository>
+        <repository>
             <id>spring-maven-release</id>
             <snapshots>
                 <enabled>false</enabled>
@@ -85,19 +89,6 @@
             <artifactId>openjpa</artifactId>
             <version>${openjpa.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <!-- Unit test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito-core.version}</version>
-            <scope>test</scope>
         </dependency>
 
 
@@ -173,13 +164,6 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data.version}</version>
         </dependency>
-        <!-- Spring Test -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
-        </dependency>
         <!-- JSR-330 -->
         <dependency>
             <groupId>javax.inject</groupId>
@@ -187,25 +171,26 @@
             <version>${javax-inject.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- Compiletime Weaving of non-spring classes to enable injection -->
         <!-- Disabling this for now until I know if spring-aspects is enough
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>${org.aspectj-version}</version>
-        </dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>${org.aspectj-version}</version>
+    </dependency>
         -->
         <!-- JSF
         <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-            <version>2.1.13</version>
-        </dependency>
+        <groupId>com.sun.faces</groupId>
+        <artifactId>jsf-api</artifactId>
+        <version>2.1.13</version>
+    </dependency>
         <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-impl</artifactId>
-            <version>2.1.13</version>
-        </dependency>
+        <groupId>com.sun.faces</groupId>
+        <artifactId>jsf-impl</artifactId>
+        <version>2.1.13</version>
+    </dependency>
         -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -273,6 +258,26 @@
             <version>1.0</version>
         </dependency>
         -->
+        <!-- Spring Test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Unit test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-core.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
