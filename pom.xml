@@ -58,12 +58,20 @@
             <url>http://repo.maven.apache.org/maven2</url>
         </repository>
         <repository>
+            <id>spring-maven-release</id>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <name>Springframework Maven RELEASE Repository</name>
+            <url>http://repo.springframework.org/release</url>
+        </repository>
+        <repository>
             <id>spring-maven-snapshot</id>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
             <name>Springframework Maven SNAPSHOT Repository</name>
-            <url>http://maven.springframework.org/snapshot</url>
+            <url>http://repo.springframework.org/snapshot</url>
         </repository>
     </repositories>
 
@@ -80,6 +88,25 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test-mvc</artifactId>
+            <version>1.0.0.M2</version>
             <scope>test</scope>
         </dependency>
 
