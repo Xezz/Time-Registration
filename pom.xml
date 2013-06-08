@@ -52,20 +52,20 @@
     </properties>
     <repositories>
         <repository>
-            <id>EclipseLink</id>
-            <url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
-        </repository>
-        <repository>
-            <id>EclipseLink Repo</id>
-            <url>http://repo.maven.apache.org/maven2</url>
-        </repository>
-        <repository>
             <id>spring-maven-release</id>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
             <name>Springframework Maven RELEASE Repository</name>
             <url>http://repo.springframework.org/release</url>
+        </repository>
+        <repository>
+            <id>EclipseLink</id>
+            <url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
+        </repository>
+        <repository>
+            <id>EclipseLink Repo</id>
+            <url>http://repo.maven.apache.org/maven2</url>
         </repository>
         <repository>
             <id>spring-maven-snapshot</id>
@@ -99,12 +99,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
-        </dependency>
 
         <!-- spring logging -->
         <dependency>
@@ -177,6 +171,12 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data.version}</version>
+        </dependency>
+        <!-- Spring Test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <!-- JSR-330 -->
         <dependency>
