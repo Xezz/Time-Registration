@@ -29,6 +29,14 @@ public class CustomerDAO {
         this.lastUpdatedDate = customer.getLastUpdatedDate();
     }
 
+    public CustomerDAO(Date creationDate, Long customerId, String customerInfo, Date lastUpdatedDate, String name) {
+        this.creationDate = creationDate;
+        this.customerId = customerId;
+        this.customerInfo = customerInfo;
+        this.lastUpdatedDate = lastUpdatedDate;
+        this.name = name;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }
