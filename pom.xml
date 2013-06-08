@@ -307,7 +307,7 @@
             </build>
         </profile>
         <profile>
-            <id>integration-test</id>
+            <id>integration-tests</id>
             <properties>
                 <!-- Used to locate the profile specific configuration file. -->
                 <build.profile.id>integration-test</build.profile.id>
@@ -329,7 +329,7 @@
         </profile>
     </profiles>
     <build>
-        <!--<finalName>JavaServerFaces</finalName>-->
+        <finalName>t-regs</finalName>
 
         <plugins>
             <plugin>
