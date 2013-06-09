@@ -32,6 +32,15 @@ public class ProjectDAO {
     public ProjectDAO() {
     }
 
+    public ProjectDAO(Long projectId, Long customerId, String name, String description, Date creationDate, Date lastUpdatedDate) {
+        this.projectId = projectId;
+        this.customerId = customerId;
+        this.name = name;
+        this.description = description;
+        this.creationDate = creationDate;
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
     public ProjectDAO(Project project) {
         this.projectId = project.getProjectId();
         this.name = project.getName();
