@@ -1,8 +1,6 @@
 package org.xezz.timeregistration.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.xezz.timeregistration.dao.ProjectDAO;
-import org.xezz.timeregistration.services.CustomerService;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,14 +25,19 @@ public class Project implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
 
-    @Transient
-    @Autowired
-    CustomerService customerService;
-
     /**
      * Default Constructor to support DI and JPA
      */
     public Project() {
+    }
+
+    public Project(Long projectId, String name, String description, Customer customer, Date creationDate, Date lastUpdatedDate) {
+        this.projectId = projectId;
+        this.name = name;
+        this.description = description;
+        this.customer = customer;
+        this.creationDate = creationDate;
+        this.lastUpdatedDate = lastUpdatedDate;
     }
 
     public Project(ProjectDAO p) {
