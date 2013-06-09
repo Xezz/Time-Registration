@@ -26,7 +26,7 @@ public class ProjectDAO {
     private Date lastUpdatedDate;
 
     @Autowired
-    private CustomerRepository customerRepository;
+    CustomerRepository customerRepository;
     private final static Logger LOGGER = LoggerFactory.getLogger(ProjectDAO.class);
 
     public ProjectDAO() {
