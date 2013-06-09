@@ -35,13 +35,23 @@ public class TimeSpanDAO {
 
     // TODO: Make sure that project and coworker in TimeSpan can not be null!
     public TimeSpanDAO(TimeSpan timeSpan) {
-        this.timeSpanId = timeSpan.getTimeSpanId();
-        this.projectId = timeSpan.getProject().getProjectId();
-        this.coworkerId = timeSpan.getCoworker().getCoworkerId();
-        this.startTime = timeSpan.getStartTime();
-        this.durationInMinutes = timeSpan.getDurationInMinutes();
-        this.creationDate = timeSpan.getCreationDate();
-        this.lastUpdatedDate = timeSpan.getLastUpdatedDate();
+        this(timeSpan.getTimeSpanId(),
+                timeSpan.getProject().getProjectId(),
+                timeSpan.getCoworker().getCoworkerId(),
+                timeSpan.getStartTime(),
+                timeSpan.getDurationInMinutes(),
+                timeSpan.getCreationDate(),
+                timeSpan.getLastUpdatedDate());
+    }
+
+    public TimeSpanDAO(Long timeSpanId, Long projectId, Long coworkerId, Date startTime, Long durationInMinutes, Date creationDate, Date lastUpdatedDate) {
+        this.timeSpanId = timeSpanId;
+        this.projectId = projectId;
+        this.coworkerId = coworkerId;
+        this.startTime = startTime;
+        this.durationInMinutes = durationInMinutes;
+        this.creationDate = creationDate;
+        this.lastUpdatedDate = lastUpdatedDate;
     }
 
     public Long getTimeSpanId() {
