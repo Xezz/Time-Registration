@@ -33,7 +33,6 @@ public class TimeSpanDAO {
     public TimeSpanDAO() {
     }
 
-    // TODO: Make sure that project and coworker in TimeSpan can not be null!
     public TimeSpanDAO(TimeSpan timeSpan) {
         this(timeSpan.getTimeSpanId(),
                 timeSpan.getProject().getProjectId(),
@@ -118,16 +117,12 @@ public class TimeSpanDAO {
         TimeSpanDAO that = (TimeSpanDAO) o;
 
         if (coworkerId != null ? !coworkerId.equals(that.coworkerId) : that.coworkerId != null) return false;
-        if (coworkerRepository != null ? !coworkerRepository.equals(that.coworkerRepository) : that.coworkerRepository != null)
-            return false;
         if (creationDate != null ? !creationDate.equals(that.creationDate) : that.creationDate != null) return false;
         if (durationInMinutes != null ? !durationInMinutes.equals(that.durationInMinutes) : that.durationInMinutes != null)
             return false;
         if (lastUpdatedDate != null ? !lastUpdatedDate.equals(that.lastUpdatedDate) : that.lastUpdatedDate != null)
             return false;
         if (projectId != null ? !projectId.equals(that.projectId) : that.projectId != null) return false;
-        if (projectRepository != null ? !projectRepository.equals(that.projectRepository) : that.projectRepository != null)
-            return false;
         if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
         if (timeSpanId != null ? !timeSpanId.equals(that.timeSpanId) : that.timeSpanId != null) return false;
 
@@ -143,8 +138,6 @@ public class TimeSpanDAO {
         result = 31 * result + (durationInMinutes != null ? durationInMinutes.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = 31 * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
-        result = 31 * result + (coworkerRepository != null ? coworkerRepository.hashCode() : 0);
-        result = 31 * result + (projectRepository != null ? projectRepository.hashCode() : 0);
         return result;
     }
 
