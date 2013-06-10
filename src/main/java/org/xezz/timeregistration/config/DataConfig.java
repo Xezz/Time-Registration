@@ -28,8 +28,6 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class DataConfig {
 
-    private final String persistenceUnitName = "timeregistration";
-
     @Bean
     public JndiObjectFactoryBean dataSourceFactory() {
         // Testing here:
@@ -62,7 +60,7 @@ public class DataConfig {
                 "org.xezz.timeregistration.model.Customer",
                 "org.xezz.timeregistration.model.Project",
                 "org.xezz.timeregistration.model.TimeSpan");
-        entityManagerFactory.setPersistenceUnitName(persistenceUnitName);
+        entityManagerFactory.setPersistenceUnitName("timeregistration");
         entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter());
         entityManagerFactory.setJpaDialect(new OpenJpaDialect());
@@ -86,7 +84,7 @@ public class DataConfig {
     public JpaTransactionManager transactionManager() throws Exception {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-        transactionManager.setPersistenceUnitName(persistenceUnitName);
+        transactionManager.setPersistenceUnitName("timeregistration");
 
         return transactionManager;
     }

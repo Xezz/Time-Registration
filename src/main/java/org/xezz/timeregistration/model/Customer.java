@@ -26,7 +26,9 @@ public class Customer implements Serializable {
     /**
      * Default constructor for JPA/Spring/Whatever
      */
-    public Customer() {}
+    public Customer() {
+    }
+
     public Customer(CustomerDAO dao) {
         if (null == dao) {
             throw new IllegalArgumentException("CustomerDAO was null");
@@ -111,11 +113,11 @@ public class Customer implements Serializable {
     @Override
     public int hashCode() {
         int result = customerId != null ? customerId.hashCode() : 0;
-        final int PRIME = 31;
-        result = PRIME * result + (name != null ? name.hashCode() : 0);
-        result = PRIME * result + (customerInfo != null ? customerInfo.hashCode() : 0);
-        result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
-        result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        final int prime = 31;
+        result = prime * result + (name != null ? name.hashCode() : 0);
+        result = prime * result + (customerInfo != null ? customerInfo.hashCode() : 0);
+        result = prime * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = prime * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;
     }
 }

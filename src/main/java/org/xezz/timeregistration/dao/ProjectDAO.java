@@ -27,7 +27,7 @@ public class ProjectDAO {
 
     @Autowired
     CustomerRepository customerRepository;
-    private final static Logger LOGGER = LoggerFactory.getLogger(ProjectDAO.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectDAO.class);
 
     public ProjectDAO() {
     }

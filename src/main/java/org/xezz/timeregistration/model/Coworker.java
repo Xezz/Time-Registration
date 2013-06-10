@@ -129,11 +129,11 @@ public class Coworker {
     @Override
     public int hashCode() {
         int result = coworkerId != null ? coworkerId.hashCode() : 0;
-        final int PRIME = 31;
-        result = PRIME * result + (firstName != null ? firstName.hashCode() : 0);
-        result = PRIME * result + (lastName != null ? lastName.hashCode() : 0);
-        result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
-        result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        final int prime = 31;
+        result = prime * result + (firstName != null ? firstName.hashCode() : 0);
+        result = prime * result + (lastName != null ? lastName.hashCode() : 0);
+        result = prime * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = prime * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;
     }
 }

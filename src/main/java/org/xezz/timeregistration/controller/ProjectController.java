@@ -22,7 +22,7 @@ public class ProjectController {
     @Autowired
     ProjectService service;
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 
     /**
      * Request all Projects

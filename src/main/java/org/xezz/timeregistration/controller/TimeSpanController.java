@@ -24,7 +24,7 @@ public class TimeSpanController {
     @Autowired
     TimeSpanService service;
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(TimeSpanController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TimeSpanController.class);
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

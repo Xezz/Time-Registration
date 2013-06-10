@@ -25,7 +25,7 @@ public class CoworkerController {
     // DI the service
     @Autowired
     CoworkerService service;
-    private final static Logger LOGGER = LoggerFactory.getLogger(CoworkerController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CoworkerController.class);
 
     // Starting with JSON mapping
     //

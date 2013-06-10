@@ -131,12 +131,12 @@ public class Project implements Serializable {
     @Override
     public int hashCode() {
         int result = projectId != null ? projectId.hashCode() : 0;
-        final int PRIME = 31;
-        result = PRIME * result + (name != null ? name.hashCode() : 0);
-        result = PRIME * result + (description != null ? description.hashCode() : 0);
-        result = PRIME * result + (customer != null ? customer.hashCode() : 0);
-        result = PRIME * result + (creationDate != null ? creationDate.hashCode() : 0);
-        result = PRIME * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        final int prime = 31;
+        result = prime * result + (name != null ? name.hashCode() : 0);
+        result = prime * result + (description != null ? description.hashCode() : 0);
+        result = prime * result + (customer != null ? customer.hashCode() : 0);
+        result = prime * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = prime * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
 
         return result;
     }
