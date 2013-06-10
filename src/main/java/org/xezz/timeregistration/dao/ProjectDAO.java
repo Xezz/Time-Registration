@@ -103,16 +103,15 @@ public class ProjectDAO {
         if (this == o) return true;
         if (!(o instanceof ProjectDAO)) return false;
 
-        ProjectDAO project = (ProjectDAO) o;
+        ProjectDAO that = (ProjectDAO) o;
 
-        if (creationDate != null ? !creationDate.equals(project.creationDate) : project.creationDate != null)
+        if (creationDate != null ? !creationDate.equals(that.creationDate) : that.creationDate != null) return false;
+        if (customerId != null ? !customerId.equals(that.customerId) : that.customerId != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(that.lastUpdatedDate) : that.lastUpdatedDate != null)
             return false;
-        if (!customerId.equals(project.customerId)) return false;
-        if (!description.equals(project.description)) return false;
-        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(project.lastUpdatedDate) : project.lastUpdatedDate != null)
-            return false;
-        if (!name.equals(project.name)) return false;
-        if (projectId != null ? !projectId.equals(project.projectId) : project.projectId != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (projectId != null ? !projectId.equals(that.projectId) : that.projectId != null) return false;
 
         return true;
     }
@@ -120,9 +119,9 @@ public class ProjectDAO {
     @Override
     public int hashCode() {
         int result = projectId != null ? projectId.hashCode() : 0;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + customerId.hashCode();
+        result = 31 * result + (customerId != null ? customerId.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = 31 * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;

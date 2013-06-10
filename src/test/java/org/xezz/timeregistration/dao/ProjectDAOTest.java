@@ -42,8 +42,8 @@ public class ProjectDAOTest {
 
     @Test
     public void testSetProjectId() throws Exception {
-        final Long assertId = projectId + 123L;
-        dao.setProjectId(assertId);
+        final Long toAssert = projectId + 123L;
+        dao.setProjectId(toAssert);
         assertNotEquals("Test set projectid", projectId, dao.getProjectId());
     }
 
@@ -54,8 +54,8 @@ public class ProjectDAOTest {
 
     @Test
     public void testSetName() throws Exception {
-        final String assertName = name + "assert fail";
-        dao.setName(assertName);
+        final String toAssert = name + "assert fail";
+        dao.setName(toAssert);
         assertNotEquals("Test set name", name, dao.getName());
     }
 
@@ -66,8 +66,8 @@ public class ProjectDAOTest {
 
     @Test
     public void testSetDescription() throws Exception {
-        final String assertDescription = description + "assert fail";
-        dao.setDescription(assertDescription);
+        final String toAssert = description + "assert fail";
+        dao.setDescription(toAssert);
         assertNotEquals("Test set description", description, dao.getDescription());
     }
 
@@ -78,8 +78,8 @@ public class ProjectDAOTest {
 
     @Test
     public void testSetCustomerId() throws Exception {
-        final Long assertId = customerId + 123L;
-        dao.setCustomerId(assertId);
+        final Long toAssert = customerId + 123L;
+        dao.setCustomerId(toAssert);
         assertNotEquals("Test set customer id", customerId, dao.getCustomerId());
     }
 
@@ -90,8 +90,8 @@ public class ProjectDAOTest {
 
     @Test
     public void testSetCreationDate() throws Exception {
-        final Date assertDate = new Date(creationDate.getTime() + 10023);
-        dao.setCreationDate(assertDate);
+        final Date toAssert = new Date(creationDate.getTime() + 10023);
+        dao.setCreationDate(toAssert);
         assertNotEquals("Test set creation date", creationDate, dao.getCreationDate());
     }
 
@@ -102,25 +102,146 @@ public class ProjectDAOTest {
 
     @Test
     public void testSetLastUpdatedDate() throws Exception {
-        final Date assertDate = new Date(lastUpdatedDate.getTime() + 12314);
-        dao.setLastUpdatedDate(assertDate);
+        final Date toAssert = new Date(lastUpdatedDate.getTime() + 12314);
+        dao.setLastUpdatedDate(toAssert);
         assertNotEquals("Test set last updated Date", lastUpdatedDate, dao.getLastUpdatedDate());
     }
 
     @Test
     public void testEquals() throws Exception {
-        ProjectDAO assertDao = dao;
-        assertTrue("Reference equality test", dao.equals(assertDao) && assertDao.equals(dao));
-        assertDao = new ProjectDAO(projectId, customerId, name, description, creationDate, lastUpdatedDate);
-        assertTrue("Constructor with same parameters equality test", dao.equals(assertDao) && assertDao.equals(dao));
+        ProjectDAO toAssert = dao;
+        assertTrue("Reference equality test", dao.equals(toAssert) && toAssert.equals(dao));
+        toAssert = new ProjectDAO(projectId, customerId, name, description, creationDate, lastUpdatedDate);
+        assertTrue("Constructor with same parameters equality test", dao.equals(toAssert) && toAssert.equals(dao));
+    }
+
+    @Test
+    public void testNotEqualsToNull() throws Exception {
+        assertFalse("Test obj does not equal to NULL", dao.equals(null));
+    }
+
+    @Test
+    public void testNotEqualsWithDifferentValues() throws Exception {
+        ProjectDAO toAssert = null;
+        final Long failProjectId = projectId + 12312L;
+        final Long failCustomerId = customerId + 113231L;
+        final String failName = name + "failed name";
+        final String failDescription = description + "fail description";
+        final Date failCreationDate = new Date(creationDate.getTime() + 9876567);
+        final Date failLastUpdatedDate = new Date(lastUpdatedDate.getTime() + 97867);
+
+        toAssert = new ProjectDAO(failProjectId, customerId, name, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Constructor with same parameters equality test", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, failCustomerId, name, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Constructor with same parameters equality test", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, customerId, failName, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Constructor with same parameters equality test", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, customerId, name, failDescription, creationDate, lastUpdatedDate);
+        assertNotEquals("Constructor with same parameters equality test", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, customerId, name, description, failCreationDate, lastUpdatedDate);
+        assertNotEquals("Constructor with same parameters equality test", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, customerId, name, description, creationDate, failLastUpdatedDate);
+        assertNotEquals("Constructor with same parameters equality test", dao, toAssert);
+    }
+
+    @Test
+    public void testNotEqualsWithNullValues() throws Exception {
+        ProjectDAO toAssert = null;
+        final Long failProjectId = null;
+        final Long failCustomerId = null;
+        final String failName = null;
+        final String failDescription = null;
+        final Date failCreationDate = null;
+        final Date failLastUpdatedDate = null;
+
+        toAssert = new ProjectDAO(failProjectId, customerId, name, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Not equal with null value projectId", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, failCustomerId, name, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Not equal with null value failCustomerId", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, customerId, failName, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Not equal with null value failName", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, customerId, name, failDescription, creationDate, lastUpdatedDate);
+        assertNotEquals("Not equal with null value failDescription", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, customerId, name, description, failCreationDate, lastUpdatedDate);
+        assertNotEquals("Not equal with null value failCreationDate", dao, toAssert);
+
+        toAssert = new ProjectDAO(projectId, customerId, name, description, creationDate, failLastUpdatedDate);
+        assertNotEquals("Not equal with null value failLastUpdatedDate", dao, toAssert);
     }
 
     @Test
     public void testHashCode() throws Exception {
-        ProjectDAO assertDao = dao;
-        assertEquals("Reference hashcode test", dao.hashCode(), assertDao.hashCode());
-        assertDao = new ProjectDAO(projectId, customerId, name, description, creationDate, lastUpdatedDate);
-        assertEquals("Reference hashcode test", dao.hashCode(), assertDao.hashCode());
+        ProjectDAO toAssert = dao;
+        assertEquals("Reference hashcode test", dao.hashCode(), toAssert.hashCode());
+        toAssert = new ProjectDAO(projectId, customerId, name, description, creationDate, lastUpdatedDate);
+        assertEquals("Equal constructed objects hashcode test", dao.hashCode(), toAssert.hashCode());
+    }
+
+    @Test
+    public void testHashCodeNotEqualWithDifferentValues() throws Exception {
+        ProjectDAO toAssert = null;
+        final Long failProjectId = projectId + 12312L;
+        final Long failCustomerId = customerId + 113231L;
+        final String failName = name + "failed name";
+        final String failDescription = description + "fail description";
+        final Date failCreationDate = new Date(creationDate.getTime() + 9876567);
+        final Date failLastUpdatedDate = new Date(lastUpdatedDate.getTime() + 97867);
+
+        toAssert = new ProjectDAO(failProjectId, customerId, name, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with different projectId", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, failCustomerId, name, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with different customerId", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, customerId, failName, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with different name", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, customerId, name, failDescription, creationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with different description", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, customerId, name, description, failCreationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with different creationDate", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, customerId, name, description, creationDate, failLastUpdatedDate);
+        assertNotEquals("Hashcode test with different lastUpdatedDate", dao.hashCode(), toAssert.hashCode());
+    }
+
+    @Test
+    public void testHashCodeNotEqualWithNullValues() throws Exception {
+        ProjectDAO toAssert = null;
+        final Long failProjectId = null;
+        final Long failCustomerId = null;
+        final String failName = null;
+        final String failDescription = null;
+        final Date failCreationDate = null;
+        final Date failLastUpdatedDate = null;
+
+        toAssert = new ProjectDAO(failProjectId, customerId, name, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with null projectId", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, failCustomerId, name, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with null customerId", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, customerId, failName, description, creationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with null name", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, customerId, name, failDescription, creationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with null description", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, customerId, name, description, failCreationDate, lastUpdatedDate);
+        assertNotEquals("Hashcode test with null creationDate", dao.hashCode(), toAssert.hashCode());
+
+        toAssert = new ProjectDAO(projectId, customerId, name, description, creationDate, failLastUpdatedDate);
+        assertNotEquals("Hashcode test with null lastUpdatedDate", dao.hashCode(), toAssert.hashCode());
     }
 
     @Test
