@@ -32,9 +32,9 @@ public class CustomerDAOTest {
 
     @Test
     public void testSetCustomerId() throws Exception {
-        final Long assertId = customerId + 1234;
-        dao.setCustomerId(assertId);
-        assertEquals("Set customer ID", assertId, dao.getCustomerId());
+        final Long toAssert = customerId + 1234;
+        dao.setCustomerId(toAssert);
+        assertEquals("Set customer ID", toAssert, dao.getCustomerId());
         assertNotEquals("Set customer ID changed ID", customerId, dao.getCustomerId());
     }
 
@@ -45,9 +45,9 @@ public class CustomerDAOTest {
 
     @Test
     public void testSetName() throws Exception {
-        final String assertName = name + "assert added";
-        dao.setName(assertName);
-        assertEquals("Set customer name", assertName, dao.getName());
+        final String toAssert = name + "assert added";
+        dao.setName(toAssert);
+        assertEquals("Set customer name", toAssert, dao.getName());
         assertNotEquals("Set customer name changed name", name, dao.getName());
     }
 
@@ -58,9 +58,9 @@ public class CustomerDAOTest {
 
     @Test
     public void testSetCustomerInfo() throws Exception {
-        final String assertCustomerInfo = customerInfo + "assert added";
-        dao.setCustomerInfo(assertCustomerInfo);
-        assertEquals("Set customer info", assertCustomerInfo, dao.getCustomerInfo());
+        final String toAssert = customerInfo + "assert added";
+        dao.setCustomerInfo(toAssert);
+        assertEquals("Set customer info", toAssert, dao.getCustomerInfo());
         assertNotEquals("Set customer info changed info", customerId, dao.getCustomerInfo());
     }
 
@@ -71,9 +71,9 @@ public class CustomerDAOTest {
 
     @Test
     public void testSetCreationDate() throws Exception {
-        final Date assertDate = new Date(creationDate.getTime() + 12345);
-        dao.setCreationDate(assertDate);
-        assertEquals("Set creation date", assertDate, dao.getCreationDate());
+        final Date toAssert = new Date(creationDate.getTime() + 12345);
+        dao.setCreationDate(toAssert);
+        assertEquals("Set creation date", toAssert, dao.getCreationDate());
         assertNotEquals("Set creation date changed Date", creationDate, dao.getCreationDate());
     }
 
@@ -84,26 +84,31 @@ public class CustomerDAOTest {
 
     @Test
     public void testSetLastUpdatedDate() throws Exception {
-        final Date assertDate = new Date(dao.getLastUpdatedDate().getTime() + 213131);
-        dao.setLastUpdatedDate(assertDate);
-        assertEquals("Set last updated Date", assertDate, dao.getLastUpdatedDate());
+        final Date toAssert = new Date(dao.getLastUpdatedDate().getTime() + 213131);
+        dao.setLastUpdatedDate(toAssert);
+        assertEquals("Set last updated Date", toAssert, dao.getLastUpdatedDate());
         assertNotEquals("Set last updated Date changed Date", lastUpdatedDate, dao.getLastUpdatedDate());
     }
 
     @Test
     public void testEquals() throws Exception {
-        CustomerDAO compareDao = dao;
-        assertTrue("Reference to the same object is equal", dao.equals(compareDao) && compareDao.equals(dao));
-        compareDao = new CustomerDAO(customerId, name, customerInfo, creationDate, lastUpdatedDate);
-        assertTrue("Two objects created with the same arguments are equal", dao.equals(compareDao) && compareDao.equals(dao));
+        CustomerDAO toAssert = dao;
+        assertTrue("Reference to the same object is equal", dao.equals(toAssert) && toAssert.equals(dao));
+        toAssert = new CustomerDAO(customerId, name, customerInfo, creationDate, lastUpdatedDate);
+        assertTrue("Two objects created with the same arguments are equal", dao.equals(toAssert) && toAssert.equals(dao));
+    }
+
+    @Test
+    public void testNotEqualsNull() throws Exception {
+        assertFalse("Instantiated object is not equal to NULL", dao.equals(null));
     }
 
     @Test
     public void testHashCode() throws Exception {
-        CustomerDAO compareDao = dao;
-        assertEquals("Refernece to the same object by two objects has the same hascode", compareDao.hashCode(), dao.hashCode());
-        compareDao = new CustomerDAO(customerId, name, customerInfo, creationDate, lastUpdatedDate);
-        assertEquals("Created with the same argument same hashcode", compareDao.hashCode(), dao.hashCode());
+        CustomerDAO toAssert = dao;
+        assertEquals("Refernece to the same object by two objects has the same hascode", toAssert.hashCode(), dao.hashCode());
+        toAssert = new CustomerDAO(customerId, name, customerInfo, creationDate, lastUpdatedDate);
+        assertEquals("Created with the same argument same hashcode", toAssert.hashCode(), dao.hashCode());
     }
 
     @Test
@@ -121,6 +126,15 @@ public class CustomerDAOTest {
     }
 
     @Test
+    public void testEqualsFailsWithNullValues() throws Exception {
+        assertNotEquals("Not equal with different id", new CustomerDAO(null, name, customerInfo, creationDate, lastUpdatedDate), dao);
+        assertNotEquals("Not equal with different name", new CustomerDAO(customerId, null, customerInfo, creationDate, lastUpdatedDate), dao);
+        assertNotEquals("Not equal with different info", new CustomerDAO(customerId, name, null, creationDate, lastUpdatedDate), dao);
+        assertNotEquals("Not equal with different creation date", new CustomerDAO(customerId, name, customerInfo, null, lastUpdatedDate), dao);
+        assertNotEquals("Not equal with different last updated date", new CustomerDAO(customerId, name, customerInfo, creationDate, null), dao);
+    }
+
+    @Test
     public void testHashCodeFails() throws Exception {
         final Long failCustomerId = dao.getCustomerId() + 1234;
         final String failName = dao.getName() + " fail name";
@@ -132,5 +146,14 @@ public class CustomerDAOTest {
         assertNotEquals("Different hashcodes with different info", new CustomerDAO(customerId, name, failCustomerInfo, creationDate, lastUpdatedDate).hashCode(), dao.hashCode());
         assertNotEquals("Different hashcodes with different creation date", new CustomerDAO(customerId, name, customerInfo, failCreationDate, lastUpdatedDate), dao.hashCode());
         assertNotEquals("Different hashcodes with different last updated date", new CustomerDAO(customerId, name, customerInfo, creationDate, failLastUpdatedDate).hashCode(), dao.hashCode());
+    }
+
+    @Test
+    public void testHashCodeFailsWithNullValues() throws Exception {
+        assertNotEquals("Different hashcodes with different id", new CustomerDAO(null, name, customerInfo, creationDate, lastUpdatedDate).hashCode(), dao.hashCode());
+        assertNotEquals("Different hashcodes with different name", new CustomerDAO(customerId, null, customerInfo, creationDate, lastUpdatedDate).hashCode(), dao.hashCode());
+        assertNotEquals("Different hashcodes with different info", new CustomerDAO(customerId, name, null, creationDate, lastUpdatedDate).hashCode(), dao.hashCode());
+        assertNotEquals("Different hashcodes with different creation date", new CustomerDAO(customerId, name, customerInfo, null, lastUpdatedDate), dao.hashCode());
+        assertNotEquals("Different hashcodes with different last updated date", new CustomerDAO(customerId, name, customerInfo, creationDate, null).hashCode(), dao.hashCode());
     }
 }

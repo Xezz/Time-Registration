@@ -82,15 +82,14 @@ public class CustomerDAO {
         if (this == o) return true;
         if (!(o instanceof CustomerDAO)) return false;
 
-        CustomerDAO customer = (CustomerDAO) o;
+        CustomerDAO that = (CustomerDAO) o;
 
-        if (creationDate != null ? !creationDate.equals(customer.creationDate) : customer.creationDate != null)
+        if (creationDate != null ? !creationDate.equals(that.creationDate) : that.creationDate != null) return false;
+        if (customerId != null ? !customerId.equals(that.customerId) : that.customerId != null) return false;
+        if (customerInfo != null ? !customerInfo.equals(that.customerInfo) : that.customerInfo != null) return false;
+        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(that.lastUpdatedDate) : that.lastUpdatedDate != null)
             return false;
-        if (customerId != null ? !customerId.equals(customer.customerId) : customer.customerId != null) return false;
-        if (!customerInfo.equals(customer.customerInfo)) return false;
-        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(customer.lastUpdatedDate) : customer.lastUpdatedDate != null)
-            return false;
-        if (!name.equals(customer.name)) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
     }
@@ -98,8 +97,8 @@ public class CustomerDAO {
     @Override
     public int hashCode() {
         int result = customerId != null ? customerId.hashCode() : 0;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + customerInfo.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (customerInfo != null ? customerInfo.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = 31 * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;
