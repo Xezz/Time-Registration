@@ -107,8 +107,8 @@ public class CoworkerDAO {
     @Override
     public int hashCode() {
         int result = coworkerId != null ? coworkerId.hashCode() : 0;
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = 31 * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;
