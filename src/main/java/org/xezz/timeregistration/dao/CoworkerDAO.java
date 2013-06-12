@@ -23,21 +23,29 @@ public class CoworkerDAO {
         this.coworkerId = coworkerId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.creationDate = creationDate;
-        this.lastUpdatedDate = lastUpdatedDate;
+        if (creationDate != null) {
+            this.creationDate = new Date(creationDate.getTime());
+        }
+        if (lastUpdatedDate != null) {
+            this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
+        }
     }
 
     /**
-     * Create a DAO from a coworker
+     * Create a DAO from a c
      *
-     * @param coworker the Coworker to use
+     * @param c the Coworker to use
      */
-    public CoworkerDAO(Coworker coworker) {
-        this.coworkerId = coworker.getCoworkerId();
-        this.firstName = coworker.getFirstName();
-        this.lastName = coworker.getLastName();
-        this.creationDate = coworker.getCreationDate();
-        this.lastUpdatedDate = coworker.getLastUpdatedDate();
+    public CoworkerDAO(Coworker c) {
+        this.coworkerId = c.getCoworkerId();
+        this.firstName = c.getFirstName();
+        this.lastName = c.getLastName();
+        if (c.getCreationDate() != null) {
+            this.creationDate = new Date(c.getCreationDate().getTime());
+        }
+        if (c.getLastUpdatedDate() != null) {
+            this.lastUpdatedDate = new Date(c.getLastUpdatedDate().getTime());
+        }
     }
 
     /**
@@ -71,19 +79,31 @@ public class CoworkerDAO {
     }
 
     public Date getCreationDate() {
-        return creationDate;
+        if (creationDate == null) {
+            return null;
+        }
+        return new Date(creationDate.getTime());
     }
 
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        if (creationDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.creationDate = new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            return null;
+        }
+        return new Date(lastUpdatedDate.getTime());
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        this.lastUpdatedDate = lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     @Override

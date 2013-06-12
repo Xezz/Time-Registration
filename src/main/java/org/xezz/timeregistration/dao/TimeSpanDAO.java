@@ -34,23 +34,43 @@ public class TimeSpanDAO {
     }
 
     public TimeSpanDAO(TimeSpan timeSpan) {
-        this(timeSpan.getTimeSpanId(),
-                timeSpan.getProject().getProjectId(),
-                timeSpan.getCoworker().getCoworkerId(),
-                timeSpan.getStartTime(),
-                timeSpan.getDurationInMinutes(),
-                timeSpan.getCreationDate(),
-                timeSpan.getLastUpdatedDate());
+        if (timeSpan == null) {
+            throw new IllegalArgumentException("TimeSpan must not be null");
+        }
+        this.timeSpanId = timeSpan.getTimeSpanId();
+        if (timeSpan.getProject() != null) {
+            this.projectId = timeSpan.getProject().getProjectId();
+        }
+        if (timeSpan.getCoworker() != null) {
+            this.coworkerId = timeSpan.getCoworker().getCoworkerId();
+        }
+        if (timeSpan.getStartTime() != null) {
+            this.startTime = new Date(timeSpan.getStartTime().getTime());
+        }
+        if (timeSpan.getCreationDate() != null) {
+            this.startTime = new Date(timeSpan.getCreationDate().getTime());
+        }
+        if (timeSpan.getLastUpdatedDate() != null) {
+            this.startTime = new Date(timeSpan.getLastUpdatedDate().getTime());
+        }
+        this.durationInMinutes = timeSpan.getDurationInMinutes();
     }
 
     public TimeSpanDAO(Long timeSpanId, Long projectId, Long coworkerId, Date startTime, Long durationInMinutes, Date creationDate, Date lastUpdatedDate) {
         this.timeSpanId = timeSpanId;
         this.projectId = projectId;
         this.coworkerId = coworkerId;
-        this.startTime = startTime;
+        // FIXME: Throw exception if startime is null (invalid after all!)?
+        if (startTime != null) {
+            this.startTime = new Date(startTime.getTime());
+        }
         this.durationInMinutes = durationInMinutes;
-        this.creationDate = creationDate;
-        this.lastUpdatedDate = lastUpdatedDate;
+        if (creationDate != null) {
+            this.creationDate = new Date(creationDate.getTime());
+        }
+        if (lastUpdatedDate != null) {
+            this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
+        }
     }
 
     public Long getTimeSpanId() {
@@ -78,11 +98,17 @@ public class TimeSpanDAO {
     }
 
     public Date getStartTime() {
-        return startTime;
+        if (startTime == null) {
+            return null;
+        }
+        return new Date(startTime.getTime());
     }
 
     public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+        if (startTime == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.startTime = new Date(startTime.getTime());
     }
 
     public Long getDurationInMinutes() {
@@ -94,19 +120,31 @@ public class TimeSpanDAO {
     }
 
     public Date getCreationDate() {
-        return creationDate;
+        if (creationDate == null) {
+            return null;
+        }
+        return new Date(creationDate.getTime());
     }
 
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        if (creationDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.creationDate = new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            return null;
+        }
+        return new Date(lastUpdatedDate.getTime());
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        this.lastUpdatedDate = lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     @Override

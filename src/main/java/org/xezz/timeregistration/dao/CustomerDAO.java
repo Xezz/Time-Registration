@@ -21,20 +21,31 @@ public class CustomerDAO {
     public CustomerDAO() {
     }
 
-    public CustomerDAO(Customer customer) {
-        this.customerId = customer.getCustomerId();
-        this.name = customer.getName();
-        this.customerInfo = customer.getCustomerInfo();
-        this.creationDate = customer.getCreationDate();
-        this.lastUpdatedDate = customer.getLastUpdatedDate();
+    public CustomerDAO(Customer c) {
+        if (c == null) {
+            throw new IllegalArgumentException("Customer must not be null");
+        }
+        this.customerId = c.getCustomerId();
+        this.name = c.getName();
+        this.customerInfo = c.getCustomerInfo();
+        if (c.getCreationDate() != null) {
+            this.creationDate = new Date(c.getCreationDate().getTime());
+        }
+        if (c.getLastUpdatedDate() != null) {
+            this.lastUpdatedDate = new Date(c.getLastUpdatedDate().getTime());
+        }
     }
 
     public CustomerDAO(Long customerId, String name, String customerInfo, Date creationDate, Date lastUpdatedDate) {
-        this.creationDate = creationDate;
         this.customerId = customerId;
-        this.customerInfo = customerInfo;
-        this.lastUpdatedDate = lastUpdatedDate;
         this.name = name;
+        this.customerInfo = customerInfo;
+        if (creationDate != null) {
+            this.creationDate = new Date(creationDate.getTime());
+        }
+        if (lastUpdatedDate != null) {
+            this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
+        }
     }
 
     public Long getCustomerId() {
@@ -62,19 +73,31 @@ public class CustomerDAO {
     }
 
     public Date getCreationDate() {
-        return creationDate;
+        if (creationDate == null) {
+            return null;
+        }
+        return new Date(creationDate.getTime());
     }
 
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        if (creationDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.creationDate = new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            return null;
+        }
+        return new Date(lastUpdatedDate.getTime());
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        this.lastUpdatedDate = lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     @Override
