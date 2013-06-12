@@ -50,6 +50,9 @@ public class Coworker {
         this.creationDate = c.getCreationDate();
         // This should get updated by PrePersist
         this.lastUpdatedDate = c.getLastUpdatedDate();
+        if (creationDate.getTime() < lastUpdatedDate.getTime()) {
+            throw new IllegalArgumentException("Created later than updated is not possible");
+        }
     }
 
     /**
@@ -66,6 +69,9 @@ public class Coworker {
     @PreUpdate
     private void updateLastEditedDate() {
         lastUpdatedDate = new Date();
+        if (creationDate != null && lastUpdatedDate.getTime() < creationDate.getTime()) {
+            throw new IllegalArgumentException("Update date is earlier than the date of creation");
+        }
     }
 
     public Long getCoworkerId() {
