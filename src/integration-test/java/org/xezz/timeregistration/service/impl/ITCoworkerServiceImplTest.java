@@ -1,4 +1,4 @@
-package impl;
+package org.xezz.timeregistration.service.impl;
 
 import org.junit.After;
 import org.junit.Before;
