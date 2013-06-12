@@ -23,7 +23,7 @@ import javax.sql.DataSource;
  * Configure everything that is Database / Persistence specific
  */
 @Configuration
-@EnableJpaRepositories("org.xezz.timeregistration.repositories")
+@EnableJpaRepositories("org.xezz.timeregistration.repository")
 @ComponentScan("org.xezz.timeregistration.model")
 @EnableTransactionManagement
 public class DataConfig {

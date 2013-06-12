@@ -7,9 +7,9 @@ import org.xezz.timeregistration.dao.CustomerDAO;
 import org.xezz.timeregistration.dao.ProjectDAO;
 import org.xezz.timeregistration.dao.TimeSpanDAO;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.repositories.CustomerRepository;
-import org.xezz.timeregistration.repositories.ProjectRepository;
-import org.xezz.timeregistration.repositories.TimeSpanRepository;
+import org.xezz.timeregistration.repository.CustomerRepository;
+import org.xezz.timeregistration.repository.ProjectRepository;
+import org.xezz.timeregistration.repository.TimeSpanRepository;
 import org.xezz.timeregistration.services.ProjectService;
 
 import java.util.ArrayList;

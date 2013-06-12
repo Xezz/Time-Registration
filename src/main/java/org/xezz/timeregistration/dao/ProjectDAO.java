@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.repositories.CustomerRepository;
+import org.xezz.timeregistration.repository.CustomerRepository;
 
 import java.util.Date;
 

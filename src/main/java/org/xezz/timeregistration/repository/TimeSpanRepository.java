@@ -1,4 +1,4 @@
-package org.xezz.timeregistration.repositories;
+package org.xezz.timeregistration.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.xezz.timeregistration.model.Coworker;

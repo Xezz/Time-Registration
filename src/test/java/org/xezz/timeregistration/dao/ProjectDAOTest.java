@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.xezz.timeregistration.model.Customer;
-import org.xezz.timeregistration.repositories.CustomerRepository;
+import org.xezz.timeregistration.repository.CustomerRepository;
 
 import java.util.Date;
 

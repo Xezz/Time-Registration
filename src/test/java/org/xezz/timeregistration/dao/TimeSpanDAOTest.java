@@ -5,8 +5,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Project;
-import org.xezz.timeregistration.repositories.CoworkerRepository;
-import org.xezz.timeregistration.repositories.ProjectRepository;
+import org.xezz.timeregistration.repository.CoworkerRepository;
+import org.xezz.timeregistration.repository.ProjectRepository;
 
 import java.util.Date;
 
