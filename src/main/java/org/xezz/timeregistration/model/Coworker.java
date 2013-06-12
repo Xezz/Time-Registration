@@ -47,10 +47,10 @@ public class Coworker {
         }
         this.firstName = c.getFirstName();
         this.lastName = c.getLastName();
-        this.creationDate = c.getCreationDate();
+        this.creationDate = new Date(c.getCreationDate().getTime());
         // This should get updated by PrePersist
-        this.lastUpdatedDate = c.getLastUpdatedDate();
-        if (creationDate.getTime() < lastUpdatedDate.getTime()) {
+        this.lastUpdatedDate = new Date(c.getLastUpdatedDate().getTime());
+        if (creationDate.getTime() > lastUpdatedDate.getTime()) {
             throw new IllegalArgumentException("Created later than updated is not possible");
         }
     }
@@ -60,7 +60,8 @@ public class Coworker {
      */
     @PrePersist
     private void setDateBeforePersisting() {
-        creationDate = lastUpdatedDate = new Date();
+        creationDate = new Date();
+        lastUpdatedDate = new Date(creationDate.getTime());
     }
 
     /**
@@ -99,19 +100,25 @@ public class Coworker {
     }
 
     public Date getCreationDate() {
-        return creationDate;
+        return new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
+        return new Date(lastUpdatedDate.getTime());
     }
 
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        if (creationDate == null) {
+            throw new IllegalArgumentException("Date can not be null");
+        }
+        this.creationDate = new Date(creationDate.getTime());
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        this.lastUpdatedDate = lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            throw new IllegalArgumentException("Date can not be null");
+        }
+        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     @Override

@@ -37,18 +37,28 @@ public class TimeSpan implements Serializable {
     }
 
     public TimeSpan(TimeSpanDAO t) {
+        if (t == null) {
+            throw new IllegalArgumentException("TimeSpanDAO must not be null");
+        }
         this.timeSpanId = t.getTimeSpanId();
         this.project = t.receiveProject();
         this.coworker = t.receiveCoworker();
-        this.startTime = t.getStartTime();
+        if (t.getStartTime() != null) {
+            this.startTime = new Date(t.getStartTime().getTime());
+        }
         this.durationInMinutes = t.getDurationInMinutes();
-        this.creationDate = t.getCreationDate();
-        this.lastUpdatedDate = t.getLastUpdatedDate();
+        if (t.getCreationDate() != null) {
+            this.creationDate = new Date(t.getCreationDate().getTime());
+        }
+        if (t.getLastUpdatedDate() != null) {
+            this.lastUpdatedDate = new Date(t.getLastUpdatedDate().getTime());
+        }
     }
 
     @PrePersist
     private void setDateBeforePersisting() {
-        lastUpdatedDate = creationDate = new Date();
+        lastUpdatedDate = new Date();
+        creationDate = new Date(lastUpdatedDate.getTime());
     }
 
     @PreUpdate
@@ -81,19 +91,28 @@ public class TimeSpan implements Serializable {
     }
 
     public Date getCreationDate() {
-        return creationDate;
+        return new Date(creationDate.getTime());
     }
 
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        if (creationDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.creationDate = new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            return null;
+        }
+        return new Date(lastUpdatedDate.getTime());
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        this.lastUpdatedDate = lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     public Date getStartTime() {
@@ -101,7 +120,10 @@ public class TimeSpan implements Serializable {
     }
 
     public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+        if (startTime == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.startTime = new Date(startTime.getTime());
     }
 
     public Long getDurationInMinutes() {

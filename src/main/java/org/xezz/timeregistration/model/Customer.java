@@ -38,8 +38,8 @@ public class Customer implements Serializable {
         }
         this.name = dao.getName();
         this.customerInfo = dao.getCustomerInfo();
-        this.creationDate = dao.getCreationDate();
-        this.lastUpdatedDate = dao.getLastUpdatedDate();
+        this.creationDate = new Date(dao.getCreationDate().getTime());
+        this.lastUpdatedDate = new Date(dao.getLastUpdatedDate().getTime());
     }
 
 
@@ -48,7 +48,8 @@ public class Customer implements Serializable {
      */
     @PrePersist
     private void setCreationDate() {
-        this.lastUpdatedDate = this.creationDate = new Date();
+        lastUpdatedDate = new Date();
+        creationDate = new Date(lastUpdatedDate.getTime());
     }
 
     /**
@@ -84,11 +85,11 @@ public class Customer implements Serializable {
     }
 
     public Date getCreationDate() {
-        return creationDate;
+        return new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
+        return new Date(lastUpdatedDate.getTime());
     }
 
     @Override

@@ -36,24 +36,34 @@ public class Project implements Serializable {
         this.name = name;
         this.description = description;
         this.customer = customer;
-        this.creationDate = creationDate;
-        this.lastUpdatedDate = lastUpdatedDate;
+        if (creationDate != null) {
+            this.creationDate = new Date(creationDate.getTime());
+        }
+        if (lastUpdatedDate != null) {
+            this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
+        }
     }
 
     public Project(ProjectDAO p) {
-        if (p.getProjectId() != null) {
-            this.projectId = p.getProjectId();
+        if (p == null) {
+            throw new IllegalArgumentException("ProjectDAO must not be null");
         }
+        this.projectId = p.getProjectId();
         this.name = p.getName();
         this.description = p.getDescription();
-        this.creationDate = p.getCreationDate();
-        this.lastUpdatedDate = p.getLastUpdatedDate();
+        if (p.getCreationDate() != null) {
+            this.creationDate = new Date(p.getCreationDate().getTime());
+        }
+        if (p.getLastUpdatedDate() != null) {
+            this.lastUpdatedDate = new Date(p.getLastUpdatedDate().getTime());
+        }
         this.customer = p.receiveCustomer();
     }
 
     @PrePersist
     private void setDateBeforePersisting() {
-        lastUpdatedDate = creationDate = new Date();
+        lastUpdatedDate = new Date();
+        creationDate = new Date(lastUpdatedDate.getTime());
     }
 
     @PreUpdate
@@ -94,19 +104,31 @@ public class Project implements Serializable {
     }
 
     public Date getCreationDate() {
-        return creationDate;
+        if (creationDate == null) {
+            return null;
+        }
+        return new Date(creationDate.getTime());
     }
 
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        if (creationDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.creationDate = new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
-        return lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            return null;
+        }
+        return new Date(lastUpdatedDate.getTime());
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        this.lastUpdatedDate = lastUpdatedDate;
+        if (lastUpdatedDate == null) {
+            throw new IllegalArgumentException("Date must not be null");
+        }
+        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     @Override
