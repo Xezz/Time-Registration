@@ -10,19 +10,21 @@ The purpose of this application is to track the time one used on a specific proj
     * Company
     + Project
     * Coworker
-    * Timeframe
+    * Timespan
 
 ### UI
 I recently moved the UI to its own project, so that it's more strictly divided what belongs where. Also helps to *compile* the ExtJS files so instead of packacking 10 MB of data it shrinks down to a a few KB. You can find the UI source files at https://github.com/Xezz/Time-Registration-UI
 
+### Recent Updates
+Finished most unit tests for entity and dao classes. Found quite a few bugs and missing functionality. I also started to configure the integration test suite, which was a massive undertaking since not the whole functionality of the XML based configuration is covered for the pure Java based configuration. Add on top of that problems with OpenJPA + in memory database and I moved to DBUnit!
 
 ### ToDo
 There is quite some stuff to add and fix. Ordered by priority / timeline:
 
-	* Unittest
-	* pmd / checkstyle
-	* Integrationtest
+	* pmd / checkstyle (currently only used inside the IDE)
+	* Integration tests
+	* Continuous Integration (Jenkins) setup
 	* Code Review
 	* Spring Security
-	* Authentication
-	* Authorization
+	    * Authentication
+	    * Authorization
