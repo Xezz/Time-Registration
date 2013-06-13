@@ -47,11 +47,12 @@ public class Coworker {
         }
         this.firstName = c.getFirstName();
         this.lastName = c.getLastName();
-        this.creationDate = new Date(c.getCreationDate().getTime());
+        if (c.getCreationDate() != null) {
+            this.creationDate = new Date(c.getCreationDate().getTime());
+        }
         // This should get updated by PrePersist
-        this.lastUpdatedDate = new Date(c.getLastUpdatedDate().getTime());
-        if (creationDate.getTime() > lastUpdatedDate.getTime()) {
-            throw new IllegalArgumentException("Created later than updated is not possible");
+        if (c.getLastUpdatedDate() != null) {
+            this.lastUpdatedDate = new Date(c.getLastUpdatedDate().getTime());
         }
     }
 
