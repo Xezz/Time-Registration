@@ -3,6 +3,7 @@ package org.xezz.timeregistration.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -18,5 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Import({DataConfig.class/*, WebConfig.class*/})
 @Configuration
 @EnableSpringConfigured
+// Set this a default profile, so it is possible to load different profiles if need be
+@Profile("default")
 public class AppConfig {
 }

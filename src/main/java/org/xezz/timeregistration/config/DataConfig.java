@@ -3,6 +3,7 @@ package org.xezz.timeregistration.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jndi.JndiObjectFactoryBean;
@@ -26,6 +27,7 @@ import javax.sql.DataSource;
 @EnableJpaRepositories("org.xezz.timeregistration.repository")
 @ComponentScan("org.xezz.timeregistration.model")
 @EnableTransactionManagement
+@Profile("default")
 public class DataConfig {
 
     @Bean
