@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <coworker coworkerid="1" creationdate="2013-06-01 03:15:13.41" firstname="Bastian" lastname="Koch"
+              lastupdateddate="2013-06-01 03:15:13.41"/>
+    <coworker coworkerid="401" creationdate="2013-06-03 16:21:54.18" firstname="Werner" lastname="Metz"
+              lastupdateddate="2013-06-03 16:21:54.18"/>
+    <customer customerid="51" creationdate="2013-06-01 03:15:56.35"
+              customerinfo="Development of JavaEE apps and other fancy stuff!" lastupdateddate="2013-06-01 03:15:56.35"
+              name="Xezz Ltd."/>
+    <customer customerid="52" creationdate="2013-06-01 03:16:25.0" customerinfo="Arnotis und Co, gelle!"
+              lastupdateddate="2013-06-01 04:21:13.01" name="Arno"/>
+    <customer customerid="151" creationdate="2013-06-01 04:20:00.05" customerinfo="Ein Test zum updaten "
+              lastupdateddate="2013-06-01 04:20:16.58" name="ExtJS Grid Update"/>
+    <customer customerid="201" creationdate="2013-06-01 04:48:04.86" customerinfo="&#214;"
+              lastupdateddate="2013-06-01 04:48:04.86" name="&#214;&#214;&#214;&#214;&#214;"/>
+    <openjpa_sequence_table id="0" sequence_value="751"/>
+    <project projectid="101" creationdate="2013-06-01 03:16:56.51"
+             description="Eine Anwendung zum Erfassen von Zeiten f&#252;r Projekte"
+             lastupdateddate="2013-06-01 03:16:56.51" name="Timeregistration" customer_customerid="52"/>
+    <project projectid="451" creationdate="2013-06-03 16:22:35.46" description="Irgendetwas, was der Werner macht!"
+             lastupdateddate="2013-06-03 16:22:35.46" name="Werners Projekt" customer_customerid="52"/>
+    <timespan timespanid="501" creationdate="2013-06-03 18:32:00.26" lastupdateddate="2013-06-03 18:59:54.06"
+              starttime="2013-06-03 00:45:00.0" coworker_coworkerid="1" project_projectid="451"
+              durationinminutes="180"/>
+    <timespan timespanid="551" creationdate="2013-06-03 19:14:17.72" lastupdateddate="2013-06-03 19:14:17.72"
+              starttime="2013-06-03 18:30:00.0" coworker_coworkerid="1" project_projectid="101" durationinminutes="45"/>
+    <timespan timespanid="651" creationdate="2013-06-06 11:49:49.83" lastupdateddate="2013-06-06 11:49:49.83"
+              starttime="2013-06-06 09:15:00.0" coworker_coworkerid="1" project_projectid="101"
+              durationinminutes="120"/>
+    <timespan timespanid="701" creationdate="2013-06-06 14:11:37.78" lastupdateddate="2013-06-06 14:11:37.78"
+              starttime="2013-06-06 11:30:00.0" coworker_coworkerid="1" project_projectid="101" durationinminutes="90"/>
+</dataset>
