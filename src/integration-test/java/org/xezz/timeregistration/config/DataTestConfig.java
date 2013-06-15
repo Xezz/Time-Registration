@@ -49,7 +49,7 @@ public class DataTestConfig {
         entityManagerFactory.setJpaDialect(new OpenJpaDialect());
         final Properties jpaProperties = new Properties();
         jpaProperties.setProperty("openjpa.jdbc.SynchronizeMappings", "buildSchema(ForeignKeys=true)");
-        //jpaProperties.setProperty("openjpa.Log", "SQL=TRACE");
+        jpaProperties.setProperty("openjpa.Log", "SQL=INFO");
         jpaProperties.setProperty("openjpa.InitializeEagerly", "true");
         jpaProperties.setProperty("openjpa.RuntimeUnenhancedClasses", "supported");
         entityManagerFactory.setJpaProperties(jpaProperties);
