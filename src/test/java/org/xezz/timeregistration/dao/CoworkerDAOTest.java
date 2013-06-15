@@ -46,7 +46,7 @@ public class CoworkerDAOTest {
         final Long id = dao.getCoworkerId() + 15L;
         CoworkerDAO assertee = new CoworkerDAO();
         assertee.setCoworkerId(id);
-        assertEquals("Test ID equality", id, dao.getCoworkerId());
+        assertEquals("Test ID equality", id, assertee.getCoworkerId());
         assertNotEquals("Test inequality of given ID and preset ID", coworkerId, assertee.getCoworkerId());
     }
 
