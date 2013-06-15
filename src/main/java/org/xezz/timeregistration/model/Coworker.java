@@ -51,6 +51,8 @@ public class Coworker {
             this.creationDate = new Date(c.getCreationDate().getTime());
         }
         // This should get updated by PrePersist
+        // But it should not matter what we create here
+        // On top of the integration test there should be a unit test!
         if (c.getLastUpdatedDate() != null) {
             this.lastUpdatedDate = new Date(c.getLastUpdatedDate().getTime());
         }
@@ -71,7 +73,8 @@ public class Coworker {
     @PreUpdate
     private void updateLastEditedDate() {
         lastUpdatedDate = new Date();
-        if (creationDate != null && lastUpdatedDate.getTime() < creationDate.getTime()) {
+        if (creationDate == null || lastUpdatedDate.getTime() < creationDate.getTime()) {
+            // creationDate shouldn't ever be null since PrePersist sets it, but one can make sure it is not null :D
             throw new IllegalArgumentException("Update date is earlier than the date of creation");
         }
     }
@@ -81,6 +84,9 @@ public class Coworker {
     }
 
     public void setCoworkerId(Long coworkerId) {
+        if (this.coworkerId != null && !this.coworkerId.equals(coworkerId)) {
+            throw new IllegalArgumentException("Can not change the ID of a Coworker");
+        }
         this.coworkerId = coworkerId;
     }
 
@@ -111,6 +117,9 @@ public class Coworker {
     public void setCreationDate(Date creationDate) {
         if (creationDate == null) {
             throw new IllegalArgumentException("Date can not be null");
+        }
+        if (this.creationDate != null && !creationDate.equals(this.creationDate)) {
+            throw new IllegalArgumentException("A once set creation date is not supposed to be changed!");
         }
         this.creationDate = new Date(creationDate.getTime());
     }
@@ -149,5 +158,13 @@ public class Coworker {
         result = prime * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = prime * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;
+    }
+
+    public void updateFromDao(final CoworkerDAO c) {
+        this.setCreationDate(c.getCreationDate());
+        this.setFirstName(c.getFirstName());
+        this.setLastUpdatedDate(c.getLastUpdatedDate());
+        this.setLastName(c.getLastName());
+        this.setCoworkerId(c.getCoworkerId());
     }
 }

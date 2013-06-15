@@ -116,7 +116,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     public CoworkerDAO updateCoworker(CoworkerDAO coworkerDAO) {
         Coworker coworker = coworkerRepository.findOne(coworkerDAO.getCoworkerId());
         if (coworker != null) {
-            coworker = new Coworker(coworkerDAO);
+            coworker.updateFromDao(coworkerDAO);
             return new CoworkerDAO(coworkerRepository.save(coworker));
         } else {
             return null;

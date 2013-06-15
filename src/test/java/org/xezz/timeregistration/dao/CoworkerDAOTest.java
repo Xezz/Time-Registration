@@ -34,10 +34,18 @@ public class CoworkerDAOTest {
         assertEquals("Test of ID equality", coworkerId, dao.getCoworkerId());
     }
 
-    @Test
-    public void testSetCoworkerId() throws Exception {
-        final Long id = 123451232L;
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetCoworkerIdFailsDueToSetId() throws Exception {
+        final Long id = dao.getCoworkerId() + 15L;
         dao.setCoworkerId(id);
+    }
+
+
+    @Test
+    public void testSetCoworkerIdOnFreshCoworkerDAO() throws Exception {
+        final Long id = dao.getCoworkerId() + 15L;
+        CoworkerDAO assertee = new CoworkerDAO();
+        assertee.setCoworkerId(id);
         assertEquals("Test ID equality", id, dao.getCoworkerId());
         assertNotEquals("Test inequality of given ID and preset ID", coworkerId, dao.getCoworkerId());
     }

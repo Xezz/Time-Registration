@@ -5,7 +5,8 @@ import org.junit.Test;
 
 import java.util.Date;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * User: Xezz
@@ -36,11 +37,11 @@ public class CoworkerTest {
     }
 
     @Test
-    public void testSetCoworkerId() throws Exception {
+    public void testSetCoworkerIdWithFreshCoworker() throws Exception {
+        final Coworker fresh = new Coworker();
         final Long assertTo = coworkerId + 42314112;
-        assertFalse("Coworkerid should not equal a new coworkerid", assertTo.equals(coworkerId));
-        testee.setCoworkerId(assertTo);
-        assertEquals("CoworkerID is equal", assertTo, testee.getCoworkerId());
+        fresh.setCoworkerId(assertTo);
+        assertEquals("CoworkerID is equal", assertTo, fresh.getCoworkerId());
     }
 
     @Test
@@ -73,11 +74,10 @@ public class CoworkerTest {
         assertEquals("getCreationDate returned not the same Date", creationDate, testee.getCreationDate());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testSetCreationDate() throws Exception {
         final Date assertTo = new Date(creationDate.getTime() + 34131);
         testee.setCreationDate(assertTo);
-        assertEquals("Date set by setCreationDate is not returned", assertTo, testee.getCreationDate());
     }
 
     @Test

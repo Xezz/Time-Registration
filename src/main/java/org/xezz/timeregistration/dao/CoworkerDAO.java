@@ -59,6 +59,9 @@ public class CoworkerDAO {
     }
 
     public void setCoworkerId(Long coworkerId) {
+        if (this.coworkerId != null) {
+            throw new IllegalArgumentException("You are not allowed to change the ID once it is set");
+        }
         this.coworkerId = coworkerId;
     }
 
