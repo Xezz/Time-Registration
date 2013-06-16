@@ -4,10 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.xezz.timeregistration.model.Customer;
+import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.repository.CustomerRepository;
 
 import java.util.Date;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
@@ -95,6 +97,11 @@ public class ProjectDAOTest {
         assertNotEquals("Test set creation date", creationDate, dao.getCreationDate());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetCreationDateThrowsIAEWithNullValues() throws Exception {
+        dao.setCreationDate(null);
+    }
+
     @Test
     public void testGetLastUpdatedDate() throws Exception {
         assertEquals("Test get last updated date", lastUpdatedDate, dao.getLastUpdatedDate());
@@ -105,6 +112,11 @@ public class ProjectDAOTest {
         final Date toAssert = new Date(lastUpdatedDate.getTime() + 12314);
         dao.setLastUpdatedDate(toAssert);
         assertNotEquals("Test set last updated Date", lastUpdatedDate, dao.getLastUpdatedDate());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetLastUpdatedDateThrowsIAEwithNullValue() throws Exception {
+        dao.setLastUpdatedDate(null);
     }
 
     @Test
@@ -254,5 +266,17 @@ public class ProjectDAOTest {
     public void testReceivedCustomerHasSameId() throws Exception {
         Customer customer = dao.receiveCustomer();
         assertEquals("Testing the id to be equal", customerId, customer.getCustomerId());
+    }
+
+    @Test
+    public void testConstructorWithProject() throws Exception {
+        Project constructed = new Project(dao);
+        ProjectDAO testee = new ProjectDAO(constructed);
+        assertThat("Id was not equal", testee.getProjectId(), is(constructed.getProjectId()));
+        assertThat("Customer id was not equal", testee.getCustomerId(), is(constructed.getCustomer().getCustomerId()));
+        assertThat("Creation date was not equal", testee.getCreationDate(), is(constructed.getCreationDate()));
+        assertThat("Last updated date was not equal", testee.getLastUpdatedDate(), is(constructed.getLastUpdatedDate()));
+        assertThat("Name was not equal", testee.getName(), is(constructed.getName()));
+        assertThat("Description was not equal", testee.getDescription(), is(constructed.getDescription()));
     }
 }

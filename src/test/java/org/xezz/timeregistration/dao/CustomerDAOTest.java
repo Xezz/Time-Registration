@@ -2,9 +2,11 @@ package org.xezz.timeregistration.dao;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.xezz.timeregistration.model.Customer;
 
 import java.util.Date;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 /**
@@ -77,6 +79,11 @@ public class CustomerDAOTest {
         assertNotEquals("Set creation date changed Date", creationDate, dao.getCreationDate());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetCreationDateThrowsIAEWithNullValue() throws Exception {
+        dao.setCreationDate(null);
+    }
+
     @Test
     public void testGetLastUpdatedDate() throws Exception {
         assertEquals("Get last updated date", lastUpdatedDate, dao.getLastUpdatedDate());
@@ -88,6 +95,11 @@ public class CustomerDAOTest {
         dao.setLastUpdatedDate(toAssert);
         assertEquals("Set last updated Date", toAssert, dao.getLastUpdatedDate());
         assertNotEquals("Set last updated Date changed Date", lastUpdatedDate, dao.getLastUpdatedDate());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetLastUpdatedDateThrowsIAEWithNullValue() throws Exception {
+        dao.setLastUpdatedDate(null);
     }
 
     @Test
@@ -155,5 +167,16 @@ public class CustomerDAOTest {
         assertNotEquals("Different hashcodes with different info", new CustomerDAO(customerId, name, null, creationDate, lastUpdatedDate).hashCode(), dao.hashCode());
         assertNotEquals("Different hashcodes with different creation date", new CustomerDAO(customerId, name, customerInfo, null, lastUpdatedDate), dao.hashCode());
         assertNotEquals("Different hashcodes with different last updated date", new CustomerDAO(customerId, name, customerInfo, creationDate, null).hashCode(), dao.hashCode());
+    }
+
+    @Test
+    public void testConstructorWithCustomer() throws Exception {
+        Customer testee = new Customer(dao);
+        CustomerDAO testDao = new CustomerDAO(testee);
+        assertThat("Id was not equal", testDao.getCustomerId(), is(testee.getCustomerId()));
+        assertThat("Name was not equal", testDao.getName(), is(testee.getName()));
+        assertThat("Info was not equal", testDao.getCustomerInfo(), is(testee.getCustomerInfo()));
+        assertThat("Creation date was not equal", testDao.getCreationDate(), is(testee.getCreationDate()));
+        assertThat("Last updated date was not equal", testDao.getLastUpdatedDate(), is(testee.getLastUpdatedDate()));
     }
 }

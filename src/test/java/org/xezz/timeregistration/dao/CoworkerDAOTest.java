@@ -6,6 +6,7 @@ import org.xezz.timeregistration.model.Coworker;
 
 import java.util.Date;
 
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 
@@ -39,7 +40,6 @@ public class CoworkerDAOTest {
         final Long id = dao.getCoworkerId() + 15L;
         dao.setCoworkerId(id);
     }
-
 
     @Test
     public void testSetCoworkerIdOnFreshCoworkerDAO() throws Exception {
@@ -89,6 +89,11 @@ public class CoworkerDAOTest {
         assertNotEquals("Test setting creation date not equal to old value", creationDate, dao.getCreationDate());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetCreationDateThrowsIAE() throws Exception {
+        dao.setCreationDate(null);
+    }
+
     @Test
     public void testGetLastUpdatedDate() throws Exception {
         assertEquals("Test getting creation date", creationDate, dao.getCreationDate());
@@ -102,11 +107,26 @@ public class CoworkerDAOTest {
         assertNotEquals("Test setting creation date not equal to old date", lastUpdatedDate, dao.getLastUpdatedDate());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetLastUpdatedDateThrowsIAEonNull() throws Exception {
+        dao.setLastUpdatedDate(null);
+    }
+
     @Test
     public void testEquals() throws Exception {
         CoworkerDAO toAssert = new CoworkerDAO(coworkerId, firstname, lastname, creationDate, lastUpdatedDate);
         assertTrue("Test equals() with two created objects of same values", toAssert.equals(dao) && dao.equals(toAssert));
 
+    }
+
+    @Test
+    public void testEqualsWithItself() throws Exception {
+        assertThat("Test equals() with itself returned false", dao.equals(dao), is(true));
+    }
+
+    @Test
+    public void testEqualsNotWithDifferentClass() throws Exception {
+        assertThat("Equals() returned true on different objects", dao.equals("sfsafa"), is(not(true)));
     }
 
     @Test
@@ -170,12 +190,18 @@ public class CoworkerDAOTest {
     @Test
     public void testDefaultConstructor() throws Exception {
         final CoworkerDAO toAssert = new CoworkerDAO();
+        assertThat("Default constructor returned null", toAssert, is(not(nullValue())));
         toAssert.setCoworkerId(coworkerId);
         toAssert.setFirstName(firstname);
         toAssert.setLastName(lastname);
         toAssert.setCreationDate(creationDate);
         toAssert.setLastUpdatedDate(lastUpdatedDate);
         assertTrue("Default constructor objects equal", dao.equals(toAssert) && toAssert.equals(dao));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructorThrowsIAEwithNullCoworker() throws Exception {
+        new CoworkerDAO(null);
     }
 
     @Test

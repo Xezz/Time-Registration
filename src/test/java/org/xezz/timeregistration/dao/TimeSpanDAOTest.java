@@ -10,6 +10,8 @@ import org.xezz.timeregistration.repository.ProjectRepository;
 
 import java.util.Date;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
@@ -93,6 +95,11 @@ public class TimeSpanDAOTest {
         assertEquals("Test set start time new value", assertTime, dao.getStartTime());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetStartTimeThrowsIAEWithNullValue() throws Exception {
+        dao.setStartTime(null);
+    }
+
     @Test
     public void testGetDurationInMinutes() throws Exception {
         assertEquals("Test duration", durationInMinutes, dao.getDurationInMinutes());
@@ -119,6 +126,11 @@ public class TimeSpanDAOTest {
         assertEquals("Test set creation new value", assertDate, dao.getCreationDate());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetCreationDateThrowsIAEWithNullValue() throws Exception {
+        dao.setCreationDate(null);
+    }
+
     @Test
     public void testGetLastUpdatedDate() throws Exception {
         assertEquals("Test get updated date", lastUpdatedDate, dao.getLastUpdatedDate());
@@ -130,6 +142,11 @@ public class TimeSpanDAOTest {
         dao.setLastUpdatedDate(assertDate);
         assertNotEquals("Test last update date old value", lastUpdatedDate, dao.getLastUpdatedDate());
         assertEquals("Test last update date new value", assertDate, dao.getLastUpdatedDate());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetLastUpdatedDateThrowsIAEWithNullValue() throws Exception {
+        dao.setLastUpdatedDate(null);
     }
 
     @Test
@@ -149,6 +166,33 @@ public class TimeSpanDAOTest {
     }
 
     @Test
+    public void testHashCodeDifferentObjects() throws Exception {
+        final long failTimeSpanId = timeSpanId + 12345L;
+        final long failProjectId = projectId + 123456L;
+        final long failCoworkerId = coworkerId + 123456L;
+        final Date failStartime = new Date(startTime.getTime() + 45676);
+        final long failDurationInMinutes = durationInMinutes + 123123L;
+        final Date failCreationDate = new Date(creationDate.getTime() + 1231);
+        final Date failLastUpdatedDate = new Date(lastUpdatedDate.getTime() + 43131);
+        TimeSpanDAO assertDao;
+        assertDao = new TimeSpanDAO(failTimeSpanId, projectId, coworkerId, startTime, durationInMinutes, creationDate, lastUpdatedDate);
+        assertThat("Hashcode equaled with different timespan ids", dao.hashCode(), is(not(assertDao.hashCode())));
+        assertDao = new TimeSpanDAO(timeSpanId, failProjectId, coworkerId, startTime, durationInMinutes, creationDate, lastUpdatedDate);
+        assertThat("Hashcode equaled with different project ids", dao.hashCode(), is(not(assertDao.hashCode())));
+        assertDao = new TimeSpanDAO(timeSpanId, projectId, failCoworkerId, startTime, durationInMinutes, creationDate, lastUpdatedDate);
+        assertThat("Hashcode equaled with different coworker ids", dao.hashCode(), is(not(assertDao.hashCode())));
+        assertDao = new TimeSpanDAO(timeSpanId, projectId, coworkerId, failStartime, durationInMinutes, creationDate, lastUpdatedDate);
+        assertThat("Hashcode equaled with different starttime", dao.hashCode(), is(not(assertDao.hashCode())));
+        assertDao = new TimeSpanDAO(timeSpanId, projectId, coworkerId, startTime, failDurationInMinutes, creationDate, lastUpdatedDate);
+        assertThat("Hashcode equaled with different duration", dao.hashCode(), is(not(assertDao.hashCode())));
+        assertDao = new TimeSpanDAO(timeSpanId, projectId, coworkerId, startTime, durationInMinutes, failCreationDate, lastUpdatedDate);
+        assertThat("Hashcode equaled with different creationdate", dao.hashCode(), is(not(assertDao.hashCode())));
+        assertDao = new TimeSpanDAO(timeSpanId, projectId, coworkerId, startTime, durationInMinutes, creationDate, failLastUpdatedDate);
+        assertThat("Hashcode equaled with different lastupdateddate", dao.hashCode(), is(not(assertDao.hashCode())));
+
+    }
+
+    @Test
     public void testReceiveProject() throws Exception {
         assertNotNull("Test receive project", dao.receiveProject());
     }
@@ -158,5 +202,5 @@ public class TimeSpanDAOTest {
         assertNotNull("Test receive coworker", dao.receiveCoworker());
     }
 
-    // TODO: MORE tests, especially assuming fails!
+
 }
