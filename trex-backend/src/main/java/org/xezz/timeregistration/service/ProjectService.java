@@ -1,4 +1,4 @@
-package org.xezz.timeregistration.services;
+package org.xezz.timeregistration.service;
 
 import org.xezz.timeregistration.dao.CustomerDAO;
 import org.xezz.timeregistration.dao.ProjectDAO;

@@ -1,4 +1,4 @@
-package org.xezz.timeregistration.services.impl;
+package org.xezz.timeregistration.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import org.xezz.timeregistration.dao.TimeSpanDAO;
 import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.repository.CoworkerRepository;
 import org.xezz.timeregistration.repository.ProjectRepository;
-import org.xezz.timeregistration.services.CoworkerService;
+import org.xezz.timeregistration.service.CoworkerService;
 
 import java.util.ArrayList;
 import java.util.List;

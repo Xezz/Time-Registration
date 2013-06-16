@@ -19,8 +19,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.xezz.timeregistration.config.AppTestConfig;
 import org.xezz.timeregistration.config.DataTestConfig;
 import org.xezz.timeregistration.dao.CoworkerDAO;
-import org.xezz.timeregistration.services.CoworkerService;
-import org.xezz.timeregistration.services.impl.CoworkerServiceImpl;
+import org.xezz.timeregistration.service.CoworkerService;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -161,6 +160,8 @@ public class ITCoworkerServiceImplTest {
         assertThat("Expected an Id which is not null", addedDao.getCoworkerId(), is(notNullValue()));
     }
 
+    // FAILS b/C: http://stackoverflow.com/questions/17121620/spring-data-jpa-update-query-not-updating
+    // See comment of Oliver Gierke who actually codes this
     @Test
     public void testUpdateCoworker() throws Exception {
         final CoworkerDAO dao = coworkerService.coworkerById(coworkerId);
@@ -170,7 +171,9 @@ public class ITCoworkerServiceImplTest {
         final CoworkerDAO updatedDao = coworkerService.updateCoworker(dao);
         assertNotNull("Expected coworker not being null after update", updatedDao);
         assertThat("Expected first name to be updated", updatedFirstname, is(updatedDao.getFirstName()));
-        // TODO: Move this to its own test
+        // FINAL NOTE: this updates only on flush / clear of the entityManager, so dont expect to get back the correct one...
+        // You can query for the real object form the DB tho
+        // Clearly need to buy the EJB book I had at work again, to look this up
         final CoworkerDAO queriedDao = coworkerService.coworkerById(coworkerId);
         assertThat("Expected last updated date to have changed and be later than the old one", lastUpdatedDate, is(lessThan(queriedDao.getLastUpdatedDate())));
     }

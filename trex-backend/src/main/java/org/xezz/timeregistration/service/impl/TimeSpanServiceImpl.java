@@ -1,4 +1,4 @@
-package org.xezz.timeregistration.services.impl;
+package org.xezz.timeregistration.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.xezz.timeregistration.model.TimeSpan;
 import org.xezz.timeregistration.repository.CoworkerRepository;
 import org.xezz.timeregistration.repository.ProjectRepository;
 import org.xezz.timeregistration.repository.TimeSpanRepository;
-import org.xezz.timeregistration.services.TimeSpanService;
+import org.xezz.timeregistration.service.TimeSpanService;
 
 import java.util.ArrayList;
 import java.util.List;

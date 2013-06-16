@@ -9,7 +9,7 @@ import java.util.Date;
  * User: Xezz
  * Date: 30.05.13
  * Time: 22:50
- * Coworker Data Access Object for RESTful services
+ * Coworker Data Access Object for RESTful service
  */
 @Configurable
 public class CoworkerDAO {

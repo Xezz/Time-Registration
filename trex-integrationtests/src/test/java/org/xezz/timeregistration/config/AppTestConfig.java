@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * Spring based bootstrap configuration for the whole application
  */
 @EnableTransactionManagement
-@ComponentScan({"org.xezz.timeregistration.services", "org.xezz.timeregistration.model", "org.xezz.timeregistration.dao", "org.xezz.timeregistration.repository"})
+@ComponentScan({"org.xezz.timeregistration.service", "org.xezz.timeregistration.model", "org.xezz.timeregistration.dao"})
 @EnableJpaRepositories("org.xezz.timeregistration.repository")
 // Disabled webconfig for now, as it should get loaded from the context
 @Import({DataTestConfig.class})

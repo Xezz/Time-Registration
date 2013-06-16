@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.xezz.timeregistration.dao.TimeSpanDAO;
-import org.xezz.timeregistration.services.TimeSpanService;
+import org.xezz.timeregistration.service.TimeSpanService;
 
 /**
  * User: Xezz

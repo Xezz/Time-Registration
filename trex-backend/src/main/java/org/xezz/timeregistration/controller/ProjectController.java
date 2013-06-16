@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.xezz.timeregistration.dao.ProjectDAO;
-import org.xezz.timeregistration.services.ProjectService;
+import org.xezz.timeregistration.service.ProjectService;
 
 /**
  * User: Xezz
