@@ -57,5 +57,5 @@ public interface CoworkerRepository extends CrudRepository<Coworker, Long> {
      * @return List of all Coworkers
      */
     @Query("SELECT c FROM Coworker c")
-    public Iterable<Coworker> findAllCoworkers();
+    Iterable<Coworker> findAllCoworkers();
 }
