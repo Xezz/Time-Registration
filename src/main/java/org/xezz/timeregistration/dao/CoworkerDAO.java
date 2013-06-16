@@ -37,6 +37,9 @@ public class CoworkerDAO {
      * @param c the Coworker to use
      */
     public CoworkerDAO(Coworker c) {
+        if (c == null) {
+            throw new IllegalArgumentException("Coworker must not be null");
+        }
         this.coworkerId = c.getCoworkerId();
         this.firstName = c.getFirstName();
         this.lastName = c.getLastName();
