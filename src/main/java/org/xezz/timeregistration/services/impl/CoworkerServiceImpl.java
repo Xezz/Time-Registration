@@ -88,7 +88,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     public CoworkerDAO coworkerById(Long id) {
         LOGGER.info("Trying to find coworker with id: " + id);
         Coworker coworker = coworkerRepository.findOne(id);
-        final CoworkerDAO one = (coworker != null ? new CoworkerDAO(coworker) : null);
+        final CoworkerDAO one = coworker != null ? new CoworkerDAO(coworker) : null;
         LOGGER.info("Found one?: " + (one != null));
         return one;
     }

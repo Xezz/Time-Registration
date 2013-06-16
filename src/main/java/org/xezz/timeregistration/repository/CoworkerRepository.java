@@ -21,7 +21,7 @@ public interface CoworkerRepository extends CrudRepository<Coworker, Long> {
      * @param firstName String the first name of the Coworker
      * @return List of all Coworkers that match the given first name
      */
-    public Iterable<Coworker> findByFirstName(String firstName);
+    Iterable<Coworker> findByFirstName(String firstName);
 
     /**
      * Find all Coworkers with this last name
@@ -29,7 +29,7 @@ public interface CoworkerRepository extends CrudRepository<Coworker, Long> {
      * @param lastName String the last name of the Coworker
      * @return List of all Coworkers that match the given last name
      */
-    public Iterable<Coworker> findByLastName(String lastName);
+    Iterable<Coworker> findByLastName(String lastName);
 
     /**
      * Find all Coworker with the given first and last name
@@ -38,7 +38,7 @@ public interface CoworkerRepository extends CrudRepository<Coworker, Long> {
      * @param lastName  String the last name
      * @return List of all Coworkers matching the last and first name
      */
-    public Iterable<Coworker> findByFirstNameAndLastName(String firstName, String lastName);
+    Iterable<Coworker> findByFirstNameAndLastName(String firstName, String lastName);
 
     // Get the Coworker from a timeframe, when the timeframe contains a project
 
@@ -49,7 +49,7 @@ public interface CoworkerRepository extends CrudRepository<Coworker, Long> {
      * @return List of all Coworkers that have worked on the give project
      */
     @Query("SELECT t.coworker FROM TimeSpan t WHERE t.project = :project")
-    public Iterable<Coworker> findCoworkersByProject(@Param("project") Project project);
+    Iterable<Coworker> findCoworkersByProject(@Param("project") Project project);
 
     /**
      * Get all Coworkers

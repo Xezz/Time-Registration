@@ -17,7 +17,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
      * @param name the exact name of the Customer to find
      * @return List of all Customers that have this name
      */
-    public Iterable<Customer> findByName(String name);
+    Iterable<Customer> findByName(String name);
 
     /**
      * Fetch all Customers that have a name like this
@@ -25,7 +25,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
      * @param name part of the Customers name to match
      * @return List of all Customers that contain this part of its name
      */
-    public Iterable<Customer> findByNameLike(String name);
+    Iterable<Customer> findByNameLike(String name);
 
     /**
      * Fetch all Customers that a Coworker is associated with
@@ -35,7 +35,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
      */
     // FIXME: MIght be broken, will have to revisit
     @Query("SELECT t.project.customer FROM TimeSpan t WHERE t.coworker = :coworker")
-    public Iterable<Customer> findCustomersByCoworker(CoworkerDAO c);
+    Iterable<Customer> findCustomersByCoworker(CoworkerDAO c);
 
     /**
      * Fetch all Customers
@@ -43,5 +43,5 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
      * @return List of all Customers
      */
     @Query("SELECT c FROM Customer c")
-    public Iterable<Customer> findAllCustomers();
+    Iterable<Customer> findAllCustomers();
 }

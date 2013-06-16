@@ -11,7 +11,7 @@ import org.xezz.timeregistration.model.TimeSpan;
  * Time: 22:07
  */
 public interface TimeSpanRepository extends CrudRepository<TimeSpan, Long> {
-    public Iterable<TimeSpan> findByProject(Project project);
+    Iterable<TimeSpan> findByProject(Project project);
 
-    public Iterable<TimeSpan> findByCoworker(Coworker coworker);
+    Iterable<TimeSpan> findByCoworker(Coworker coworker);
 }

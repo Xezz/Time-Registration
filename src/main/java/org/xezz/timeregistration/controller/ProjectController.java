@@ -19,10 +19,9 @@ import org.xezz.timeregistration.services.ProjectService;
 @RequestMapping(value = "api/project")
 public class ProjectController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
     @Autowired
     ProjectService service;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 
     /**
      * Request all Projects
@@ -75,20 +74,28 @@ public class ProjectController {
         return service.getById(id);
     }
 
+    /**
+     * Request to get all Projects with a given name
+     *
+     * @param name String the name of the Project
+     * @return All matching Projects
+     */
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    private Iterable<ProjectDAO> getByName(@PathVariable("name") String name) {
+    public Iterable<ProjectDAO> getByName(@PathVariable("name") String name) {
         LOGGER.info("Request to get Projects by name");
         return service.getByName(name);
     }
 
+    /**
+     * Delete a given project
+     *
+     * @param projectDAO the Project to delete
+     */
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    private void delete(@RequestBody ProjectDAO projectDAO) {
+    public void delete(@RequestBody ProjectDAO projectDAO) {
         LOGGER.info("Request to delete a Project");
         service.deleteProject(projectDAO);
     }
-
-
-    // TODO: Decide how to add a time span etc.
 }
