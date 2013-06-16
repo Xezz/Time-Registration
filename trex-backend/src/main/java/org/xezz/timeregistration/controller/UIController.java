@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/*")
 public class UIController {
     public static final Logger LOGGER = LoggerFactory.getLogger(UIController.class);
+
     /*
         Map index.jsp to / see:
         http://stackoverflow.com/questions/1483063/spring-mvc-3-and-handling-static-content-am-i-missing-something
