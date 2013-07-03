@@ -35,7 +35,7 @@ public class CoworkerServiceImpl implements CoworkerService {
 
     // FIXME: SO this for a real way to handle it
     @Override
-    public Iterable<CoworkerDAO> coworkersAll() {
+    public Iterable<CoworkerDAO> getAllCoworkers() {
         final Iterable<Coworker> allCoworkers = coworkerRepository.findAllCoworkers();
         final List<CoworkerDAO> allDao = new ArrayList<CoworkerDAO>();
         for (Coworker c : allCoworkers) {
@@ -45,7 +45,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public Iterable<CoworkerDAO> coworkersByFirstName(String firstName) {
+    public Iterable<CoworkerDAO> getCoworkersByFirstName(String firstName) {
         final Iterable<Coworker> byFirstName = coworkerRepository.findByFirstName(firstName);
         final List<CoworkerDAO> daoList = new ArrayList<CoworkerDAO>();
         for (Coworker c : byFirstName) {
@@ -55,7 +55,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public Iterable<CoworkerDAO> coworkersByLastName(String lastName) {
+    public Iterable<CoworkerDAO> getCoworkersByLastName(String lastName) {
         final Iterable<Coworker> byLastName = coworkerRepository.findByLastName(lastName);
         final List<CoworkerDAO> daoList = new ArrayList<CoworkerDAO>();
         for (Coworker c : byLastName) {
@@ -65,7 +65,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public Iterable<CoworkerDAO> coworkersByFirstAndLastName(String firstName, String lastName) {
+    public Iterable<CoworkerDAO> getCoworkersByFirstAndLastName(String firstName, String lastName) {
         final Iterable<Coworker> byFirstNameAndLastName = coworkerRepository.findByFirstNameAndLastName(firstName, lastName);
         final List<CoworkerDAO> daoList = new ArrayList<CoworkerDAO>();
         for (Coworker c : byFirstNameAndLastName) {
@@ -75,7 +75,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public Iterable<CoworkerDAO> coworkersByProject(ProjectDAO p) {
+    public Iterable<CoworkerDAO> getCoworkersByProject(ProjectDAO p) {
         final Iterable<Coworker> coworkersByProject = coworkerRepository.findCoworkersByProject(projectRepository.findOne(p.getProjectId()));
         final List<CoworkerDAO> daoList = new ArrayList<CoworkerDAO>();
         for (Coworker c : coworkersByProject) {
@@ -85,7 +85,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public CoworkerDAO coworkerById(Long id) {
+    public CoworkerDAO getCoworkerById(Long id) {
         LOGGER.debug("Trying to find coworker with id: " + id);
         Coworker coworker = coworkerRepository.findOne(id);
         final CoworkerDAO one = coworker != null ? new CoworkerDAO(coworker) : null;
@@ -94,8 +94,8 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public CoworkerDAO coworkerByTimeFrame(TimeSpanDAO timeSpanDAO) {
-        return coworkerById(timeSpanDAO.getCoworkerId());
+    public CoworkerDAO getCoworkerByTimeFrame(TimeSpanDAO timeSpanDAO) {
+        return getCoworkerById(timeSpanDAO.getCoworkerId());
     }
 
     @Override

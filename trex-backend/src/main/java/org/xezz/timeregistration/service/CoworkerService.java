@@ -17,7 +17,7 @@ public interface CoworkerService {
      *
      * @return List of all Coworkers
      */
-    Iterable<CoworkerDAO> coworkersAll();
+    Iterable<CoworkerDAO> getAllCoworkers();
 
     /**
      * Get all coworkers with this first name
@@ -25,7 +25,7 @@ public interface CoworkerService {
      * @param firstName String the first name of the Coworkers
      * @return List of all Coworkers with this first name
      */
-    Iterable<CoworkerDAO> coworkersByFirstName(String firstName);
+    Iterable<CoworkerDAO> getCoworkersByFirstName(String firstName);
 
     /**
      * Get all Coworkers with this last name
@@ -33,7 +33,7 @@ public interface CoworkerService {
      * @param lastName String the last name of the Coworkers
      * @return List of all Coworkers with this last name
      */
-    Iterable<CoworkerDAO> coworkersByLastName(String lastName);
+    Iterable<CoworkerDAO> getCoworkersByLastName(String lastName);
 
     /**
      * Get all Coworkers that match the given first and last name
@@ -42,7 +42,7 @@ public interface CoworkerService {
      * @param lastName  String the last name of the coworker
      * @return List of all Coworkers that match the first and last name
      */
-    Iterable<CoworkerDAO> coworkersByFirstAndLastName(String firstName, String lastName);
+    Iterable<CoworkerDAO> getCoworkersByFirstAndLastName(String firstName, String lastName);
 
     /**
      * Get a specific Coworker by its ID
@@ -50,9 +50,7 @@ public interface CoworkerService {
      * @param id Long the unique ID of a Coworker
      * @return Coworker that has this id or if none found {@code null}
      */
-    CoworkerDAO coworkerById(Long id);
-
-    // FIXME: Is this really needed? Coworker is stored already in the timeframe
+    CoworkerDAO getCoworkerById(Long id);
 
     /**
      * Get a Coworker by a specific timeSpan
@@ -60,7 +58,7 @@ public interface CoworkerService {
      * @param timeSpanDAO TimeSpan a Coworker worked on
      * @return Coworker that is stored in the TimeSpan
      */
-    CoworkerDAO coworkerByTimeFrame(TimeSpanDAO timeSpanDAO);
+    CoworkerDAO getCoworkerByTimeFrame(TimeSpanDAO timeSpanDAO);
 
     /**
      * Get all Coworkers that worked for a specific Project
@@ -68,7 +66,7 @@ public interface CoworkerService {
      * @param p Project to get all Coworkers
      * @return List of all Coworkers involved in the Project
      */
-    Iterable<CoworkerDAO> coworkersByProject(ProjectDAO p);
+    Iterable<CoworkerDAO> getCoworkersByProject(ProjectDAO p);
 
     /**
      * Persist a new Coworker

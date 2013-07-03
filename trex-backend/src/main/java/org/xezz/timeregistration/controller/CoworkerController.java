@@ -40,7 +40,7 @@ public class CoworkerController {
     @ResponseBody
     public Iterable<CoworkerDAO> getAll() {
         LOGGER.info("Request to get all Coworker");
-        return service.coworkersAll();
+        return service.getAllCoworkers();
     }
 
     /**
@@ -53,7 +53,7 @@ public class CoworkerController {
     @ResponseBody
     public CoworkerDAO get(@PathVariable("id") Long id) {
         LOGGER.info("Request to get Coworker by id: " + id);
-        final CoworkerDAO coworkerDAO = service.coworkerById(id);
+        final CoworkerDAO coworkerDAO = service.getCoworkerById(id);
         LOGGER.info("Coworker found == null? " + (coworkerDAO == null));
         if (coworkerDAO != null) {
             LOGGER.info("Coworker: " + coworkerDAO.getFirstName() + " " + coworkerDAO.getLastName());
@@ -71,7 +71,7 @@ public class CoworkerController {
     @ResponseBody
     public Iterable<CoworkerDAO> getByFirstName(@PathVariable("firstname") String firstname) {
         LOGGER.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
-        return service.coworkersByFirstName(firstname);
+        return service.getCoworkersByFirstName(firstname);
     }
 
     /**
@@ -84,7 +84,7 @@ public class CoworkerController {
     @ResponseBody
     public Iterable<CoworkerDAO> getByLastName(@PathVariable("lastname") String lastname) {
         LOGGER.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
-        return service.coworkersByLastName(lastname);
+        return service.getCoworkersByLastName(lastname);
     }
 
     /**
