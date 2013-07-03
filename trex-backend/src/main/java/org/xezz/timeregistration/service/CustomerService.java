@@ -74,7 +74,7 @@ public interface CustomerService {
      * @param t TimeSpan of concern
      * @return Customer that gets charged for the timeframe
      */
-    CustomerDAO customerByTimeFrame(TimeSpanDAO t);
+    CustomerDAO customerByTimeSpan(TimeSpanDAO t);
 
     /**
      * Get all Customers the given Coworker worked for
@@ -82,7 +82,7 @@ public interface CustomerService {
      * @param c Coworker in concern
      * @return List of Customers the given Coworker was involved with
      */
-    Iterable<CustomerDAO> customerByCoworker(CoworkerDAO c);
+    Iterable<CustomerDAO> customersByCoworker(CoworkerDAO c);
 
     /**
      * Delete an existing Customer
