@@ -7,10 +7,11 @@ import org.xezz.timeregistration.dao.CoworkerDAO;
 import org.xezz.timeregistration.dao.CustomerDAO;
 import org.xezz.timeregistration.dao.ProjectDAO;
 import org.xezz.timeregistration.dao.TimeSpanDAO;
+import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Customer;
+import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.repository.CustomerRepository;
 import org.xezz.timeregistration.repository.ProjectRepository;
-import org.xezz.timeregistration.repository.TimeSpanRepository;
 import org.xezz.timeregistration.service.CustomerService;
 
 import java.util.ArrayList;
@@ -29,8 +30,6 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRepository customerRepository;
     @Autowired
     ProjectRepository projectRepository;
-    @Autowired
-    TimeSpanRepository timeSpanRepository;
 
     @Override
     public Iterable<CustomerDAO> customerByName(String name) {
@@ -44,9 +43,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Iterable<CustomerDAO> customerByNameMatch(String name) {
+        final List<CustomerDAO> cList = new ArrayList<CustomerDAO>();
+        if (name == null) {
+            // fail gracefully
+            return cList;
+        }
         // TODO: Revisit this
-        // make sure we actually like
-        // Should most likely not do it for now :D
         StringBuilder builder = new StringBuilder();
         if (!name.startsWith("%")) {
             builder.append("%");
@@ -56,29 +58,40 @@ public class CustomerServiceImpl implements CustomerService {
             builder.append("%");
         }
         final Iterable<Customer> byNameLike = customerRepository.findByNameLike(builder.toString());
-        final List<CustomerDAO> cList = new ArrayList<CustomerDAO>();
         for (Customer c : byNameLike) {
             cList.add(new CustomerDAO(c));
         }
         return cList;
     }
 
-    // FIXME: NULL CHECK too lazy right now
     @Override
     public CustomerDAO customerByProject(ProjectDAO p) {
-        return customerById(projectRepository.findOne(p.getProjectId()).getCustomer().getCustomerId());
-    }
-
-    // FIXME: LOTSA NULL CHECKS HERE NEEDED
-    @Override
-    public CustomerDAO customerByTimeFrame(TimeSpanDAO t) {
-        return customerById(timeSpanRepository.findOne(t.getTimeSpanId()).getCoworker().getCoworkerId());
+        if (p == null) {
+            return null;
+        }
+        final Project project = projectRepository.findOne(p.getProjectId());
+        return project != null && project.getCustomer() != null ? new CustomerDAO(project.getCustomer()) : null;
     }
 
     @Override
-    public Iterable<CustomerDAO> customerByCoworker(CoworkerDAO c) {
-        final Iterable<Customer> customersByCoworker = customerRepository.findCustomersByCoworker(c);
+    public CustomerDAO customerByTimeSpan(TimeSpanDAO t) {
+        if (t == null) {
+            return null;
+        }
+        final Long projectId = t.getProjectId();
+        final Project project = projectRepository.findOne(projectId);
+        // only return a new DAO if project and the customer are not null (2nd should not happen, but right now better safe than sorry)
+        return project != null && project.getCustomer() != null ? new CustomerDAO(project.getCustomer()) : null;
+    }
+
+    @Override
+    public Iterable<CustomerDAO> customersByCoworker(CoworkerDAO c) {
         final List<CustomerDAO> daoList = new ArrayList<CustomerDAO>();
+        if (c == null) {
+            // fail gracefully
+            return daoList;
+        }
+        final Iterable<Customer> customersByCoworker = customerRepository.findCustomersByCoworker(new Coworker(c));
         for (Customer customer : customersByCoworker) {
             daoList.add(new CustomerDAO(customer));
         }
@@ -97,19 +110,24 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDAO customerById(Long id) {
-        return new CustomerDAO(customerRepository.findOne(id));
+        final Customer customer = customerRepository.findOne(id);
+        return customer != null ? new CustomerDAO(customer) : null;
     }
 
     @Transactional
     @Override
     public CustomerDAO addNewCustomer(CustomerDAO c) {
+        if (c == null) {
+            // fail gracefully
+            return null;
+        }
         return new CustomerDAO(customerRepository.save(new Customer(c)));
     }
 
     @Transactional
     @Override
     public CustomerDAO updateCustomer(CustomerDAO c) {
-        if (customerRepository.exists(c.getCustomerId())) {
+        if (c != null && customerRepository.exists(c.getCustomerId())) {
             return addNewCustomer(c);
         }
         // TODO: Can also save the Customer anyway, instead of discarding
@@ -120,9 +138,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(CustomerDAO customerDAO) {
-        final Customer customer = customerRepository.findOne(customerDAO.getCustomerId());
-        if (customer != null) {
-            customerRepository.delete(customer);
+        if (customerDAO != null) {
+            final Customer customer = customerRepository.findOne(customerDAO.getCustomerId());
+            if (customer != null) {
+                customerRepository.delete(customer);
+            }
         }
     }
 }
