@@ -18,7 +18,7 @@ public interface CustomerService {
      * @return List of all Customers
      */
 
-    Iterable<CustomerDAO> customersAll();
+    Iterable<CustomerDAO> getAllCustomers();
 
     /**
      * Get a Customer by its id
@@ -26,7 +26,7 @@ public interface CustomerService {
      * @param id Long the id of a given Customer
      * @return Customer that has the id
      */
-    CustomerDAO customerById(Long id);
+    CustomerDAO getCustomerById(Long id);
 
     /**
      * Persist a new Customer
@@ -50,7 +50,7 @@ public interface CustomerService {
      * @param name String the name of the Customer
      * @return List of Customers that matches a give name
      */
-    Iterable<CustomerDAO> customerByName(String name);
+    Iterable<CustomerDAO> getCustomersByName(String name);
 
     /**
      * Receive all Customers where a part of its name matches the given name
@@ -58,7 +58,7 @@ public interface CustomerService {
      * @param name String part of the name to match
      * @return List of Customers that match a name partially
      */
-    Iterable<CustomerDAO> customerByNameMatch(String name);
+    Iterable<CustomerDAO> getCustomersByNameMatch(String name);
 
     /**
      * Get the Customer of a Project
@@ -66,7 +66,7 @@ public interface CustomerService {
      * @param p Project to get a Customer of
      * @return Customer that owns the Project
      */
-    CustomerDAO customerByProject(ProjectDAO p);
+    CustomerDAO getCustomerByProject(ProjectDAO p);
 
     /**
      * Get a Customer that is associated to a timeframe
@@ -74,7 +74,7 @@ public interface CustomerService {
      * @param t TimeSpan of concern
      * @return Customer that gets charged for the timeframe
      */
-    CustomerDAO customerByTimeSpan(TimeSpanDAO t);
+    CustomerDAO getCustomerByTimeSpan(TimeSpanDAO t);
 
     /**
      * Get all Customers the given Coworker worked for
@@ -82,7 +82,7 @@ public interface CustomerService {
      * @param c Coworker in concern
      * @return List of Customers the given Coworker was involved with
      */
-    Iterable<CustomerDAO> customersByCoworker(CoworkerDAO c);
+    Iterable<CustomerDAO> getCustomersByCoworker(CoworkerDAO c);
 
     /**
      * Delete an existing Customer

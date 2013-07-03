@@ -27,7 +27,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<CustomerDAO> getAll() {
-        return service.customersAll();
+        return service.getAllCustomers();
     }
 
     /**
@@ -76,7 +76,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public CustomerDAO getCustomerById(@PathVariable("id") Long id) {
-        return service.customerById(id);
+        return service.getCustomerById(id);
     }
 
     /**
@@ -88,7 +88,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET, value = "/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<CustomerDAO> getCustomerByNameMatch(@PathVariable("name") String name) {
-        return service.customerByNameMatch(name);
+        return service.getCustomersByNameMatch(name);
     }
 
     // TODO: Add DELETE for Customers

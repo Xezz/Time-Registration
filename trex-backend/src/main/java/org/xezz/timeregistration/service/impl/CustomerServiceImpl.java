@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
     ProjectRepository projectRepository;
 
     @Override
-    public Iterable<CustomerDAO> customerByName(String name) {
+    public Iterable<CustomerDAO> getCustomersByName(String name) {
         final Iterable<Customer> byName = customerRepository.findByName(name);
         final List<CustomerDAO> cList = new ArrayList<CustomerDAO>();
         for (Customer c : byName) {
@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Iterable<CustomerDAO> customerByNameMatch(String name) {
+    public Iterable<CustomerDAO> getCustomersByNameMatch(String name) {
         final List<CustomerDAO> cList = new ArrayList<CustomerDAO>();
         if (name == null) {
             // fail gracefully
@@ -65,7 +65,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDAO customerByProject(ProjectDAO p) {
+    public CustomerDAO getCustomerByProject(ProjectDAO p) {
         if (p == null) {
             return null;
         }
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDAO customerByTimeSpan(TimeSpanDAO t) {
+    public CustomerDAO getCustomerByTimeSpan(TimeSpanDAO t) {
         if (t == null) {
             return null;
         }
@@ -85,7 +85,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Iterable<CustomerDAO> customersByCoworker(CoworkerDAO c) {
+    public Iterable<CustomerDAO> getCustomersByCoworker(CoworkerDAO c) {
         final List<CustomerDAO> daoList = new ArrayList<CustomerDAO>();
         if (c == null) {
             // fail gracefully
@@ -99,7 +99,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Iterable<CustomerDAO> customersAll() {
+    public Iterable<CustomerDAO> getAllCustomers() {
         final Iterable<Customer> allCustomers = customerRepository.findAllCustomers();
         final List<CustomerDAO> customerDAOList = new ArrayList<CustomerDAO>();
         for (Customer c : allCustomers) {
@@ -109,7 +109,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDAO customerById(Long id) {
+    public CustomerDAO getCustomerById(Long id) {
         final Customer customer = customerRepository.findOne(id);
         return customer != null ? new CustomerDAO(customer) : null;
     }
