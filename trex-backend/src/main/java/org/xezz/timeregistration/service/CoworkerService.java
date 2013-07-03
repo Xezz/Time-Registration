@@ -17,7 +17,7 @@ public interface CoworkerService {
      *
      * @return List of all Coworkers
      */
-    Iterable<CoworkerDAO> getAllCoworkers();
+    Iterable<CoworkerDAO> getAll();
 
     /**
      * Get all coworkers with this first name
@@ -25,7 +25,7 @@ public interface CoworkerService {
      * @param firstName String the first name of the Coworkers
      * @return List of all Coworkers with this first name
      */
-    Iterable<CoworkerDAO> getCoworkersByFirstName(String firstName);
+    Iterable<CoworkerDAO> getByFirstName(String firstName);
 
     /**
      * Get all Coworkers with this last name
@@ -33,7 +33,7 @@ public interface CoworkerService {
      * @param lastName String the last name of the Coworkers
      * @return List of all Coworkers with this last name
      */
-    Iterable<CoworkerDAO> getCoworkersByLastName(String lastName);
+    Iterable<CoworkerDAO> getByLastName(String lastName);
 
     /**
      * Get all Coworkers that match the given first and last name
@@ -42,7 +42,7 @@ public interface CoworkerService {
      * @param lastName  String the last name of the coworker
      * @return List of all Coworkers that match the first and last name
      */
-    Iterable<CoworkerDAO> getCoworkersByFirstAndLastName(String firstName, String lastName);
+    Iterable<CoworkerDAO> getByFirstAndLastName(String firstName, String lastName);
 
     /**
      * Get a specific Coworker by its ID
@@ -50,7 +50,7 @@ public interface CoworkerService {
      * @param id Long the unique ID of a Coworker
      * @return Coworker that has this id or if none found {@code null}
      */
-    CoworkerDAO getCoworkerById(Long id);
+    CoworkerDAO getById(Long id);
 
     /**
      * Get a Coworker by a specific timeSpan
@@ -58,7 +58,7 @@ public interface CoworkerService {
      * @param timeSpanDAO TimeSpan a Coworker worked on
      * @return Coworker that is stored in the TimeSpan
      */
-    CoworkerDAO getCoworkerByTimeFrame(TimeSpanDAO timeSpanDAO);
+    CoworkerDAO getByTimeFrame(TimeSpanDAO timeSpanDAO);
 
     /**
      * Get all Coworkers that worked for a specific Project
@@ -66,7 +66,7 @@ public interface CoworkerService {
      * @param p Project to get all Coworkers
      * @return List of all Coworkers involved in the Project
      */
-    Iterable<CoworkerDAO> getCoworkersByProject(ProjectDAO p);
+    Iterable<CoworkerDAO> getByProject(ProjectDAO p);
 
     /**
      * Persist a new Coworker
@@ -74,7 +74,7 @@ public interface CoworkerService {
      * @param coworkerDAO the Coworker to persist
      * @return Coworker the persisted Coworker
      */
-    CoworkerDAO addNewCoworker(CoworkerDAO coworkerDAO);
+    CoworkerDAO addNew(CoworkerDAO coworkerDAO);
 
     /**
      * Update an existing Coworker
@@ -82,12 +82,12 @@ public interface CoworkerService {
      * @param coworkerDAO the new Coworker
      * @return Coworker the persisted Coworker
      */
-    CoworkerDAO updateCoworker(CoworkerDAO coworkerDAO);
+    CoworkerDAO update(CoworkerDAO coworkerDAO);
 
     /**
      * Delete an existing Coworker
      *
      * @param coworkerDAO the Coworker to delete
      */
-    void deleteCoworker(CoworkerDAO coworkerDAO);
+    void delete(CoworkerDAO coworkerDAO);
 }

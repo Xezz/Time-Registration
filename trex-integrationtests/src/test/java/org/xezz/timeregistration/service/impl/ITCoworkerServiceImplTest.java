@@ -51,13 +51,13 @@ public class ITCoworkerServiceImplTest extends AbstractBaseTest {
     @Test
     public void testCoworkersAll() throws Exception {
         assertNotNull("Service has not been injected", coworkerService);
-        assertNotNull("service.getAll returned null", coworkerService.getAllCoworkers());
+        assertNotNull("service.getAll returned null", coworkerService.getAll());
 
     }
 
     @Test
     public void testCoworkersByFirstName() throws Exception {
-        final Iterable<CoworkerDAO> coworkerDAOs = coworkerService.getCoworkersByFirstName(firstName);
+        final Iterable<CoworkerDAO> coworkerDAOs = coworkerService.getByFirstName(firstName);
         assertNotNull("Received Iterable was null", coworkerDAOs);
         final Collection<CoworkerDAO> daoCollection = new ArrayList<CoworkerDAO>();
         for (CoworkerDAO c : coworkerDAOs) {
@@ -71,7 +71,7 @@ public class ITCoworkerServiceImplTest extends AbstractBaseTest {
 
     @Test
     public void testCoworkersByLastName() throws Exception {
-        final Iterable<CoworkerDAO> daos = coworkerService.getCoworkersByLastName(lastName);
+        final Iterable<CoworkerDAO> daos = coworkerService.getByLastName(lastName);
         assertNotNull("Received Iterable was null", daos);
         final Collection<CoworkerDAO> daoCollection = new ArrayList<CoworkerDAO>();
         for (CoworkerDAO c : daos) {
@@ -85,7 +85,7 @@ public class ITCoworkerServiceImplTest extends AbstractBaseTest {
 
     @Test
     public void testCoworkersByFirstAndLastName() throws Exception {
-        final Iterable<CoworkerDAO> daos = coworkerService.getCoworkersByFirstAndLastName(firstName, lastName);
+        final Iterable<CoworkerDAO> daos = coworkerService.getByFirstAndLastName(firstName, lastName);
         assertNotNull("Received Iterable was null", daos);
         final Collection<CoworkerDAO> daoCollection = new ArrayList<CoworkerDAO>();
         for (CoworkerDAO c : daos) {
@@ -106,7 +106,7 @@ public class ITCoworkerServiceImplTest extends AbstractBaseTest {
 
     @Test
     public void testCoworkerById() throws Exception {
-        final CoworkerDAO coworker = coworkerService.getCoworkerById(coworkerId);
+        final CoworkerDAO coworker = coworkerService.getById(coworkerId);
         assertNotNull("Received coworker was null", coworker);
         assertThat("ID did not match", coworkerId, is(coworker.getCoworkerId()));
     }
@@ -124,7 +124,7 @@ public class ITCoworkerServiceImplTest extends AbstractBaseTest {
         coworker.setFirstName(testFirstName);
         final String testLastName = "Test last name";
         coworker.setLastName(testLastName);
-        final CoworkerDAO addedDao = coworkerService.addNewCoworker(coworker);
+        final CoworkerDAO addedDao = coworkerService.addNew(coworker);
 
         assertThat("Expected first name to match", coworker.getFirstName(), is(addedDao.getFirstName()));
         assertThat("Expected last name to match", coworker.getLastName(), is(addedDao.getLastName()));
@@ -138,40 +138,40 @@ public class ITCoworkerServiceImplTest extends AbstractBaseTest {
     // See comment of Oliver Gierke who actually codes this
     @Test
     public void testUpdateCoworker() throws Exception {
-        final CoworkerDAO dao = coworkerService.getCoworkerById(coworkerId);
+        final CoworkerDAO dao = coworkerService.getById(coworkerId);
         final Date lastUpdatedDate = dao.getLastUpdatedDate();
         final String updatedFirstname = "Updated name";
         dao.setFirstName(updatedFirstname);
-        final CoworkerDAO updatedDao = coworkerService.updateCoworker(dao);
+        final CoworkerDAO updatedDao = coworkerService.update(dao);
         assertNotNull("Expected coworker not being null after update", updatedDao);
         assertThat("Expected first name to be updated", updatedFirstname, is(updatedDao.getFirstName()));
         // FINAL NOTE: this updates only on flush / clear of the entityManager, so dont expect to get back the correct one...
         // You can query for the real object form the DB tho
         // Clearly need to buy the EJB book I had at work again, to look this up
-        final CoworkerDAO queriedDao = coworkerService.getCoworkerById(coworkerId);
+        final CoworkerDAO queriedDao = coworkerService.getById(coworkerId);
         assertThat("Expected last updated date to have changed and be later than the old one", lastUpdatedDate, is(lessThan(queriedDao.getLastUpdatedDate())));
     }
 
     @Test
     public void testDeleteCoworker() throws Exception {
-        CoworkerDAO toDelete = coworkerService.getCoworkerById(idOfCoworkerToDelete);
-        coworkerService.deleteCoworker(toDelete);
-        assertNull("Expected to not receive any coworker", coworkerService.getCoworkerById(idOfCoworkerToDelete));
+        CoworkerDAO toDelete = coworkerService.getById(idOfCoworkerToDelete);
+        coworkerService.delete(toDelete);
+        assertNull("Expected to not receive any coworker", coworkerService.getById(idOfCoworkerToDelete));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testUpdateCoworkerFailsWithUpdatedCreationDate() throws Exception {
-        final CoworkerDAO coworkerDAO = coworkerService.getCoworkerById(coworkerId);
+        final CoworkerDAO coworkerDAO = coworkerService.getById(coworkerId);
         assertNotNull("Received Coworker was null", coworkerDAO);
         coworkerDAO.setCreationDate(new Date(coworkerDAO.getCreationDate().getTime() + 12344));
-        coworkerService.updateCoworker(coworkerDAO);
+        coworkerService.update(coworkerDAO);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testUpdateCoworkerFailsWitChangedId() throws Exception {
-        final CoworkerDAO coworkerDAO = coworkerService.getCoworkerById(coworkerId);
+        final CoworkerDAO coworkerDAO = coworkerService.getById(coworkerId);
         assertNotNull("Received Coworker was null", coworkerDAO);
         coworkerDAO.setCoworkerId(coworkerDAO.getCoworkerId() + 2L);
-        coworkerService.updateCoworker(coworkerDAO);
+        coworkerService.update(coworkerDAO);
     }
 }

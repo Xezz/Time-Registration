@@ -35,7 +35,7 @@ public class CoworkerServiceImpl implements CoworkerService {
 
     // FIXME: SO this for a real way to handle it
     @Override
-    public Iterable<CoworkerDAO> getAllCoworkers() {
+    public Iterable<CoworkerDAO> getAll() {
         final Iterable<Coworker> allCoworkers = coworkerRepository.findAllCoworkers();
         final List<CoworkerDAO> allDao = new ArrayList<CoworkerDAO>();
         for (Coworker c : allCoworkers) {
@@ -45,7 +45,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public Iterable<CoworkerDAO> getCoworkersByFirstName(String firstName) {
+    public Iterable<CoworkerDAO> getByFirstName(String firstName) {
         final Iterable<Coworker> byFirstName = coworkerRepository.findByFirstName(firstName);
         final List<CoworkerDAO> daoList = new ArrayList<CoworkerDAO>();
         for (Coworker c : byFirstName) {
@@ -55,7 +55,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public Iterable<CoworkerDAO> getCoworkersByLastName(String lastName) {
+    public Iterable<CoworkerDAO> getByLastName(String lastName) {
         final Iterable<Coworker> byLastName = coworkerRepository.findByLastName(lastName);
         final List<CoworkerDAO> daoList = new ArrayList<CoworkerDAO>();
         for (Coworker c : byLastName) {
@@ -65,7 +65,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public Iterable<CoworkerDAO> getCoworkersByFirstAndLastName(String firstName, String lastName) {
+    public Iterable<CoworkerDAO> getByFirstAndLastName(String firstName, String lastName) {
         final Iterable<Coworker> byFirstNameAndLastName = coworkerRepository.findByFirstNameAndLastName(firstName, lastName);
         final List<CoworkerDAO> daoList = new ArrayList<CoworkerDAO>();
         for (Coworker c : byFirstNameAndLastName) {
@@ -75,7 +75,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public Iterable<CoworkerDAO> getCoworkersByProject(ProjectDAO p) {
+    public Iterable<CoworkerDAO> getByProject(ProjectDAO p) {
         final Iterable<Coworker> coworkersByProject = coworkerRepository.findCoworkersByProject(projectRepository.findOne(p.getProjectId()));
         final List<CoworkerDAO> daoList = new ArrayList<CoworkerDAO>();
         for (Coworker c : coworkersByProject) {
@@ -85,7 +85,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public CoworkerDAO getCoworkerById(Long id) {
+    public CoworkerDAO getById(Long id) {
         LOGGER.debug("Trying to find coworker with id: " + id);
         Coworker coworker = coworkerRepository.findOne(id);
         final CoworkerDAO one = coworker != null ? new CoworkerDAO(coworker) : null;
@@ -94,13 +94,13 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public CoworkerDAO getCoworkerByTimeFrame(TimeSpanDAO timeSpanDAO) {
-        return getCoworkerById(timeSpanDAO.getCoworkerId());
+    public CoworkerDAO getByTimeFrame(TimeSpanDAO timeSpanDAO) {
+        return getById(timeSpanDAO.getCoworkerId());
     }
 
     @Override
     @Transactional
-    public CoworkerDAO addNewCoworker(CoworkerDAO coworkerDAO) {
+    public CoworkerDAO addNew(CoworkerDAO coworkerDAO) {
         LOGGER.debug("Service saving coworker: " + coworkerDAO.getFirstName() + " " + coworkerDAO.getLastName());
         Coworker coworker = coworkerRepository.save(new Coworker(coworkerDAO));
         final CoworkerDAO save = coworker != null ? new CoworkerDAO(coworker) : null;
@@ -113,7 +113,7 @@ public class CoworkerServiceImpl implements CoworkerService {
 
     @Override
     @Transactional
-    public CoworkerDAO updateCoworker(CoworkerDAO coworkerDAO) {
+    public CoworkerDAO update(CoworkerDAO coworkerDAO) {
         Coworker coworker = coworkerRepository.findOne(coworkerDAO.getCoworkerId());
         if (coworker != null) {
             coworker.updateFromDao(coworkerDAO);
@@ -124,7 +124,7 @@ public class CoworkerServiceImpl implements CoworkerService {
     }
 
     @Override
-    public void deleteCoworker(CoworkerDAO coworkerDAO) {
+    public void delete(CoworkerDAO coworkerDAO) {
         final Coworker coworker = coworkerRepository.findOne(coworkerDAO.getCoworkerId());
         if (coworker != null) {
             coworkerRepository.delete(coworker);

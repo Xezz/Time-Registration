@@ -76,7 +76,7 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
 
     @Test
     public void testCustomersByCoworker() throws Exception {
-        final CoworkerDAO coworkerDAO = coworkerService.getCoworkerById(coworkerIdExists);
+        final CoworkerDAO coworkerDAO = coworkerService.getById(coworkerIdExists);
         assertThat("Coworker did not exist", coworkerDAO, is(notNullValue()));
         final Iterable<CustomerDAO> customerDAOs = customerService.getCustomersByCoworker(coworkerDAO);
         assertThat("Iterable was null, expected to have atleast an empty iterable", customerDAOs, is(notNullValue()));

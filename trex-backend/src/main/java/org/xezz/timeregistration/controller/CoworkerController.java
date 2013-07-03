@@ -40,7 +40,7 @@ public class CoworkerController {
     @ResponseBody
     public Iterable<CoworkerDAO> getAll() {
         LOGGER.info("Request to get all Coworker");
-        return service.getAllCoworkers();
+        return service.getAll();
     }
 
     /**
@@ -53,7 +53,7 @@ public class CoworkerController {
     @ResponseBody
     public CoworkerDAO get(@PathVariable("id") Long id) {
         LOGGER.info("Request to get Coworker by id: " + id);
-        final CoworkerDAO coworkerDAO = service.getCoworkerById(id);
+        final CoworkerDAO coworkerDAO = service.getById(id);
         LOGGER.info("Coworker found == null? " + (coworkerDAO == null));
         if (coworkerDAO != null) {
             LOGGER.info("Coworker: " + coworkerDAO.getFirstName() + " " + coworkerDAO.getLastName());
@@ -71,7 +71,7 @@ public class CoworkerController {
     @ResponseBody
     public Iterable<CoworkerDAO> getByFirstName(@PathVariable("firstname") String firstname) {
         LOGGER.info("Request to get Coworker by firstname: " + ((firstname != null) ? firstname : "null"));
-        return service.getCoworkersByFirstName(firstname);
+        return service.getByFirstName(firstname);
     }
 
     /**
@@ -84,7 +84,7 @@ public class CoworkerController {
     @ResponseBody
     public Iterable<CoworkerDAO> getByLastName(@PathVariable("lastname") String lastname) {
         LOGGER.info("Request to get Coworker by lastname: " + ((lastname != null) ? lastname : "null"));
-        return service.getCoworkersByLastName(lastname);
+        return service.getByLastName(lastname);
     }
 
     /**
@@ -102,7 +102,7 @@ public class CoworkerController {
         } else {
             LOGGER.info("Coworker.firstName: " + coworkerDAO.getFirstName() + " Coworker.lastName: " + coworkerDAO.getLastName());
         }
-        return service.addNewCoworker(coworkerDAO);
+        return service.addNew(coworkerDAO);
     }
 
     /**
@@ -115,7 +115,7 @@ public class CoworkerController {
     @ResponseBody
     public CoworkerDAO update(@RequestBody CoworkerDAO coworkerDAO) {
         LOGGER.info("JSON PUT Request to update coworker");
-        return service.updateCoworker(coworkerDAO);
+        return service.update(coworkerDAO);
     }
 
     /**
@@ -127,7 +127,7 @@ public class CoworkerController {
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void delete(@RequestBody CoworkerDAO coworkerDAO) {
         LOGGER.info("JSON DELETE Request to delete a coworker");
-        service.deleteCoworker(coworkerDAO);
+        service.delete(coworkerDAO);
     }
 
     // MVC mapping to jsp
