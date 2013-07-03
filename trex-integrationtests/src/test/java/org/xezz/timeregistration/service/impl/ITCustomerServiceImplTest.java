@@ -42,7 +42,7 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
 
     @Test
     public void testCustomerByName() throws Exception {
-        final Iterable<CustomerDAO> customerDAOs = customerService.getCustomersByName(nameExists);
+        final Iterable<CustomerDAO> customerDAOs = customerService.getByName(nameExists);
         final Iterator<CustomerDAO> iterator = customerDAOs.iterator();
         assertThat("No customer received", true, is(iterator.hasNext()));
         final CustomerDAO fetchedDao = iterator.next();
@@ -51,7 +51,7 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
 
     @Test
     public void testCustomerByNameMatch() throws Exception {
-        final Iterable<CustomerDAO> customerDAOs = customerService.getCustomersByNameMatch(nameExists);
+        final Iterable<CustomerDAO> customerDAOs = customerService.getByNameMatch(nameExists);
         final Iterator<CustomerDAO> iterator = customerDAOs.iterator();
         assertThat("No customer received", true, is(equalTo(iterator.hasNext())));
         assertThat("Name did not match", true, is(equalTo(iterator.next().getName().contains(nameExists))));
@@ -61,7 +61,7 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
     public void testCustomerByProject() throws Exception {
         final ProjectDAO projectDAO = projectService.getById(projectIdExists);
         assertThat("Project did not exist", projectDAO, is(notNullValue()));
-        final CustomerDAO customerDAO = customerService.getCustomerByProject(projectDAO);
+        final CustomerDAO customerDAO = customerService.getByProject(projectDAO);
         assertThat("Customer did not exist", customerDAO, is(notNullValue()));
     }
 
@@ -69,7 +69,7 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
     public void testCustomerByTimeSpan() throws Exception {
         final TimeSpanDAO timeSpanById = timeSpanService.getTimeSpanById(timeSpanIdExists);
         assertThat("Timespan did not exist", timeSpanById, is(notNullValue()));
-        final CustomerDAO customerDAO = customerService.getCustomerByTimeSpan(timeSpanById);
+        final CustomerDAO customerDAO = customerService.getByTimeSpan(timeSpanById);
         assertThat("Customer did not exist", customerDAO, is(notNullValue()));
 
     }
@@ -78,7 +78,7 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
     public void testCustomersByCoworker() throws Exception {
         final CoworkerDAO coworkerDAO = coworkerService.getById(coworkerIdExists);
         assertThat("Coworker did not exist", coworkerDAO, is(notNullValue()));
-        final Iterable<CustomerDAO> customerDAOs = customerService.getCustomersByCoworker(coworkerDAO);
+        final Iterable<CustomerDAO> customerDAOs = customerService.getByCoworker(coworkerDAO);
         assertThat("Iterable was null, expected to have atleast an empty iterable", customerDAOs, is(notNullValue()));
     }
 

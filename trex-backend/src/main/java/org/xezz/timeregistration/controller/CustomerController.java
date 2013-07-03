@@ -27,7 +27,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<CustomerDAO> getAll() {
-        return service.getAllCustomers();
+        return service.getAll();
     }
 
     /**
@@ -40,7 +40,7 @@ public class CustomerController {
     @ResponseBody
     public CustomerDAO saveCustomer(@RequestBody CustomerDAO customerDAO) {
         // TODO: Verify and Nullcheck
-        return service.addNewCustomer(customerDAO);
+        return service.addNew(customerDAO);
     }
 
     /**
@@ -53,7 +53,7 @@ public class CustomerController {
     @ResponseBody
     public CustomerDAO updateCustomer(@RequestBody CustomerDAO customerDAO) {
         // TODO: Verify and Nullcheck
-        return service.updateCustomer(customerDAO);
+        return service.update(customerDAO);
     }
 
     /**
@@ -64,7 +64,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteCustomer(@RequestBody CustomerDAO customerDAO) {
         // TODO: Verify and Nullcheck
-        service.deleteCustomer(customerDAO);
+        service.delete(customerDAO);
     }
 
     /**
@@ -76,7 +76,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public CustomerDAO getCustomerById(@PathVariable("id") Long id) {
-        return service.getCustomerById(id);
+        return service.getById(id);
     }
 
     /**
@@ -88,7 +88,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET, value = "/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<CustomerDAO> getCustomerByNameMatch(@PathVariable("name") String name) {
-        return service.getCustomersByNameMatch(name);
+        return service.getByNameMatch(name);
     }
 
     // TODO: Add DELETE for Customers

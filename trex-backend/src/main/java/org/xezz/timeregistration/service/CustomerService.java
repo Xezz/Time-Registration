@@ -18,7 +18,7 @@ public interface CustomerService {
      * @return List of all Customers
      */
 
-    Iterable<CustomerDAO> getAllCustomers();
+    Iterable<CustomerDAO> getAll();
 
     /**
      * Get a Customer by its id
@@ -26,7 +26,7 @@ public interface CustomerService {
      * @param id Long the id of a given Customer
      * @return Customer that has the id
      */
-    CustomerDAO getCustomerById(Long id);
+    CustomerDAO getById(Long id);
 
     /**
      * Persist a new Customer
@@ -34,7 +34,7 @@ public interface CustomerService {
      * @param c Customer to persist
      * @return Persisted Customer
      */
-    CustomerDAO addNewCustomer(CustomerDAO c);
+    CustomerDAO addNew(CustomerDAO c);
 
     /**
      * Update an existing Customer
@@ -42,7 +42,7 @@ public interface CustomerService {
      * @param c Customer that has been updated
      * @return Customer after persisting
      */
-    CustomerDAO updateCustomer(CustomerDAO c);
+    CustomerDAO update(CustomerDAO c);
 
     /**
      * Receive Customers by their name
@@ -50,7 +50,7 @@ public interface CustomerService {
      * @param name String the name of the Customer
      * @return List of Customers that matches a give name
      */
-    Iterable<CustomerDAO> getCustomersByName(String name);
+    Iterable<CustomerDAO> getByName(String name);
 
     /**
      * Receive all Customers where a part of its name matches the given name
@@ -58,7 +58,7 @@ public interface CustomerService {
      * @param name String part of the name to match
      * @return List of Customers that match a name partially
      */
-    Iterable<CustomerDAO> getCustomersByNameMatch(String name);
+    Iterable<CustomerDAO> getByNameMatch(String name);
 
     /**
      * Get the Customer of a Project
@@ -66,7 +66,7 @@ public interface CustomerService {
      * @param p Project to get a Customer of
      * @return Customer that owns the Project
      */
-    CustomerDAO getCustomerByProject(ProjectDAO p);
+    CustomerDAO getByProject(ProjectDAO p);
 
     /**
      * Get a Customer that is associated to a timeframe
@@ -74,7 +74,7 @@ public interface CustomerService {
      * @param t TimeSpan of concern
      * @return Customer that gets charged for the timeframe
      */
-    CustomerDAO getCustomerByTimeSpan(TimeSpanDAO t);
+    CustomerDAO getByTimeSpan(TimeSpanDAO t);
 
     /**
      * Get all Customers the given Coworker worked for
@@ -82,12 +82,12 @@ public interface CustomerService {
      * @param c Coworker in concern
      * @return List of Customers the given Coworker was involved with
      */
-    Iterable<CustomerDAO> getCustomersByCoworker(CoworkerDAO c);
+    Iterable<CustomerDAO> getByCoworker(CoworkerDAO c);
 
     /**
      * Delete an existing Customer
      *
      * @param customerDAO Customer to delete
      */
-    void deleteCustomer(CustomerDAO customerDAO);
+    void delete(CustomerDAO customerDAO);
 }
