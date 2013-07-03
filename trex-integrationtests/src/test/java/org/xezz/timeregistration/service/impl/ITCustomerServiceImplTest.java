@@ -67,7 +67,7 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
 
     @Test
     public void testCustomerByTimeSpan() throws Exception {
-        final TimeSpanDAO timeSpanById = timeSpanService.getTimeSpanById(timeSpanIdExists);
+        final TimeSpanDAO timeSpanById = timeSpanService.getById(timeSpanIdExists);
         assertThat("Timespan did not exist", timeSpanById, is(notNullValue()));
         final CustomerDAO customerDAO = customerService.getByTimeSpan(timeSpanById);
         assertThat("Customer did not exist", customerDAO, is(notNullValue()));

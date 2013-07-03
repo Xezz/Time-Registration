@@ -33,7 +33,7 @@ public class TimeSpanServiceImpl implements TimeSpanService {
     ProjectRepository projectRepository;
 
     @Override
-    public Iterable<TimeSpanDAO> timeSpansForCoworker(CoworkerDAO coworkerDAO) {
+    public Iterable<TimeSpanDAO> getByCoworker(CoworkerDAO coworkerDAO) {
         final Iterable<TimeSpan> byCoworker = repo.findByCoworker(coworkerRepository.findOne(coworkerDAO.getCoworkerId()));
         return getTimeSpanDAOs(byCoworker);
     }
@@ -47,38 +47,38 @@ public class TimeSpanServiceImpl implements TimeSpanService {
     }
 
     @Override
-    public Iterable<TimeSpanDAO> timeSpansForProject(ProjectDAO projectDAO) {
+    public Iterable<TimeSpanDAO> getByProject(ProjectDAO projectDAO) {
         final Iterable<TimeSpan> byProject = repo.findByProject(projectRepository.findOne(projectDAO.getProjectId()));
         return getTimeSpanDAOs(byProject);
     }
 
 
     @Override
-    public TimeSpanDAO getTimeSpanById(Long id) {
+    public TimeSpanDAO getById(Long id) {
         return new TimeSpanDAO(repo.findOne(id));
     }
 
     @Transactional
     @Override
-    public TimeSpanDAO createNewTimeSpan(TimeSpanDAO timeSpanDAO) {
+    public TimeSpanDAO addNew(TimeSpanDAO timeSpanDAO) {
         return new TimeSpanDAO(repo.save(new TimeSpan(timeSpanDAO)));
     }
 
     // FIXME: Actually make the TimeSpan clone from TimeSpanDao?
     @Transactional
     @Override
-    public TimeSpanDAO updateTimeSpan(TimeSpanDAO timeSpanDAO) {
+    public TimeSpanDAO update(TimeSpanDAO timeSpanDAO) {
         return new TimeSpanDAO(repo.save(new TimeSpan(timeSpanDAO)));
     }
 
     @Override
-    public Iterable<TimeSpanDAO> findAllTimeSpans() {
+    public Iterable<TimeSpanDAO> getAll() {
         final Iterable<TimeSpan> all = repo.findAll();
         return getTimeSpanDAOs(all);
     }
 
     @Override
-    public void deleteTimeSpan(TimeSpanDAO timeSpanDAO) {
+    public void delete(TimeSpanDAO timeSpanDAO) {
         TimeSpan timeSpan = repo.findOne(timeSpanDAO.getTimeSpanId());
         if (timeSpan != null) {
             repo.delete(timeSpan);

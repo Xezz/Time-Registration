@@ -30,27 +30,27 @@ public class TimeSpanController {
     @ResponseBody
     public Iterable<TimeSpanDAO> getAll() {
         LOGGER.info("Request to get all TimeSpans");
-        return service.findAllTimeSpans();
+        return service.getAll();
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public TimeSpanDAO create(@RequestBody TimeSpanDAO timeSpanDAO) {
         LOGGER.info("Request to create a new TimeSpan");
-        return service.createNewTimeSpan(timeSpanDAO);
+        return service.addNew(timeSpanDAO);
     }
 
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public TimeSpanDAO update(@RequestBody TimeSpanDAO timeSpanDAO) {
         LOGGER.info("Request to update an existing TimeSpan");
-        return service.updateTimeSpan(timeSpanDAO);
+        return service.update(timeSpanDAO);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void delete(@RequestBody TimeSpanDAO timeSpanDAO) {
         LOGGER.info("Request to update an existing TimeSpan");
-        service.deleteTimeSpan(timeSpanDAO);
+        service.delete(timeSpanDAO);
     }
 
 

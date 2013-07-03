@@ -18,7 +18,7 @@ public interface TimeSpanService {
      * @param coworkerDAO Coworker
      * @return TimeSpans
      */
-    Iterable<TimeSpanDAO> timeSpansForCoworker(CoworkerDAO coworkerDAO);
+    Iterable<TimeSpanDAO> getByCoworker(CoworkerDAO coworkerDAO);
 
     /**
      * Find all TimeSpans for the Project.
@@ -26,7 +26,7 @@ public interface TimeSpanService {
      * @param projectDAO Project
      * @return TimeSpans
      */
-    Iterable<TimeSpanDAO> timeSpansForProject(ProjectDAO projectDAO);
+    Iterable<TimeSpanDAO> getByProject(ProjectDAO projectDAO);
 
     /**
      * Get a specific time span by its ID
@@ -34,14 +34,14 @@ public interface TimeSpanService {
      * @param id Long identifier
      * @return TimeSpan the looked for time span, return {@code null} when there is no Entity with this id
      */
-    TimeSpanDAO getTimeSpanById(Long id);
+    TimeSpanDAO getById(Long id);
 
     /**
      * Get all TimeSpans
      *
      * @return Iterable of all found TimeSpans
      */
-    Iterable<TimeSpanDAO> findAllTimeSpans();
+    Iterable<TimeSpanDAO> getAll();
 
     /**
      * Create a new TimeSpan
@@ -49,7 +49,7 @@ public interface TimeSpanService {
      * @param timeSpanDAO TimeSpan to create
      * @return the persisted TimeSpan
      */
-    TimeSpanDAO createNewTimeSpan(TimeSpanDAO timeSpanDAO);
+    TimeSpanDAO addNew(TimeSpanDAO timeSpanDAO);
 
     /**
      * Update an existing TimeSpan
@@ -57,7 +57,7 @@ public interface TimeSpanService {
      * @param timeSpanDAO TimeSpan to update
      * @return the updated TimeSpan
      */
-    TimeSpanDAO updateTimeSpan(TimeSpanDAO timeSpanDAO);
+    TimeSpanDAO update(TimeSpanDAO timeSpanDAO);
 
 
     /**
@@ -65,5 +65,5 @@ public interface TimeSpanService {
      *
      * @param timeSpanDAO the TimeSpan to delete
      */
-    void deleteTimeSpan(TimeSpanDAO timeSpanDAO);
+    void delete(TimeSpanDAO timeSpanDAO);
 }
