@@ -28,7 +28,7 @@
         <jstl.version>1.2</jstl.version>
         <!-- TODO: Maybe use a new version, but 2.5 seems to be the current release? -->
         <!-- might be that tomcat 7 has it already deployed as 3.x? -->
-        <servlet-api.version>2.5</servlet-api.version>
+        <servlet-api.version>3.0.1</servlet-api.version>
         <jsp-api.version>2.1</jsp-api.version>
 
         <!-- Spring -->
@@ -202,7 +202,7 @@
 
             <dependency>
                 <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
+                <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
                 <scope>provided</scope>
             </dependency>
