@@ -1,28 +1,13 @@
 package org.xezz.timeregistration.service.impl;
 
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.xezz.timeregistration.config.AppTestConfig;
-import org.xezz.timeregistration.config.DataTestConfig;
+import org.xezz.timeregistration.AbstractBaseTest;
 import org.xezz.timeregistration.dao.CoworkerDAO;
 import org.xezz.timeregistration.service.CoworkerService;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -39,16 +24,8 @@ import static org.junit.Assert.*;
  * Date: 08.06.13
  * Time: 13:59
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {AppTestConfig.class, DataTestConfig.class, CoworkerServiceImpl.class})
-@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
-        DirtiesContextTestExecutionListener.class,
-        TransactionalTestExecutionListener.class,
-        DbUnitTestExecutionListener.class})
-@ActiveProfiles("integration-test")
-@Configurable
-@DatabaseSetup("/META-INF/basicdata.xml")
-public class ITCoworkerServiceImplTest {
+
+public class ITCoworkerServiceImplTest extends AbstractBaseTest {
 
     // Default coworkerId that we know
     private final Long coworkerId = 1L;
@@ -58,9 +35,6 @@ public class ITCoworkerServiceImplTest {
     private final String firstName = "Bastian";
     // Last name of the default Coworker
     private final String lastName = "Koch";
-    // Required by DBUnit
-    @Resource
-    DataSource dataSource;
     @Autowired
     private CoworkerService coworkerService;
 
