@@ -1,7 +1,5 @@
 package org.xezz.timeregistration.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -19,7 +17,6 @@ import org.xezz.timeregistration.service.ProjectService;
 @RequestMapping(value = "api/project")
 public class ProjectController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
     @Autowired
     ProjectService service;
 
@@ -31,7 +28,6 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<ProjectDAO> getAll() {
-        LOGGER.info("Requested all Projects");
         return service.getAll();
     }
 
@@ -44,8 +40,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ProjectDAO create(@RequestBody ProjectDAO projectDAO) {
-        LOGGER.info("Request to create a new Project");
-        return service.addNewProject(projectDAO);
+        return service.addNew(projectDAO);
     }
 
     /**
@@ -57,8 +52,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ProjectDAO update(@RequestBody ProjectDAO projectDAO) {
-        LOGGER.info("Request to update an existing project");
-        return service.updateProject(projectDAO);
+        return service.update(projectDAO);
     }
 
     /**
@@ -70,7 +64,6 @@ public class ProjectController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ProjectDAO getById(@PathVariable("id") Long id) {
-        LOGGER.info("Request to get a Project by id");
         return service.getById(id);
     }
 
@@ -83,7 +76,6 @@ public class ProjectController {
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Iterable<ProjectDAO> getByName(@PathVariable("name") String name) {
-        LOGGER.info("Request to get Projects by name");
         return service.getByName(name);
     }
 
@@ -95,7 +87,6 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void delete(@RequestBody ProjectDAO projectDAO) {
-        LOGGER.info("Request to delete a Project");
-        service.deleteProject(projectDAO);
+        service.delete(projectDAO);
     }
 }

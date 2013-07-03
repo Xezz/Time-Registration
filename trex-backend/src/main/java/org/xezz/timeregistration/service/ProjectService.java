@@ -55,7 +55,7 @@ public interface ProjectService {
      * @param p Project to persist
      * @return persisted Project
      */
-    ProjectDAO addNewProject(ProjectDAO p);
+    ProjectDAO addNew(ProjectDAO p);
 
     /**
      * Updated existing Project
@@ -63,13 +63,13 @@ public interface ProjectService {
      * @param p Project that has been updated
      * @return Project that has been persisted
      */
-    ProjectDAO updateProject(ProjectDAO p);
+    ProjectDAO update(ProjectDAO p);
 
     /**
      * Delete an existing Project
      *
      * @param p Project to delete
      */
-    void deleteProject(ProjectDAO p);
+    void delete(ProjectDAO p);
 
 }

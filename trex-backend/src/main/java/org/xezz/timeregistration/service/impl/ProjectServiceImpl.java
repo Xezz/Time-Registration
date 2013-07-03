@@ -74,19 +74,19 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Transactional
     @Override
-    public ProjectDAO addNewProject(ProjectDAO p) {
+    public ProjectDAO addNew(ProjectDAO p) {
         return new ProjectDAO(repo.save(new Project(p)));
     }
 
     @Transactional
     @Override
-    public ProjectDAO updateProject(ProjectDAO p) {
+    public ProjectDAO update(ProjectDAO p) {
         // TODO: update or (as of right now) also safe (aka against REST)
         return new ProjectDAO(repo.save(new Project(p)));
     }
 
     @Override
-    public void deleteProject(ProjectDAO p) {
+    public void delete(ProjectDAO p) {
         if (p != null) {
             repo.delete(new Project(p));
         }
