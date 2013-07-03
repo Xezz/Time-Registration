@@ -11,6 +11,10 @@
     <packaging>jar</packaging>
 
     <artifactId>trex-integrationtests</artifactId>
+    <properties>
+        <trex-backend.version>1.1-SNAPSHOT</trex-backend.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.xezz</groupId>
@@ -178,8 +182,5 @@
             <version>${hamcrest-library.version}</version>
         </dependency>
     </dependencies>
-    <properties>
-        <trex-backend.version>1.0-SNAPSHOT</trex-backend.version>
-    </properties>
 
 </project>
