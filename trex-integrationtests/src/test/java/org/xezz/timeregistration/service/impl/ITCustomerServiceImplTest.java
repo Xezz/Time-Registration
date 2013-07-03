@@ -12,6 +12,7 @@ import org.xezz.timeregistration.service.CustomerService;
 import org.xezz.timeregistration.service.ProjectService;
 import org.xezz.timeregistration.service.TimeSpanService;
 
+import java.util.Date;
 import java.util.Iterator;
 
 import static org.hamcrest.Matchers.*;
@@ -28,7 +29,7 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
     private final Long coworkerIdExists = 1L;
     private final String nameExists = "Xezz Ltd.";
     private final Long customerIdExists = 51L;
-    private final String descriptionExists = "Development of JavaEE apps and other fancy stuff!";
+    private final String infoExists = "Development of JavaEE apps and other fancy stuff!";
 
     @Autowired
     CoworkerService coworkerService;
@@ -96,12 +97,24 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
 
     @Test
     public void testCustomerById() throws Exception {
-
+        final CustomerDAO dao = customerService.getById(customerIdExists);
+        assertThat("Customer was not in database", dao, is(notNullValue()));
+        assertThat("Id did not match", customerIdExists, is(equalTo(dao.getCustomerId())));
+        assertThat("Name did not match", nameExists, is(equalTo(dao.getName())));
+        assertThat("Info did not match", infoExists, is(equalTo(dao.getCustomerInfo())));
+        assertThat("Creation date was null", true, is(notNullValue()));
+        assertThat("Creation date is newer than right now", true, is((new Date().after(dao.getCreationDate()))));
+        assertThat("Last updated was null", true, is(notNullValue()));
+        assertThat("Last updated date is newer than right now", -1, is(lessThan(new Date().compareTo(dao.getLastUpdatedDate()))));
     }
 
     @Test
     public void testAddNewCustomer() throws Exception {
-
+        final CustomerDAO addedDao = new CustomerDAO();
+        addedDao.setName("New customer");
+        addedDao.setCustomerInfo("This is a newly created dao");
+        final CustomerDAO createdDao = customerService.addNew(addedDao);
+        assertThat("Created dao was null!", createdDao, is(notNullValue()));
     }
 
     @Test
