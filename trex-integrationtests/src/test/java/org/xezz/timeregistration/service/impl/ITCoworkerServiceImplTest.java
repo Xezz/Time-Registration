@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.xezz.timeregistration.AbstractBaseTest;
+import org.xezz.timeregistration.AbstractBaseITConfiguration;
 import org.xezz.timeregistration.dao.CoworkerDAO;
 import org.xezz.timeregistration.service.CoworkerService;
 
@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  * Time: 13:59
  */
 
-public class ITCoworkerServiceImplTest extends AbstractBaseTest {
+public class ITCoworkerServiceImplTest extends AbstractBaseITConfiguration {
 
     // Default coworkerId that we know
     private final Long coworkerId = 1L;

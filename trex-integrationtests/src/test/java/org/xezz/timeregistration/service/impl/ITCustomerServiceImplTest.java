@@ -2,7 +2,7 @@ package org.xezz.timeregistration.service.impl;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.xezz.timeregistration.AbstractBaseTest;
+import org.xezz.timeregistration.AbstractBaseITConfiguration;
 import org.xezz.timeregistration.dao.CoworkerDAO;
 import org.xezz.timeregistration.dao.CustomerDAO;
 import org.xezz.timeregistration.dao.ProjectDAO;
@@ -23,7 +23,7 @@ import static org.junit.Assert.assertThat;
  * Date: 03.07.13
  * Time: 17:09
  */
-public class ITCustomerServiceImplTest extends AbstractBaseTest {
+public class ITCustomerServiceImplTest extends AbstractBaseITConfiguration {
     private final Long projectIdExists = 101L;
     private final Long timeSpanIdExists = 501L;
     private final Long coworkerIdExists = 1L;

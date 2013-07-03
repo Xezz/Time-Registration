@@ -14,7 +14,6 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.xezz.timeregistration.config.AppTestConfig;
 import org.xezz.timeregistration.config.DataTestConfig;
-import org.xezz.timeregistration.service.impl.CoworkerServiceImpl;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -26,7 +25,7 @@ import javax.sql.DataSource;
  * Abstract class to use for integration testing.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {AppTestConfig.class, DataTestConfig.class, CoworkerServiceImpl.class})
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {AppTestConfig.class, DataTestConfig.class})
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
@@ -34,7 +33,7 @@ import javax.sql.DataSource;
 @ActiveProfiles("integration-test")
 @Configurable
 @DatabaseSetup("/META-INF/basicdata.xml")
-public abstract class AbstractBaseTest {
+public abstract class AbstractBaseITConfiguration {
     // Required by DBUnit
     @Resource
     DataSource dataSource;
