@@ -2,7 +2,8 @@ package org.xezz.timeregistration.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.xezz.timeregistration.dao.CoworkerDAO;
+import org.springframework.data.repository.query.Param;
+import org.xezz.timeregistration.model.Coworker;
 import org.xezz.timeregistration.model.Customer;
 
 /**
@@ -30,12 +31,12 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     /**
      * Fetch all Customers that a Coworker is associated with
      *
-     * @param c Coworker to look for
+     * @param coworker Coworker to look for
      * @return List of Customers
      */
-    // FIXME: MIght be broken, will have to revisit
+    // TODO: Change the query, so that only unique Customers are added
     @Query("SELECT t.project.customer FROM TimeSpan t WHERE t.coworker = :coworker")
-    Iterable<Customer> findCustomersByCoworker(CoworkerDAO c);
+    Iterable<Customer> findCustomersByCoworker(@Param("coworker") Coworker coworker);
 
     /**
      * Fetch all Customers
