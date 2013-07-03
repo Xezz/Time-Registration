@@ -23,6 +23,7 @@ import javax.sql.DataSource;
  * User: Xezz
  * Date: 03.07.13
  * Time: 17:01
+ * Abstract class to use for integration testing.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = {AppTestConfig.class, DataTestConfig.class, CoworkerServiceImpl.class})
