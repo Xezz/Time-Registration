@@ -87,6 +87,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void deleteProject(ProjectDAO p) {
-        repo.delete(new Project(p));
+        if (p != null) {
+            repo.delete(new Project(p));
+        }
     }
 }

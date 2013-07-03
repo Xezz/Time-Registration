@@ -86,10 +86,10 @@ public class CoworkerServiceImpl implements CoworkerService {
 
     @Override
     public CoworkerDAO coworkerById(Long id) {
-        LOGGER.info("Trying to find coworker with id: " + id);
+        LOGGER.debug("Trying to find coworker with id: " + id);
         Coworker coworker = coworkerRepository.findOne(id);
         final CoworkerDAO one = coworker != null ? new CoworkerDAO(coworker) : null;
-        LOGGER.info("Found one?: " + (one != null));
+        LOGGER.debug("Found one?: " + (one != null));
         return one;
     }
 
@@ -101,12 +101,12 @@ public class CoworkerServiceImpl implements CoworkerService {
     @Override
     @Transactional
     public CoworkerDAO addNewCoworker(CoworkerDAO coworkerDAO) {
-        LOGGER.info("Service saving coworker: " + coworkerDAO.getFirstName() + " " + coworkerDAO.getLastName());
+        LOGGER.debug("Service saving coworker: " + coworkerDAO.getFirstName() + " " + coworkerDAO.getLastName());
         Coworker coworker = coworkerRepository.save(new Coworker(coworkerDAO));
         final CoworkerDAO save = coworker != null ? new CoworkerDAO(coworker) : null;
-        LOGGER.info("Service saved coworker, is it != null? " + (save != null));
+        LOGGER.debug("Service saved coworker, is it != null? " + (save != null));
         if (save != null) {
-            LOGGER.info("First name: " + save.getFirstName() + " Last name: " + save.getLastName() + " Date created: " + save.getCreationDate() + " id: " + save.getCoworkerId());
+            LOGGER.debug("First name: " + save.getFirstName() + " Last name: " + save.getLastName() + " Date created: " + save.getCreationDate() + " id: " + save.getCoworkerId());
         }
         return save;
     }
