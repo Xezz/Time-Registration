@@ -38,8 +38,12 @@ public class Customer implements Serializable {
         }
         this.name = dao.getName();
         this.customerInfo = dao.getCustomerInfo();
-        this.creationDate = new Date(dao.getCreationDate().getTime());
-        this.lastUpdatedDate = new Date(dao.getLastUpdatedDate().getTime());
+        if (dao.getCreationDate() != null) {
+            this.creationDate = new Date(dao.getCreationDate().getTime());
+        }
+        if (dao.getCreationDate() != null) {
+            this.lastUpdatedDate = new Date(dao.getLastUpdatedDate().getTime());
+        }
     }
 
 
