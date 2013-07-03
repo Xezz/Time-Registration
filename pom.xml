@@ -8,6 +8,7 @@
     <modules>
         <module>trex-backend</module>
         <module>trex-integrationtests</module>
+        <module>trex-webapp</module>
     </modules>
     <packaging>pom</packaging>
 
