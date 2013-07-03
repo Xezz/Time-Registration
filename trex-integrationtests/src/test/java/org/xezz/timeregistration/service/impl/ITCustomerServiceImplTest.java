@@ -115,15 +115,42 @@ public class ITCustomerServiceImplTest extends AbstractBaseTest {
         addedDao.setCustomerInfo("This is a newly created dao");
         final CustomerDAO createdDao = customerService.addNew(addedDao);
         assertThat("Created dao was null!", createdDao, is(notNullValue()));
-    }
-
-    @Test
-    public void testUpdateCustomer() throws Exception {
-
+        assertThat("Creation date was null", createdDao.getCreationDate(), is(notNullValue()));
     }
 
     @Test
     public void testDeleteCustomer() throws Exception {
+        final CustomerDAO dao = customerService.getById(customerIdExists);
+        customerService.delete(dao);
+        final CustomerDAO deleted = customerService.getById(customerIdExists);
+        assertThat("Customer was not deleted", deleted, is(nullValue()));
+    }
+
+    @Test
+    public void testUpdateCustomer() throws Exception {
+        final CustomerDAO dao = customerService.getById(customerIdExists);
+        assertThat("Customer did not exist anymore", dao, is(notNullValue()));
+        assertThat("Name was empty string", dao.getName(), is(not(equalToIgnoringCase(""))));
+        final String newName = dao.getName() + dao.getName();
+        dao.setName(newName);
+        final CustomerDAO updatedDao = customerService.update(dao);
+        assertThat("New name was not saved...", newName, is(equalTo(updatedDao.getName())));
+        // time will not update right away due to JPA apparently
+        //assertThat("Last updated date did not change", currentTime.getTime(), is(lessThanOrEqualTo(updatedDao.getLastUpdatedDate().getTime())));
+    }
+
+    @Test
+    public void testCreateNewAndUpdateCustomer() throws Exception {
+        CustomerDAO dao = new CustomerDAO();
+        final String name = "Hans wurst";
+        dao.setName(name);
+        dao.setCustomerInfo("Der hans hat ne wurst");
+        final CustomerDAO customerDAO = customerService.addNew(dao);
+        final String newName = customerDAO.getName() + customerDAO.getName();
+        customerDAO.setName(newName);
+        final CustomerDAO update = customerService.update(customerDAO);
+        assertThat("Name did not change", name, is(not(equalTo(update.getName()))));
+        assertThat("New name does not match expect name", newName, is(equalTo(update.getName())));
 
     }
 }
