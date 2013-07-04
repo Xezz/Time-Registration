@@ -23,8 +23,12 @@ public class ProjectDAO {
     private Date creationDate;
     private Date lastUpdatedDate;
 
-    @Autowired
+
     CustomerRepository customerRepository;
+    @Autowired
+    public void setCustomerRepository(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     public ProjectDAO() {
     }
@@ -151,6 +155,12 @@ public class ProjectDAO {
     }
 
     public Customer receiveCustomer() {
+        if (customerId == null) {
+            return null;
+        }
+        if (customerRepository == null) {
+            throw new RuntimeException("Customer Repository not injected");
+        }
         return customerRepository.findOne(customerId);
     }
 }

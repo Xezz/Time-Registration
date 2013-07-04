@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
 
     <artifactId>trex-integrationtests</artifactId>
     <properties>
-        <trex-backend.version>1.1-SNAPSHOT</trex-backend.version>
+        <trex-backend.version>1.2-SNAPSHOT</trex-backend.version>
     </properties>
 
     <dependencies>
@@ -183,5 +183,35 @@
             <version>${hamcrest-library.version}</version>
         </dependency>
     </dependencies>
-
+    <build>
+        <!--<finalName>t-regs</finalName>*-->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.openjpa</groupId>
+                <artifactId>openjpa-maven-plugin</artifactId>
+                <version>${openjpa-maven-plugin.version}</version>
+                <configuration>
+                    <includes>**/model/*.class</includes>
+                    <addDefaultConstructor>true</addDefaultConstructor>
+                    <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>enhancer</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.openjpa</groupId>
+                        <artifactId>openjpa</artifactId>
+                        <version>${openjpa.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>

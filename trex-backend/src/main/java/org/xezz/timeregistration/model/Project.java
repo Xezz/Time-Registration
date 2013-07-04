@@ -18,7 +18,7 @@ public class Project implements Serializable {
     private Long projectId;
     private String name;
     private String description;
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Customer customer;
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
@@ -57,7 +57,9 @@ public class Project implements Serializable {
         if (p.getLastUpdatedDate() != null) {
             this.lastUpdatedDate = new Date(p.getLastUpdatedDate().getTime());
         }
-        this.customer = p.receiveCustomer();
+        if (p.receiveCustomer() != null) {
+            this.customer = p.receiveCustomer();
+        }
     }
 
     @PrePersist

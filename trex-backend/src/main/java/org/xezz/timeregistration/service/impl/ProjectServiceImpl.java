@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.xezz.timeregistration.dao.CustomerDAO;
 import org.xezz.timeregistration.dao.ProjectDAO;
 import org.xezz.timeregistration.dao.TimeSpanDAO;
+import org.xezz.timeregistration.model.Customer;
 import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.repository.CustomerRepository;
 import org.xezz.timeregistration.repository.ProjectRepository;
@@ -53,7 +54,14 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Iterable<ProjectDAO> getByCustomer(CustomerDAO c) {
-        final Iterable<Project> byCustomer = repo.findByCustomer(customerRepository.findOne(c.getCustomerId()));
+        if (c == null || c.getCustomerId() == null) {
+            return new ArrayList<ProjectDAO>();
+        }
+        final Customer customer = customerRepository.findOne(c.getCustomerId());
+        if (customer == null) {
+            return new ArrayList<ProjectDAO>();
+        }
+        final Iterable<Project> byCustomer = repo.findByCustomer(customer);
         final List<ProjectDAO> daoList = new ArrayList<ProjectDAO>();
         for (Project p : byCustomer) {
             daoList.add(new ProjectDAO(p));
@@ -64,18 +72,31 @@ public class ProjectServiceImpl implements ProjectService {
     // FIXME: NULL CHECK
     @Override
     public ProjectDAO getByTimeFrame(TimeSpanDAO t) {
-        return new ProjectDAO(repo.findOne(t.getProjectId()));
+        if (t == null || t.getProjectId() == null) {
+            return null;
+        }
+        final Project project = repo.findOne(t.getProjectId());
+        return project != null ? new ProjectDAO(project) : null;
     }
 
     @Override
     public ProjectDAO getById(Long id) {
-        return new ProjectDAO(repo.findOne(id));
+        if (id == null) {
+            return null;
+        }
+        final Project project = repo.findOne(id);
+        return project != null ? new ProjectDAO(project) : null;
     }
 
     @Transactional
     @Override
     public ProjectDAO addNew(ProjectDAO p) {
-        return new ProjectDAO(repo.save(new Project(p)));
+        if (p == null) {
+            throw new IllegalArgumentException("NULL not allowed here");
+        }
+        final Project save = repo.save(new Project(p));
+        if (save == null) throw new IllegalArgumentException("SAVE RETURNED NULL!");
+        return new ProjectDAO(save);
     }
 
     @Transactional
