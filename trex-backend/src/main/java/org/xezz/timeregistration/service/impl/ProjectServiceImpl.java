@@ -91,22 +91,13 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public ProjectDAO addNew(ProjectDAO p) {
-        if (p == null) {
-            throw new IllegalArgumentException("NULL not allowed here");
-        }
-        final Project save = repo.save(new Project(p));
-        if (save == null) throw new IllegalArgumentException("SAVE RETURNED NULL!");
-        return new ProjectDAO(save);
+        return p != null ? new ProjectDAO(repo.save(new Project(p))) : null;
     }
 
     @Transactional
     @Override
     public ProjectDAO update(ProjectDAO p) {
-        if (p == null) {
-            throw new IllegalArgumentException("NULL not allowed here");
-        }
-        final Project save = repo.save(new Project(p));
-        return new ProjectDAO(save);
+        return p != null && repo.exists(p.getProjectId()) ? addNew(p) : null;
     }
 
     @Override

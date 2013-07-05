@@ -10,6 +10,7 @@ import org.xezz.timeregistration.dao.CoworkerDAO;
 import org.xezz.timeregistration.dao.ProjectDAO;
 import org.xezz.timeregistration.dao.TimeSpanDAO;
 import org.xezz.timeregistration.model.Coworker;
+import org.xezz.timeregistration.model.Project;
 import org.xezz.timeregistration.repository.CoworkerRepository;
 import org.xezz.timeregistration.repository.ProjectRepository;
 import org.xezz.timeregistration.service.CoworkerService;
@@ -23,7 +24,7 @@ import java.util.List;
  * Time: 16:02
  */
 @Service
-@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+@Transactional
 public class CoworkerServiceImpl implements CoworkerService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CoworkerServiceImpl.class);
@@ -76,7 +77,13 @@ public class CoworkerServiceImpl implements CoworkerService {
 
     @Override
     public Iterable<CoworkerDAO> getByProject(ProjectDAO p) {
-        final Iterable<Coworker> coworkersByProject = coworkerRepository.findCoworkersByProject(projectRepository.findOne(p.getProjectId()));
+        Iterable<Coworker> coworkersByProject = new ArrayList<Coworker>();
+        if (p != null) {
+            final Project project = projectRepository.findOne(p.getProjectId());
+            if (project != null) {
+                coworkersByProject = coworkerRepository.findCoworkersByProject(project);
+            }
+        }
         final List<CoworkerDAO> daoList = new ArrayList<CoworkerDAO>();
         for (Coworker c : coworkersByProject) {
             daoList.add(new CoworkerDAO(c));
@@ -86,48 +93,36 @@ public class CoworkerServiceImpl implements CoworkerService {
 
     @Override
     public CoworkerDAO getById(Long id) {
-        LOGGER.debug("Trying to find coworker with id: " + id);
         Coworker coworker = coworkerRepository.findOne(id);
-        final CoworkerDAO one = coworker != null ? new CoworkerDAO(coworker) : null;
-        LOGGER.debug("Found one?: " + (one != null));
-        return one;
+        return coworker != null ? new CoworkerDAO(coworker) : null;
     }
 
     @Override
     public CoworkerDAO getByTimeFrame(TimeSpanDAO timeSpanDAO) {
-        return getById(timeSpanDAO.getCoworkerId());
+        return timeSpanDAO != null ? getById(timeSpanDAO.getCoworkerId()) : null;
     }
 
     @Override
     @Transactional
     public CoworkerDAO addNew(CoworkerDAO coworkerDAO) {
-        LOGGER.debug("Service saving coworker: " + coworkerDAO.getFirstName() + " " + coworkerDAO.getLastName());
-        Coworker coworker = coworkerRepository.save(new Coworker(coworkerDAO));
-        final CoworkerDAO save = coworker != null ? new CoworkerDAO(coworker) : null;
-        LOGGER.debug("Service saved coworker, is it != null? " + (save != null));
-        if (save != null) {
-            LOGGER.debug("First name: " + save.getFirstName() + " Last name: " + save.getLastName() + " Date created: " + save.getCreationDate() + " id: " + save.getCoworkerId());
-        }
-        return save;
+        Coworker saved = null;
+         if(coworkerDAO != null) {
+             saved = coworkerRepository.save(new Coworker(coworkerDAO));
+         }
+        return saved != null ? new CoworkerDAO(saved) : null;
     }
 
     @Override
     @Transactional
     public CoworkerDAO update(CoworkerDAO coworkerDAO) {
-        Coworker coworker = coworkerRepository.findOne(coworkerDAO.getCoworkerId());
-        if (coworker != null) {
-            coworker.updateFromDao(coworkerDAO);
-            return new CoworkerDAO(coworkerRepository.save(coworker));
-        } else {
-            return null;
-        }
+        // FIXME: Throw exception if it does not exist?
+        return coworkerDAO != null && coworkerRepository.exists(coworkerDAO.getCoworkerId()) ? addNew(coworkerDAO) : null;
     }
 
     @Override
     public void delete(CoworkerDAO coworkerDAO) {
-        final Coworker coworker = coworkerRepository.findOne(coworkerDAO.getCoworkerId());
-        if (coworker != null) {
-            coworkerRepository.delete(coworker);
+        if (coworkerDAO != null) {
+            coworkerRepository.delete(new Coworker(coworkerDAO));
         }
     }
 }

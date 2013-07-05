@@ -160,14 +160,6 @@ public class ITCoworkerServiceImplTest extends AbstractBaseITConfiguration {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testUpdateCoworkerFailsWithUpdatedCreationDate() throws Exception {
-        final CoworkerDAO coworkerDAO = coworkerService.getById(coworkerId);
-        assertNotNull("Received Coworker was null", coworkerDAO);
-        coworkerDAO.setCreationDate(new Date(coworkerDAO.getCreationDate().getTime() + 12344));
-        coworkerService.update(coworkerDAO);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void testUpdateCoworkerFailsWitChangedId() throws Exception {
         final CoworkerDAO coworkerDAO = coworkerService.getById(coworkerId);
         assertNotNull("Received Coworker was null", coworkerDAO);

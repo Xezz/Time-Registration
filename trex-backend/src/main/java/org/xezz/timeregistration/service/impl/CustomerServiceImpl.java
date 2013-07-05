@@ -139,10 +139,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void delete(CustomerDAO customerDAO) {
         if (customerDAO != null) {
-            final Customer customer = customerRepository.findOne(customerDAO.getCustomerId());
-            if (customer != null) {
-                customerRepository.delete(customer);
-            }
+            customerRepository.delete(new Customer(customerDAO));
         }
     }
 }

@@ -159,12 +159,4 @@ public class Coworker {
         result = prime * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
         return result;
     }
-
-    public void updateFromDao(final CoworkerDAO c) {
-        this.setCreationDate(c.getCreationDate());
-        this.setFirstName(c.getFirstName());
-        this.setLastUpdatedDate(c.getLastUpdatedDate());
-        this.setLastName(c.getLastName());
-        this.setCoworkerId(c.getCoworkerId());
-    }
 }

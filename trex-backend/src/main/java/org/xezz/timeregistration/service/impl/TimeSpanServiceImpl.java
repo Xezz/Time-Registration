@@ -74,7 +74,7 @@ public class TimeSpanServiceImpl implements TimeSpanService {
     @Transactional
     @Override
     public TimeSpanDAO update(TimeSpanDAO timeSpanDAO) {
-        return timeSpanDAO != null ? new TimeSpanDAO(repo.save(new TimeSpan(timeSpanDAO))) : null;
+        return timeSpanDAO != null && repo.exists(timeSpanDAO.getTimeSpanId())? addNew(timeSpanDAO) : null;
     }
 
     @Override
@@ -84,9 +84,8 @@ public class TimeSpanServiceImpl implements TimeSpanService {
 
     @Override
     public void delete(TimeSpanDAO timeSpanDAO) {
-        TimeSpan timeSpan = repo.findOne(timeSpanDAO.getTimeSpanId());
-        if (timeSpan != null) {
-            repo.delete(timeSpan);
+        if (timeSpanDAO != null) {
+            repo.delete(new TimeSpan(timeSpanDAO));
         }
     }
 
