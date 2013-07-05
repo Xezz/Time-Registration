@@ -158,9 +158,6 @@ public class ProjectDAO {
         if (customerId == null) {
             return null;
         }
-        if (customerRepository == null) {
-            throw new RuntimeException("Customer Repository not injected");
-        }
         return customerRepository.findOne(customerId);
     }
 }
