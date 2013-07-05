@@ -102,8 +102,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     @Override
     public ProjectDAO update(ProjectDAO p) {
-        // TODO: update or (as of right now) also safe (aka against REST)
-        return new ProjectDAO(repo.save(new Project(p)));
+        if (p == null) {
+            throw new IllegalArgumentException("NULL not allowed here");
+        }
+        final Project save = repo.save(new Project(p));
+        return new ProjectDAO(save);
     }
 
     @Override
