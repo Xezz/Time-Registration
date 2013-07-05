@@ -14,7 +14,7 @@ import java.util.Date;
  * Date: 30.05.13
  * Time: 22:50
  */
-@Configurable(autowire = Autowire.BY_TYPE, dependencyCheck = true)
+@Configurable(autowire = Autowire.BY_TYPE)
 public class ProjectDAO {
     private Long projectId;
     private Long customerId;
