@@ -10,6 +10,7 @@ import org.xezz.timeregistration.service.CustomerService;
 import org.xezz.timeregistration.service.ProjectService;
 import org.xezz.timeregistration.service.TimeSpanService;
 
+import java.util.Date;
 import java.util.Iterator;
 
 import static org.hamcrest.Matchers.*;
@@ -97,20 +98,23 @@ public class ITProjectServiceImplTest extends AbstractBaseITConfiguration {
         createdDao.setDescription(description);
         createdDao.setCustomerId(existsProjectId);
         assertThat("Created DAO WAS NULL", createdDao, is(notNullValue()));
-        // Does not work yet, because the repository is not injected into the DAO
-        //final ProjectDAO createdProject = projectService.addNew(createdDao);
-        //assertThat("Created Project was null", createdProject, is(notNullValue()));
+        // Does not work yet from IDEA, because @Configurable seems to not be applied
+        final ProjectDAO createdProject = projectService.addNew(createdDao);
+        assertThat("Created Project was null", createdProject, is(notNullValue()));
     }
 
     @Test
     public void testUpdate() throws Exception {
         final ProjectDAO toUpdate = projectService.getById(existsProjectId);
+        assertThat("Project did not exist", toUpdate, is(notNullValue()));
+        final Date lastUpdatedDate = toUpdate.getLastUpdatedDate();
         final String name = toUpdate.getName() + toUpdate.getName();
         assertThat("New name matched old name", name, is(not(equalToIgnoringCase(toUpdate.getName()))));
         toUpdate.setName(name);
         final ProjectDAO updated = projectService.update(toUpdate);
         assertThat("Updated did not get saved", updated, is(notNullValue()));
         assertThat("Updated did not have the new name", name, is(equalTo(updated.getName())));
+        assertThat("Last updated Date is in the past of former value", 0, is(greaterThanOrEqualTo(lastUpdatedDate.compareTo(updated.getLastUpdatedDate()))));
 
     }
 
