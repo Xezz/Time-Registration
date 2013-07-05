@@ -105,10 +105,11 @@ public class TimeSpanDAO {
     }
 
     public void setStartTime(Date startTime) {
-        if (startTime == null) {
+        if (this.startTime != null && startTime == null) {
             throw new IllegalArgumentException("Date must not be null");
+        } else if (startTime != null) {
+            this.startTime = new Date(startTime.getTime());
         }
-        this.startTime = new Date(startTime.getTime());
     }
 
     public Long getDurationInMinutes() {
@@ -127,10 +128,11 @@ public class TimeSpanDAO {
     }
 
     public void setCreationDate(Date creationDate) {
-        if (creationDate == null) {
+        if (this.creationDate != null && creationDate == null) {
             throw new IllegalArgumentException("Date must not be null");
+        } else if (creationDate != null) {
+            this.creationDate = new Date(creationDate.getTime());
         }
-        this.creationDate = new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
@@ -141,10 +143,11 @@ public class TimeSpanDAO {
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        if (lastUpdatedDate == null) {
+        if (this.lastUpdatedDate != null && lastUpdatedDate == null) {
             throw new IllegalArgumentException("Date must not be null");
+        } else if (lastUpdatedDate != null) {
+            this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
         }
-        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     @Override

@@ -62,7 +62,7 @@ public class CoworkerDAO {
     }
 
     public void setCoworkerId(Long coworkerId) {
-        if (this.coworkerId != null) {
+        if (this.coworkerId != null && !this.coworkerId.equals(coworkerId)) {
             throw new IllegalArgumentException("You are not allowed to change the ID once it is set");
         }
         this.coworkerId = coworkerId;
@@ -73,7 +73,8 @@ public class CoworkerDAO {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        // FIXME: THROW EXP to not allow setting to null
+        if (firstName != null) this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -81,7 +82,8 @@ public class CoworkerDAO {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        // FIXME: THROW EXP to not allow setting to null
+        if (lastName != null) this.lastName = lastName;
     }
 
     public Date getCreationDate() {
@@ -92,10 +94,11 @@ public class CoworkerDAO {
     }
 
     public void setCreationDate(Date creationDate) {
-        if (creationDate == null) {
+        if (this.creationDate != null && creationDate == null) {
             throw new IllegalArgumentException("Date must not be null");
+        } else if (creationDate != null) {
+            this.creationDate = new Date(creationDate.getTime());
         }
-        this.creationDate = new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
@@ -106,10 +109,12 @@ public class CoworkerDAO {
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        if (lastUpdatedDate == null) {
+        // FIXME: Throw exp if we set this to null and there is already a value
+        if (this.lastUpdatedDate != null && lastUpdatedDate == null) {
             throw new IllegalArgumentException("Date must not be null");
+        } else if (lastUpdatedDate != null) {
+            this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
         }
-        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     @Override

@@ -61,7 +61,7 @@ public class CustomerDAO {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null) this.name = name;
     }
 
     public String getCustomerInfo() {
@@ -69,7 +69,7 @@ public class CustomerDAO {
     }
 
     public void setCustomerInfo(String customerInfo) {
-        this.customerInfo = customerInfo;
+        if(customerInfo != null) this.customerInfo = customerInfo;
     }
 
     public Date getCreationDate() {
@@ -80,10 +80,12 @@ public class CustomerDAO {
     }
 
     public void setCreationDate(Date creationDate) {
-        if (creationDate == null) {
+        // FIXME: THROW EXP to not allow setting to null and fetch it
+        if (this.creationDate != null && creationDate == null) {
             throw new IllegalArgumentException("Date must not be null");
+        } else if (creationDate != null) {
+            this.creationDate = new Date(creationDate.getTime());
         }
-        this.creationDate = new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
@@ -94,10 +96,12 @@ public class CustomerDAO {
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        if (lastUpdatedDate == null) {
+        // only fail if there is a non null date already
+        if (this.lastUpdatedDate != null && lastUpdatedDate == null) {
             throw new IllegalArgumentException("Date must not be null");
+        } else if (lastUpdatedDate != null) {
+            this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
         }
-        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     @Override

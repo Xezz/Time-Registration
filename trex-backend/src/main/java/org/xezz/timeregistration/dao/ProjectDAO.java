@@ -78,7 +78,7 @@ public class ProjectDAO {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null) this.name = name;
     }
 
     public String getDescription() {
@@ -86,7 +86,7 @@ public class ProjectDAO {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        if (description != null) this.description = description;
     }
 
     public Long getCustomerId() {
@@ -105,10 +105,11 @@ public class ProjectDAO {
     }
 
     public void setCreationDate(Date creationDate) {
-        if (creationDate == null) {
+        if (this.creationDate != null && creationDate == null) {
             throw new IllegalArgumentException("Date must not be null");
+        } else if (creationDate != null) {
+            this.creationDate = new Date(creationDate.getTime());
         }
-        this.creationDate = new Date(creationDate.getTime());
     }
 
     public Date getLastUpdatedDate() {
@@ -119,10 +120,11 @@ public class ProjectDAO {
     }
 
     public void setLastUpdatedDate(Date lastUpdatedDate) {
-        if (lastUpdatedDate == null) {
+        if (this.lastUpdatedDate != null && lastUpdatedDate == null) {
             throw new IllegalArgumentException("Date must not be null");
+        } else if (lastUpdatedDate != null) {
+            this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
         }
-        this.lastUpdatedDate = new Date(lastUpdatedDate.getTime());
     }
 
     @Override
