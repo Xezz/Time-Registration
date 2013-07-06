@@ -4,7 +4,7 @@
 
     <groupId>org.xezz</groupId>
     <artifactId>timeregistration</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.2-SNAPSHOT</version>
     <modules>
         <module>trex-backend</module>
         <module>trex-integrationtests</module>
@@ -27,8 +27,6 @@
         <javax-persistence.version>2.0.0</javax-persistence.version>
         <javax-inject.version>1</javax-inject.version>
         <jstl.version>1.2</jstl.version>
-        <!-- TODO: Maybe use a new version, but 2.5 seems to be the current release? -->
-        <!-- might be that tomcat 7 has it already deployed as 3.x? -->
         <servlet-api.version>3.0.1</servlet-api.version>
         <jsp-api.version>2.1</jsp-api.version>
 
@@ -39,35 +37,34 @@
         <!-- Compile Time Weaving -->
         <org-aspectj-version>1.6.11</org-aspectj-version>
 
-        <!-- marshalling -->
+        <!-- marshalling / json -->
         <jackson.version>2.1.4</jackson.version>
         <jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
         <jaxb-api.version>2.2.7</jaxb-api.version>
         <xstream.version>1.4.4</xstream.version>
 
-        <!-- sqlite -->
-        <sqlite-jdbc.version>3.7.2</sqlite-jdbc.version>
+        <!-- Logging -->
         <slf4j-api.version>1.7.1</slf4j-api.version>
+        <!-- persistence -->
         <openjpa-asm-shaded.version>2.2.0</openjpa-asm-shaded.version>
         <openjpa-maven-plugin.version>2.2.2</openjpa-maven-plugin.version>
         <openjpa.version>2.2.0</openjpa.version>
         <hibernate-validator.version>4.3.0.Final</hibernate-validator.version>
-        <!-- compiler settings -->
+        <!-- compiler/build settings -->
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Only unit tests are run by default. -->
         <build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
-        <!-- testing / integration testing -->
         <maven-failsafe-plugin.version>2.12</maven-failsafe-plugin.version>
         <maven-surefire-plugin.version>2.12</maven-surefire-plugin.version>
+        <!-- testing / integration testing -->
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <h2.version>1.3.172</h2.version>
         <dbunit.version>2.4.8</dbunit.version>
         <spring-test-dbunit.version>1.0.0</spring-test-dbunit.version>
         <hamcrest-library.version>1.3</hamcrest-library.version>
         <hsqldb.version>2.0.0</hsqldb.version>
+        <!-- reporting -->
         <cobertura-maven-plugin.version>2.5.2</cobertura-maven-plugin.version>
         <findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>
         <maven-pmd-plugin.version>3.0.1</maven-pmd-plugin.version>
