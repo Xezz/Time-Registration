@@ -7,9 +7,7 @@ import org.xezz.timeregistration.dao.CustomerDAO;
 
 import java.util.Date;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -21,6 +19,8 @@ public class CustomerDAOValidatorTest {
     private final CustomerDAOValidator validator = new CustomerDAOValidator();
     private final String customerInfo = "Valid info";
     private final String customerName = "Valid name";
+    private final long customerId = 1L;
+    private final Date creationDate = new Date();
 
     @Test
     public void testSupports() throws Exception {
@@ -45,10 +45,9 @@ public class CustomerDAOValidatorTest {
     @Test
     public void testValidateWithIdAndDates() throws Exception {
         CustomerDAO customer = new CustomerDAO();
-        Date creationDate = new Date();
         customer.setName(customerName);
         customer.setCustomerInfo(customerInfo);
-        customer.setCustomerId(1L);
+        customer.setCustomerId(customerId);
         customer.setCreationDate(creationDate);
         customer.setLastUpdatedDate(creationDate);
         Errors errors = new BeanPropertyBindingResult(customer, "customer");
@@ -90,5 +89,86 @@ public class CustomerDAOValidatorTest {
         assertThat("There were no errors found in an invalid customer", errors.hasErrors(), is(true));
         assertThat("Error count was not 1", errors.getErrorCount(), is(equalTo(1)));
         assertThat("Error was no a field error", errors.hasFieldErrors(), is(true));
+    }
+
+    @Test
+    public void testValidateFailsWithNullInfo() throws Exception {
+        CustomerDAO customerDAO = new CustomerDAO();
+        customerDAO.setName(customerName);
+        customerDAO.setCustomerInfo(null);
+        Errors errors = new BeanPropertyBindingResult(customerDAO, "customerDAO");
+        validator.validate(customerDAO, errors);
+        assertThat("There were no errors found in an invalid customer", errors.hasErrors(), is(true));
+        assertThat("Error count was not 1", errors.getErrorCount(), is(equalTo(1)));
+        assertThat("Error was no a field error", errors.hasFieldErrors(), is(true));
+    }
+
+    @Test
+    public void testValidateCustomerIdError() throws Exception {
+        CustomerDAO customer = new CustomerDAO();
+        customer.setName(customerName);
+        customer.setCustomerInfo(customerInfo);
+        customer.setCreationDate(creationDate);
+        customer.setLastUpdatedDate(creationDate);
+        Errors errors = new BeanPropertyBindingResult(customer, "customer");
+        validator.validate(customer, errors);
+        assertThat("Validation did not have Errors without CustomerId but with dates", errors.hasErrors(), is(equalTo(true)));
+    }
+
+    @Test
+    public void testValidateCreationDateError() throws Exception {
+        CustomerDAO customer = new CustomerDAO();
+        customer.setName(customerName);
+        customer.setCustomerInfo(customerInfo);
+        customer.setCustomerId(customerId);
+        customer.setLastUpdatedDate(creationDate);
+        Errors errors = new BeanPropertyBindingResult(customer, "customer");
+        validator.validate(customer, errors);
+        assertThat("Validation did not have Errors without CreationDate but with rest", errors.hasErrors(), is(equalTo(true)));
+    }
+
+    @Test
+    public void testValidateLastUpdatedDateError() throws Exception {
+        CustomerDAO customer = new CustomerDAO();
+        customer.setName(customerName);
+        customer.setCustomerInfo(customerInfo);
+        customer.setCustomerId(customerId);
+        customer.setCreationDate(creationDate);
+        Errors errors = new BeanPropertyBindingResult(customer, "customer");
+        validator.validate(customer, errors);
+        assertThat("Validation did not have Errors without LastUpdateDate but with rest", errors.hasErrors(), is(equalTo(true)));
+    }
+
+    @Test
+    public void testValidateWithLastUpdatedDateError() throws Exception {
+        CustomerDAO customer = new CustomerDAO();
+        customer.setName(customerName);
+        customer.setCustomerInfo(customerInfo);
+        customer.setLastUpdatedDate(creationDate);
+        Errors errors = new BeanPropertyBindingResult(customer, "customer");
+        validator.validate(customer, errors);
+        assertThat("Validation did not have Errors with just LastUpdateDate", errors.hasErrors(), is(equalTo(true)));
+    }
+
+    @Test
+    public void testValidateWithCreationDateError() throws Exception {
+        CustomerDAO customer = new CustomerDAO();
+        customer.setName(customerName);
+        customer.setCustomerInfo(customerInfo);
+        customer.setCreationDate(creationDate);
+        Errors errors = new BeanPropertyBindingResult(customer, "customer");
+        validator.validate(customer, errors);
+        assertThat("Validation did not have Errors with just CreationDate", errors.hasErrors(), is(equalTo(true)));
+    }
+
+    @Test
+    public void testValidateWithCustomerIdError() throws Exception {
+        CustomerDAO customer = new CustomerDAO();
+        customer.setName(customerName);
+        customer.setCustomerInfo(customerInfo);
+        customer.setCustomerId(customerId);
+        Errors errors = new BeanPropertyBindingResult(customer, "customer");
+        validator.validate(customer, errors);
+        assertThat("Validation did not have Errors with just CustomerId", errors.hasErrors(), is(equalTo(true)));
     }
 }

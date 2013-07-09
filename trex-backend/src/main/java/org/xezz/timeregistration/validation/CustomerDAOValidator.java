@@ -1,6 +1,7 @@
 package org.xezz.timeregistration.validation;
 
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import org.xezz.timeregistration.dao.CustomerDAO;
 
@@ -18,16 +19,12 @@ public class CustomerDAOValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         CustomerDAO customer = (CustomerDAO) o;
-        if(customer.getName() == null || customer.getName().trim().equals("")) {
-            errors.rejectValue("name", "Name empty String");
-        }
-        if (customer.getCustomerInfo() == null || customer.getCustomerInfo().trim().equals("")) {
-            errors.rejectValue("info", "Info empty String");
-        }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "customerInfo", "field.required");
         // If an id, creation date or last updated date exists all others have to exist too
         if ((customer.getCustomerId() != null || customer.getCreationDate() != null || customer.getLastUpdatedDate() != null) &&
                 (customer.getCustomerId() == null || customer.getCreationDate() == null || customer.getLastUpdatedDate() == null)) {
-            errors.rejectValue("Meta data", "Incomplete meta data");
+            errors.reject("Meta data", "Incomplete meta data");
         }
     }
 }
