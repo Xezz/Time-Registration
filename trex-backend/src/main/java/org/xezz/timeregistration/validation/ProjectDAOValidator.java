@@ -21,17 +21,20 @@ public class ProjectDAOValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        if (!(o instanceof ProjectDAO)) {
-            errors.reject("Not a Project");
-            return;
-        }
-        ProjectDAO dao = (ProjectDAO) o;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "field.required");
-        ValidationUtils.rejectIfEmpty(errors, "customerId", "field.required");
-        if ((dao.getProjectId() != null || dao.getCreationDate() != null || dao.getLastUpdatedDate() != null) &&
-                (dao.getProjectId() == null || dao.getCreationDate() == null || dao.getLastUpdatedDate() == null)) {
-            errors.reject("Meta data", "Incomplete meta data");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required", "Name must not be empty or null");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "field.required", "Description must not be empty or null");
+        ValidationUtils.rejectIfEmpty(errors, "customerId", "field.required", "Must be associated with a Customer");
+        final ProjectDAO dao = (ProjectDAO) o;
+        if ((dao.getProjectId() != null || dao.getCreationDate() != null || dao.getLastUpdatedDate() != null)) {
+            if (dao.getProjectId() == null) {
+                errors.rejectValue("projectId", "field.required", "Meta data error: projectId was not set");
+            }
+            if (dao.getCreationDate() == null) {
+                errors.rejectValue("creationDate", "field.required", "Meta data error: creationDate was not set");
+            }
+            if (dao.getLastUpdatedDate() == null) {
+                errors.rejectValue("lastUpdatedDate", "field.required", "Meta data error: lastUpdatedDate was not set");
+            }
         }
     }
 }

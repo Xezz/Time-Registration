@@ -21,13 +21,20 @@ public class CustomerDAOValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        CustomerDAO customer = (CustomerDAO) o;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "customerInfo", "field.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required", "Name must not be empty or null");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "customerInfo", "field.required", "CustomerInfo must not be empty or null");
+        final CustomerDAO dao = (CustomerDAO) o;
         // If an id, creation date or last updated date exists all others have to exist too
-        if ((customer.getCustomerId() != null || customer.getCreationDate() != null || customer.getLastUpdatedDate() != null) &&
-                (customer.getCustomerId() == null || customer.getCreationDate() == null || customer.getLastUpdatedDate() == null)) {
-            errors.reject("Meta data", "Incomplete meta data");
+        if ((dao.getCustomerId() != null || dao.getCreationDate() != null || dao.getLastUpdatedDate() != null)) {
+            if (dao.getCustomerId() == null) {
+                errors.rejectValue("customerId", "field.required", "Meta data error: customerId was not set");
+            }
+            if (dao.getCreationDate() == null) {
+                errors.rejectValue("creationDate", "field.required", "Meta data error: creationDate was not set");
+            }
+            if (dao.getLastUpdatedDate() == null) {
+                errors.rejectValue("lastUpdatedDate", "field.required", "Meta data error: lastUpdatedDate was not set");
+            }
         }
     }
 }

@@ -21,13 +21,20 @@ public class CoworkerDAOValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        final CoworkerDAO coworker = (CoworkerDAO) o;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "field.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "field.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "field.required", "firstName must not be null or empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "field.required", "lastName must not be null or empty");
+        final CoworkerDAO dao = (CoworkerDAO) o;
         // If an id, creation date or last updated date exists all others have to exist too
-        if ((coworker.getCoworkerId() != null || coworker.getCreationDate() != null || coworker.getLastUpdatedDate() != null) &&
-                (coworker.getCoworkerId() == null || coworker.getCreationDate() == null || coworker.getLastUpdatedDate() == null)) {
-            errors.reject("Meta data", "Incomplete meta data");
+        if ((dao.getCoworkerId() != null || dao.getCreationDate() != null || dao.getLastUpdatedDate() != null)) {
+            if (dao.getCoworkerId() == null) {
+                errors.rejectValue("coworkerId", "field.required", "Meta data error: coworkerId was not set");
+            }
+            if (dao.getCreationDate() == null) {
+                errors.rejectValue("creationDate", "field.required", "Meta data error: creationDate was not set");
+            }
+            if (dao.getLastUpdatedDate() == null) {
+                errors.rejectValue("lastUpdatedDate", "field.required", "Meta data error: lastUpdatedDate was not set");
+            }
         }
     }
 }
