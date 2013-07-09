@@ -9,6 +9,7 @@ import org.xezz.timeregistration.dao.CustomerDAO;
  * User: Xezz
  * Date: 08.07.13
  * Time: 10:01
+ * Validate a given Customer is valid
  */
 public class CustomerDAOValidator implements Validator {
     @Override

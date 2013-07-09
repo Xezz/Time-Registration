@@ -9,6 +9,7 @@ import org.xezz.timeregistration.dao.TimeSpanDAO;
  * User: Xezz
  * Date: 09.07.13
  * Time: 10:56
+ * Validate a given TimeSpan is valid
  */
 public class TimeSpanDAOValidator implements Validator {
     @Override
