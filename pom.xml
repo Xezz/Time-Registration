@@ -18,6 +18,7 @@
     <properties>
         <!-- Project specific props -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <aspectj-maven-plugin.version>1.4</aspectj-maven-plugin.version>
         <!-- Test -->
         <junit.version>4.11</junit.version>
@@ -347,6 +348,7 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>${cobertura-maven-plugin.version}</version>
                 <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                     <instrumentation>
                         <ignores>
                             <ignore>org.xezz.timeregistration.*</ignore>
@@ -376,6 +378,7 @@
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>${findbugs-maven-plugin.version}</version>
                 <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                     <findbugsXmlOutput>true</findbugsXmlOutput>
                     <xmlOutput>true</xmlOutput>
                 </configuration>
