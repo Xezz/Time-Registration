@@ -3,9 +3,13 @@ package org.xezz.timeregistration.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 import org.xezz.timeregistration.dao.ProjectDAO;
 import org.xezz.timeregistration.service.ProjectService;
+
+import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * User: Xezz
@@ -17,8 +21,18 @@ import org.xezz.timeregistration.service.ProjectService;
 @RequestMapping(value = "api/project")
 public class ProjectController {
 
-    @Autowired
+    private Validator validator;
     ProjectService service;
+
+    @Autowired
+    public void setService(ProjectService service) {
+        this.service = service;
+    }
+
+    @Resource(name = "projectValidator")
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
 
     /**
      * Request all Projects
@@ -37,21 +51,21 @@ public class ProjectController {
      * @param projectDAO The Project to persist
      * @return Persisted Project
      */
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ProjectDAO create(@RequestBody ProjectDAO projectDAO) {
+    public ProjectDAO create(@Valid @RequestBody ProjectDAO projectDAO) {
         return service.addNew(projectDAO);
     }
 
     /**
-     * Request to upate an existing Project
+     * Request to update an existing Project
      *
      * @param projectDAO The Project to update
      * @return Updated Project
      */
-    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ProjectDAO update(@RequestBody ProjectDAO projectDAO) {
+    public ProjectDAO update(@Valid @RequestBody ProjectDAO projectDAO) {
         return service.update(projectDAO);
     }
 
@@ -84,9 +98,9 @@ public class ProjectController {
      *
      * @param projectDAO the Project to delete
      */
-    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void delete(@RequestBody ProjectDAO projectDAO) {
+    public void delete(@Valid @RequestBody ProjectDAO projectDAO) {
         service.delete(projectDAO);
     }
 }

@@ -3,9 +3,13 @@ package org.xezz.timeregistration.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 import org.xezz.timeregistration.dao.CustomerDAO;
 import org.xezz.timeregistration.service.CustomerService;
+
+import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * User: Xezz
@@ -16,8 +20,18 @@ import org.xezz.timeregistration.service.CustomerService;
 @RequestMapping(value = "api/customer")
 public class CustomerController {
 
-    @Autowired
+    private Validator validator;
     CustomerService service;
+
+    @Autowired
+    public void setService(CustomerService service) {
+        this.service = service;
+    }
+
+    @Resource(name = "customerValidator")
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
 
     /**
      * Request all Customers
@@ -36,10 +50,9 @@ public class CustomerController {
      * @param customerDAO Customer to save
      * @return Customer that got saved
      */
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CustomerDAO saveCustomer(@RequestBody CustomerDAO customerDAO) {
-        // TODO: Verify and Nullcheck
+    public CustomerDAO saveCustomer(@Valid @RequestBody CustomerDAO customerDAO) {
         return service.addNew(customerDAO);
     }
 
@@ -49,10 +62,9 @@ public class CustomerController {
      * @param customerDAO Customer with new values
      * @return Customer that got updated
      */
-    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CustomerDAO updateCustomer(@RequestBody CustomerDAO customerDAO) {
-        // TODO: Verify and Nullcheck
+    public CustomerDAO updateCustomer(@Valid @RequestBody CustomerDAO customerDAO) {
         return service.update(customerDAO);
     }
 
@@ -61,9 +73,8 @@ public class CustomerController {
      *
      * @param customerDAO Customer to delete
      */
-    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteCustomer(@RequestBody CustomerDAO customerDAO) {
-        // TODO: Verify and Nullcheck
+    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteCustomer(@Valid @RequestBody CustomerDAO customerDAO) {
         service.delete(customerDAO);
     }
 
@@ -90,6 +101,4 @@ public class CustomerController {
     public Iterable<CustomerDAO> getCustomerByNameMatch(@PathVariable("name") String name) {
         return service.getByNameMatch(name);
     }
-
-    // TODO: Add DELETE for Customers
 }

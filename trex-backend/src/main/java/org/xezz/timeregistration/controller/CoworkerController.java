@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 import org.xezz.timeregistration.dao.CoworkerDAO;
 import org.xezz.timeregistration.service.CoworkerService;
+
+import javax.annotation.Resource;
+import javax.validation.Valid;
 
 
 /**
@@ -22,10 +26,21 @@ import org.xezz.timeregistration.service.CoworkerService;
 // requests are mapped to /coworker
 @RequestMapping(value = "api/coworker")
 public class CoworkerController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CoworkerController.class);
+    // Validation
+    private Validator validator;
+    CoworkerService service;
+
     // DI the service
     @Autowired
-    CoworkerService service;
-    private static final Logger LOGGER = LoggerFactory.getLogger(CoworkerController.class);
+    public void setService(CoworkerService service) {
+        this.service = service;
+    }
+
+    @Resource(name = "coworkerValidator")
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
 
     // Starting with JSON mapping
     //
@@ -93,9 +108,9 @@ public class CoworkerController {
      * @param coworkerDAO the mapped Coworker
      * @return id of the newly created Coworker
      */
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CoworkerDAO create(@RequestBody CoworkerDAO coworkerDAO) {
+    public CoworkerDAO create(@Valid @RequestBody CoworkerDAO coworkerDAO) {
         LOGGER.info("Post to create Coworker.");
         if (coworkerDAO == null) {
             LOGGER.info("Coworker == null");
@@ -111,9 +126,9 @@ public class CoworkerController {
      * @param coworkerDAO updated Coworker
      * @return Coworker persisted Coworker
      */
-    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CoworkerDAO update(@RequestBody CoworkerDAO coworkerDAO) {
+    public CoworkerDAO update(@Valid @RequestBody CoworkerDAO coworkerDAO) {
         LOGGER.info("JSON PUT Request to update coworker");
         return service.update(coworkerDAO);
     }
@@ -121,11 +136,11 @@ public class CoworkerController {
     /**
      * DELETE an existing Coworker
      *
-     * @param coworkerDAO updated Coworker
+     * @param coworkerDAO Coworker to delete
      */
     // FIXME: RETURN Correct HTTP HEADER INSTEAD
-    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(@RequestBody CoworkerDAO coworkerDAO) {
+    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void delete(@Valid @RequestBody CoworkerDAO coworkerDAO) {
         LOGGER.info("JSON DELETE Request to delete a coworker");
         service.delete(coworkerDAO);
     }
