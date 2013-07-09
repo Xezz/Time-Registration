@@ -1,5 +1,6 @@
 package org.xezz.timeregistration.validation;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -11,6 +12,7 @@ import org.xezz.timeregistration.dao.ProjectDAO;
  * Time: 09:09
  * Validate a given Project is valid
  */
+@Component("projectValidator")
 public class ProjectDAOValidator implements Validator {
     @Override
     public boolean supports(Class<?> aClass) {

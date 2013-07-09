@@ -1,5 +1,6 @@
 package org.xezz.timeregistration.validation;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -11,6 +12,7 @@ import org.xezz.timeregistration.dao.TimeSpanDAO;
  * Time: 10:56
  * Validate a given TimeSpan is valid
  */
+@Component("timeSpanValidator")
 public class TimeSpanDAOValidator implements Validator {
     @Override
     public boolean supports(Class<?> aClass) {
