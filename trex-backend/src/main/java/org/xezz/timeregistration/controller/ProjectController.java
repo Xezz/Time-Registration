@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.xezz.timeregistration.dao.ProjectDAO;
 import org.xezz.timeregistration.service.ProjectService;
@@ -32,6 +33,16 @@ public class ProjectController {
     @Resource(name = "projectValidator")
     public void setValidator(Validator validator) {
         this.validator = validator;
+    }
+
+    /**
+     * Enable binding with a Spring Validator
+     *
+     * @param binder
+     */
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
     }
 
     /**

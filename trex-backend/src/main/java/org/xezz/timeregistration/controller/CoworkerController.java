@@ -7,9 +7,11 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.xezz.timeregistration.dao.CoworkerDAO;
 import org.xezz.timeregistration.service.CoworkerService;
+import org.xezz.timeregistration.validation.CoworkerDAOValidator;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -37,9 +39,24 @@ public class CoworkerController {
         this.service = service;
     }
 
+    /**
+     * Inject a CoworkerDAOValidator by name
+     *
+     * @param validator the validator to use for this Controller
+     */
     @Resource(name = "coworkerValidator")
     public void setValidator(Validator validator) {
         this.validator = validator;
+    }
+
+    /**
+     * Enable binding with a Spring Validator
+     *
+     * @param binder
+     */
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
     }
 
     // Starting with JSON mapping
@@ -111,6 +128,14 @@ public class CoworkerController {
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public CoworkerDAO create(@Valid @RequestBody CoworkerDAO coworkerDAO) {
+        if (validator == null) {
+            LOGGER.warn("VALIDATOR HAS NOT BEEN INJECTED!!!!!");
+        } else {
+            LOGGER.info("Validator has been injected");
+            if (validator instanceof CoworkerDAOValidator) {
+                LOGGER.info("Validator is of type: " + CoworkerDAOValidator.class);
+            }
+        }
         LOGGER.info("Post to create Coworker.");
         if (coworkerDAO == null) {
             LOGGER.info("Coworker == null");
