@@ -103,4 +103,61 @@ public class TimeSpanDAOValidatorTest {
         validator.validate(timeSpanDAO, errors);
         assertThat("Validation passed without duration", errors.hasErrors(), is(true));
     }
+
+    @Test
+    public void testValidateWithMetaErrorId() throws Exception {
+        final TimeSpanDAO timeSpanDAO = new TimeSpanDAO();
+        timeSpanDAO.setProjectId(projectId);
+        timeSpanDAO.setCoworkerId(coworkerId);
+        timeSpanDAO.setStartTime(date);
+        timeSpanDAO.setDurationInMinutes(duration);
+        timeSpanDAO.setCreationDate(date);
+        timeSpanDAO.setLastUpdatedDate(date);
+        final BeanPropertyBindingResult errors = new BeanPropertyBindingResult(timeSpanDAO, "timespan");
+        validator.validate(timeSpanDAO, errors);
+        assertThat("Validation passed without duration", errors.hasErrors(), is(true));
+    }
+
+    @Test
+    public void testValidateWithMetaErrorCreationDate() throws Exception {
+        final TimeSpanDAO timeSpanDAO = new TimeSpanDAO();
+        timeSpanDAO.setProjectId(projectId);
+        timeSpanDAO.setCoworkerId(coworkerId);
+        timeSpanDAO.setStartTime(date);
+        timeSpanDAO.setDurationInMinutes(duration);
+        timeSpanDAO.setTimeSpanId(timeSpanId);
+        timeSpanDAO.setLastUpdatedDate(date);
+        final BeanPropertyBindingResult errors = new BeanPropertyBindingResult(timeSpanDAO, "timespan");
+        validator.validate(timeSpanDAO, errors);
+        assertThat("Validation passed without duration", errors.hasErrors(), is(true));
+    }
+
+    @Test
+    public void testValidateWithMetaErrorLastUpdatedDate() throws Exception {
+        final TimeSpanDAO timeSpanDAO = new TimeSpanDAO();
+        timeSpanDAO.setProjectId(projectId);
+        timeSpanDAO.setCoworkerId(coworkerId);
+        timeSpanDAO.setStartTime(date);
+        timeSpanDAO.setDurationInMinutes(duration);
+        timeSpanDAO.setTimeSpanId(timeSpanId);
+        timeSpanDAO.setCreationDate(date);
+        final BeanPropertyBindingResult errors = new BeanPropertyBindingResult(timeSpanDAO, "timespan");
+        validator.validate(timeSpanDAO, errors);
+        assertThat("Validation passed without duration", errors.hasErrors(), is(true));
+    }
+
+    @Test
+    public void testValidateWithMetaErrorLastUpdatedDateBeforeCreationDate() throws Exception {
+        final TimeSpanDAO timeSpanDAO = new TimeSpanDAO();
+        timeSpanDAO.setProjectId(projectId);
+        timeSpanDAO.setCoworkerId(coworkerId);
+        timeSpanDAO.setStartTime(date);
+        timeSpanDAO.setDurationInMinutes(duration);
+        timeSpanDAO.setTimeSpanId(timeSpanId);
+        timeSpanDAO.setCreationDate(date);
+        timeSpanDAO.setLastUpdatedDate(new Date(date.getTime() - 1500L));
+        final BeanPropertyBindingResult errors = new BeanPropertyBindingResult(timeSpanDAO, "timespan");
+        validator.validate(timeSpanDAO, errors);
+        assertThat("Validation passed without duration", errors.hasErrors(), is(true));
+    }
 }
