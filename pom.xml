@@ -4,7 +4,7 @@
 
     <groupId>org.xezz</groupId>
     <artifactId>timeregistration</artifactId>
-    <version>1.3.2</version>
+    <version>1.3.3-SNAPSHOT</version>
     <modules>
         <module>trex-backend</module>
         <module>trex-integrationtests</module>
