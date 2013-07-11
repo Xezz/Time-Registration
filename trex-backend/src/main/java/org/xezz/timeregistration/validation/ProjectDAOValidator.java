@@ -35,6 +35,11 @@ public class ProjectDAOValidator implements Validator {
             if (dao.getLastUpdatedDate() == null) {
                 errors.rejectValue("lastUpdatedDate", "field.required", "Meta data error: lastUpdatedDate was not set");
             }
+            if (dao.getCreationDate() != null &&
+                    dao.getLastUpdatedDate() != null &&
+                    dao.getLastUpdatedDate().before(dao.getCreationDate())) {
+                errors.rejectValue("lastUpdatedDate", "field.required", "Can not be updated before it has been created");
+            }
         }
     }
 }
